@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyAI : MonoBehaviour
 {
-    [Header("Configuraci�n de IA")]
+    [Header("Configuración de IA")]
     public float moveSpeed = 2.5f;
     public Transform target;
 
@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
         if (target == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null) 
+            if (playerObj != null)
             {
                 target = playerObj.transform;
             }
@@ -27,15 +27,14 @@ public class EnemyAI : MonoBehaviour
     {
         if (target != null)
         {
-            // 1. Calculamos la direcci�n hacia el jugador
+            // Calculamos la dirección
             Vector2 direction = ((Vector2)target.position - rb.position).normalized;
 
-            // 2. Usamos la velocidad del motor de f�sicas en lugar del MovePosition
+            // Aplicamos la velocidad lineal (API moderna de Unity)
             rb.linearVelocity = direction * moveSpeed;
         }
         else
         {
-            // Si no hay objetivo (por ejemplo, si mueres), se queda quieto
             rb.linearVelocity = Vector2.zero;
         }
     }
