@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6290838395954330616}
   - component: {fileID: 4224174341831057168}
   - component: {fileID: 5890675780311265949}
+  - component: {fileID: 1959665886143505801}
   - component: {fileID: 4390406028702864343}
   - component: {fileID: 4509025746707119507}
   m_Layer: 0
@@ -185,6 +186,20 @@ MonoBehaviour:
   isPlayer: 0
   iFramesDuration: 1.5
   blinkInterval: 0.1
+--- !u!114 &1959665886143505801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722221942561595826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa7b15ccf7c6b242b7e5c0ce864c403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LootDropper
+  itemToDrop: {fileID: 3702282027336706518, guid: 91307abc9fa83f84286c6a352b68be40, type: 3}
+  dropChance: 0.4
 --- !u!114 &4390406028702864343
 MonoBehaviour:
   m_ObjectHideFlags: 0

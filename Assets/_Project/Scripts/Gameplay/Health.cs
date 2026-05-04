@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [Header("Estadísticas")]
+    [Header("Stats")]
     public int maxHealth = 3;
     private int currentHealth;
 
-    [Header("Invulnerabilidad")]
-    public bool isPlayer = false; // Marcamos esto solo en el jugador
-    public float iFramesDuration = 1.5f; // Duración de la inmunidad
-    public float blinkInterval = 0.1f; // Velocidad del parpadeo
+    [Header("Invulnerability")]
+    public bool isPlayer = false;
+    public float iFramesDuration = 1.5f;
+    public float blinkInterval = 0.1f;
 
     private bool isInvulnerable = false;
     private SpriteRenderer spriteRenderer;
@@ -18,17 +18,25 @@ public class Health : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        // Buscamos el SpriteRenderer (ya sea en este objeto o en sus hijos)
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        if (isPlayer && UIManager.Instance != null)
+        {
+            UIManager.Instance.UpdateHealthUI(currentHealth, maxHealth);
+        }
     }
 
     public void TakeDamage(int damage)
     {
-        // Si somos invulnerables, ignoramos el código de abajo y no recibimos daño
         if (isInvulnerable) return;
 
         currentHealth -= damage;
-        Debug.Log(gameObject.name + " ha recibido daño. Vida: " + currentHealth);
+        Debug.Log(gameObject.name + " took damage. HP: " + currentHealth);
+
+        if (isPlayer && UIManager.Instance != null)
+        {
+            UIManager.Instance.UpdateHealthUI(currentHealth, maxHealth);
+        }
 
         if (currentHealth <= 0)
         {
@@ -36,9 +44,36 @@ public class Health : MonoBehaviour
         }
         else if (isPlayer)
         {
-            // Solo activamos los i-frames si este script pertenece al jugador
             StartCoroutine(InvulnerabilityRoutine());
         }
+    }
+
+    // --- NUEVO: MÉTODO PARA CURAR ---
+    public bool Heal(int amount)
+    {
+        // Si ya tenemos la vida al máximo, devolvemos 'false' para no gastar la poción
+        if (currentHealth >= maxHealth)
+        {
+            return false;
+        }
+
+        currentHealth += amount;
+
+        // Nos aseguramos de no superar la vida máxima
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        Debug.Log(gameObject.name + " healed. HP: " + currentHealth);
+
+        // Actualizamos la UI
+        if (isPlayer && UIManager.Instance != null)
+        {
+            UIManager.Instance.UpdateHealthUI(currentHealth, maxHealth);
+        }
+
+        return true; // Devolvemos 'true' indicando que la curación fue un éxito
     }
 
     private IEnumerator InvulnerabilityRoutine()
@@ -46,31 +81,42 @@ public class Health : MonoBehaviour
         isInvulnerable = true;
         float elapsedTime = 0f;
 
-        // Bucle que dura el tiempo de invulnerabilidad
         while (elapsedTime < iFramesDuration)
         {
             if (spriteRenderer != null)
             {
-                // Alterna entre activado y desactivado para crear el parpadeo
                 spriteRenderer.enabled = !spriteRenderer.enabled;
             }
-
             yield return new WaitForSeconds(blinkInterval);
             elapsedTime += blinkInterval;
         }
 
-        // Al terminar, nos aseguramos de que el sprite se quede visible
         if (spriteRenderer != null)
         {
             spriteRenderer.enabled = true;
         }
-
         isInvulnerable = false;
     }
 
+    // He añadido la lógica del loot aquí
     private void Die()
     {
-        Debug.Log(gameObject.name + " ha sido destruido.");
+        Debug.Log(gameObject.name + " was destroyed.");
+
+        if (isPlayer && UIManager.Instance != null)
+        {
+            UIManager.Instance.ShowGameOver();
+        }
+        else // Si NO es el jugador (es un enemigo u otro objeto destruible)
+        {
+            // NUEVO: Intentamos soltar loot antes de morir
+            LootDropper lootDropper = GetComponent<LootDropper>();
+            if (lootDropper != null)
+            {
+                lootDropper.TryDropLoot();
+            }
+        }
+
         Destroy(gameObject);
     }
 }
