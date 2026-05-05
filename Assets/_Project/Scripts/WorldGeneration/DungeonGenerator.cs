@@ -36,24 +36,27 @@ public class DungeonGenerator : MonoBehaviour
     private HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
     private List<Vector2Int> availablePositions = new List<Vector2Int>();
 
-    // Memoria para el Reset
     private List<GameObject> activeBoxes = new List<GameObject>();
     private List<Vector3> boxStartPositions = new List<Vector3>();
     private PuzzleSwitch[] activeSwitches;
     private LogicDoor activeDoor;
 
-    // Variables de topología
     private Vector2Int exitPosInt;
     private Vector2Int logicDoorPosInt;
     private bool exitFound = false;
     private Vector2Int sciFiDoorPosInt;
     private Vector2Int terminalPosInt;
 
+    // NUEVO: Flag para saber si se debe generar la Bóveda en este nivel
+    private bool spawnHackingVault = false;
+
     void Start() { GenerateDungeon(); }
 
     void Update()
     {
+        // Ignorar el reinicio si el jugador está hackeando
         if (HackingTerminal.isTerminalOpen) return;
+
         if (Input.GetKeyDown(KeyCode.R)) ResetPuzzle();
     }
 
@@ -67,16 +70,46 @@ public class DungeonGenerator : MonoBehaviour
         boxStartPositions.Clear();
         exitFound = false;
 
+        // --- SISTEMA DE DIFICULTAD ---
+        int currentFloor = UIManager.currentFloor;
+
+        if (currentFloor == 1)
+        {
+            iterations = 5; // Mapa pequeño
+            enemyCount = 0; // Sin enemigos
+            numberOfSwitches = Random.Range(1, 3); // 1 o 2 switches
+            spawnHackingVault = false; // Sin terminal de hackeo
+        }
+        else if (currentFloor == 2)
+        {
+            iterations = 8; // Mapa mediano
+            enemyCount = 1; // 1 enemigo introductorio
+            numberOfSwitches = 3;
+            spawnHackingVault = true; // Empieza el hackeo
+        }
+        else
+        {
+            iterations = 8 + currentFloor; // Crece cada nivel
+            enemyCount = currentFloor - 1; // Más enemigos
+            numberOfSwitches = Mathf.Clamp(2 + (currentFloor / 2), 3, 5); // Tope en 5
+            spawnHackingVault = true;
+        }
+
         // 1. DIBUJAR LOS PLANOS (Topología)
         RunRandomWalk();
         PrepareExitBottleneck();
-        Vector2Int vaultCenter = BuildHackerVault();
 
-        // 2. CONSTRUIR MAPA FÍSICO (Suelos y Paredes)
+        Vector2Int vaultCenter = Vector2Int.zero;
+        if (spawnHackingVault)
+        {
+            vaultCenter = BuildHackerVault();
+        }
+
+        // 2. CONSTRUIR MAPA FÍSICO 
         DrawFloorTiles();
         CreateWalls();
 
-        // 3. LIMPIAR MUROS DONDE VAN PUERTAS
+        // 3. LIMPIAR MUROS
         CleanDoorsWalls();
 
         // 4. COLOCAR OBJETOS
@@ -84,7 +117,6 @@ public class DungeonGenerator : MonoBehaviour
         SpawnEntities(vaultCenter);
     }
 
-    // --- 1. TOPOLOGÍA ---
     private void RunRandomWalk()
     {
         Vector2Int currentPosition = Vector2Int.zero;
@@ -142,35 +174,25 @@ public class DungeonGenerator : MonoBehaviour
 
         if (!found) entrance = GetRandomFloorPosition();
 
-        // 1. DESPEJE DE TERRENO (7x7): Borramos cualquier pasillo que la hormiga haya hecho aquí
         for (int x = -3; x <= 3; x++)
         {
-            for (int y = 1; y <= 7; y++)
-            {
-                floorPositions.Remove(entrance + new Vector2Int(x, y));
-            }
+            for (int y = 1; y <= 7; y++) floorPositions.Remove(entrance + new Vector2Int(x, y));
         }
 
-        // 2. CONSTRUIMOS LA BÓVEDA (5x5): Justo en el centro del área despejada
         for (int x = -2; x <= 2; x++)
         {
-            for (int y = 2; y <= 6; y++)
-            {
-                floorPositions.Add(entrance + new Vector2Int(x, y));
-            }
+            for (int y = 2; y <= 6; y++) floorPositions.Add(entrance + new Vector2Int(x, y));
         }
 
-        // 3. MARCO DE LA PUERTA Y TERMINAL
-        sciFiDoorPosInt = entrance + Vector2Int.up; // (0, 1)
+        sciFiDoorPosInt = entrance + Vector2Int.up;
         floorPositions.Add(sciFiDoorPosInt);
 
         terminalPosInt = entrance + Vector2Int.right;
-        floorPositions.Add(terminalPosInt); // Forzamos suelo bajo la terminal por si acaso
+        floorPositions.Add(terminalPosInt);
 
-        return entrance + new Vector2Int(0, 4); // Devolvemos el centro exacto de la bóveda
+        return entrance + new Vector2Int(0, 4);
     }
 
-    // --- 2. DIBUJO ---
     private void DrawFloorTiles()
     {
         foreach (Vector2Int pos in floorPositions) floorTilemap.SetTile(new Vector3Int(pos.x, pos.y, 0), floorTile);
@@ -194,14 +216,12 @@ public class DungeonGenerator : MonoBehaviour
         foreach (Vector2Int pos in wallPositions) wallTilemap.SetTile(new Vector3Int(pos.x, pos.y, 0), wallTile);
     }
 
-    // --- 3. LIMPIEZA ---
     private void CleanDoorsWalls()
     {
         if (exitFound) wallTilemap.SetTile(new Vector3Int(exitPosInt.x, exitPosInt.y, 0), null);
-        wallTilemap.SetTile(new Vector3Int(sciFiDoorPosInt.x, sciFiDoorPosInt.y, 0), null);
+        if (spawnHackingVault) wallTilemap.SetTile(new Vector3Int(sciFiDoorPosInt.x, sciFiDoorPosInt.y, 0), null);
     }
 
-    // --- 4. INSTANCIACIÓN ---
     private void SpawnEntities(Vector2Int vaultCenter)
     {
         if (playerPrefab != null && availablePositions.Count > 0)
@@ -220,12 +240,15 @@ public class DungeonGenerator : MonoBehaviour
             availablePositions.Remove(exitPosInt);
         }
 
-        GameObject sfDoorObj = Instantiate(sciFiDoorPrefab, new Vector3(sciFiDoorPosInt.x + 0.5f, sciFiDoorPosInt.y + 0.5f, 0f), Quaternion.identity);
-        GameObject terminalObj = Instantiate(hackingTerminalPrefab, new Vector3(terminalPosInt.x + 0.5f, terminalPosInt.y + 0.5f, 0f), Quaternion.identity);
+        if (spawnHackingVault)
+        {
+            GameObject sfDoorObj = Instantiate(sciFiDoorPrefab, new Vector3(sciFiDoorPosInt.x + 0.5f, sciFiDoorPosInt.y + 0.5f, 0f), Quaternion.identity);
+            GameObject terminalObj = Instantiate(hackingTerminalPrefab, new Vector3(terminalPosInt.x + 0.5f, terminalPosInt.y + 0.5f, 0f), Quaternion.identity);
 
-        HackingTerminal terminalScript = terminalObj.GetComponent<HackingTerminal>();
-        if (terminalScript != null) terminalScript.sciFiDoor = sfDoorObj;
-        availablePositions.Remove(sciFiDoorPosInt);
+            HackingTerminal terminalScript = terminalObj.GetComponent<HackingTerminal>();
+            if (terminalScript != null) terminalScript.sciFiDoor = sfDoorObj;
+            availablePositions.Remove(sciFiDoorPosInt);
+        }
 
         if (activeDoor != null && switchPrefabs.Length > 0)
         {
@@ -241,17 +264,21 @@ public class DungeonGenerator : MonoBehaviour
 
                 if (switchData.type == PuzzleSwitch.SwitchType.Melee)
                 {
-                    spawnPos = (i == 0) ? vaultCenter + new Vector2Int(0, 2) : GetNorthWallPosition();
+                    if (spawnHackingVault && i == 0) spawnPos = vaultCenter + new Vector2Int(0, 2);
+                    else spawnPos = GetNorthWallPosition();
+
                     instantiatePos = new Vector3(spawnPos.x + 0.5f, spawnPos.y + 1.5f, 0f);
                 }
                 else
                 {
-                    spawnPos = (i == 0) ? vaultCenter : GetSafeBoxPosition();
+                    if (spawnHackingVault && i == 0) spawnPos = vaultCenter;
+                    else spawnPos = GetSafeBoxPosition();
+
                     instantiatePos = new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f);
 
                     if (boxPrefab != null)
                     {
-                        Vector2Int boxPos = (i == 0) ? vaultCenter + Vector2Int.down : GetSafeBoxPosition();
+                        Vector2Int boxPos = (spawnHackingVault && i == 0) ? vaultCenter + Vector2Int.down : GetSafeBoxPosition();
                         Vector3 fBoxPos = new Vector3(boxPos.x + 0.5f, boxPos.y + 0.5f, 0f);
 
                         GameObject box = Instantiate(boxPrefab, fBoxPos, Quaternion.identity);

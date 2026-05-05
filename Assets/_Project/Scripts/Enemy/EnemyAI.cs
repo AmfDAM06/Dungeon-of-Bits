@@ -5,21 +5,21 @@ public class EnemyAl : MonoBehaviour
 {
     [Header("Configuración de IA")]
     public float moveSpeed = 2.5f;
-    public float detectionRange = 6f; // NUEVO: Radio de visión del enemigo
+    public float detectionRange = 6f; // Rango de visión
     public Transform target;
+
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         if (target == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null)
-            {
-                target = playerObj.transform;
-            }
+            if (playerObj != null) target = playerObj.transform;
         }
     }
 
@@ -27,29 +27,29 @@ public class EnemyAl : MonoBehaviour
     {
         if (target != null)
         {
-            // Calculamos la distancia exacta entre el enemigo y el jugador
             float distanceToTarget = Vector2.Distance(rb.position, target.position);
 
-            // Si el jugador entra en su campo de visión
             if (distanceToTarget <= detectionRange)
             {
                 Vector2 direction = ((Vector2)target.position - rb.position).normalized;
                 rb.linearVelocity = direction * moveSpeed;
+
+                // --- SISTEMA DE FLIP ---
+                if (spriteRenderer != null)
+                {
+                    if (direction.x < 0) spriteRenderer.flipX = true;
+                    else if (direction.x > 0) spriteRenderer.flipX = false;
+                }
             }
             else
             {
-                // Si el jugador se aleja demasiado, el enemigo se detiene (pierde el interés)
-                rb.linearVelocity = Vector2.zero;
+                rb.linearVelocity = Vector2.zero; // Se detiene si te alejas
             }
         }
-        else
-        {
-            rb.linearVelocity = Vector2.zero;
-        }
+        else rb.linearVelocity = Vector2.zero;
     }
 
-    // NUEVO: Esta función dibuja un círculo amarillo en Unity (solo en la pestaña Scene) 
-    // para que puedas ver exactamente hasta dónde llega la vista de cada enemigo.
+    // Dibuja un círculo amarillo en la pestaña "Scene" de Unity
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
