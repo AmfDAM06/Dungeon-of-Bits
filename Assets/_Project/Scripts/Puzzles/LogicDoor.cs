@@ -77,4 +77,21 @@ public class LogicDoor : MonoBehaviour
 
         Debug.Log("¡Condición IF cumplida! Puerta Lógica abierta.");
     }
+    // --- MÉTODO PARA RESETEAR ---
+    public void ResetDoor()
+    {
+        isOpen = false;
+
+        // Volvemos a poner el dibujo de la puerta cerrada
+        if (spriteRenderer != null && closedSprite != null)
+        {
+            spriteRenderer.sprite = closedSprite;
+        }
+
+        // Volvemos a activar la colisión para que bloquee el paso
+        if (doorCollider != null)
+        {
+            doorCollider.enabled = true;
+        }
+    }
 }

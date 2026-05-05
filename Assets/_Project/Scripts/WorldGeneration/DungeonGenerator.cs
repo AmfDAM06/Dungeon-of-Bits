@@ -26,16 +26,31 @@ public class DungeonGenerator : MonoBehaviour
     [Header("Prefabs de Puzles")]
     public GameObject logicDoorPrefab;
     [Tooltip("Añade aquí tanto el Botón como la Palanca")]
-    public GameObject[] switchPrefabs; // ¡Ahora es una lista (Array)!
+    public GameObject[] switchPrefabs;
     public GameObject boxPrefab;
     public int numberOfSwitches = 2;
 
     private HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
     private List<Vector2Int> availablePositions = new List<Vector2Int>();
 
+    // --- MEMORIA PARA EL RESET DEL PUZLE ---
+    private List<GameObject> activeBoxes = new List<GameObject>();
+    private List<Vector3> boxStartPositions = new List<Vector3>();
+    private PuzzleSwitch[] activeSwitches;
+    private LogicDoor activeDoor;
+
     void Start()
     {
         GenerateDungeon();
+    }
+
+    // --- NUEVO: ESCUCHAR LA TECLA R ---
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetPuzzle();
+        }
     }
 
     private void GenerateDungeon()
@@ -44,6 +59,12 @@ public class DungeonGenerator : MonoBehaviour
         wallTilemap.ClearAllTiles();
         floorPositions.Clear();
         availablePositions.Clear();
+
+        // Limpiamos la memoria del puzle anterior
+        activeBoxes.Clear();
+        boxStartPositions.Clear();
+        activeSwitches = null;
+        activeDoor = null;
 
         RunRandomWalk();
         DrawFloorTiles();
@@ -70,7 +91,6 @@ public class DungeonGenerator : MonoBehaviour
         {
             for (int j = 0; j < walkLength; j++)
             {
-                // Pasillos anchos de 2x2
                 floorPositions.Add(currentPosition);
                 floorPositions.Add(currentPosition + Vector2Int.up);
                 floorPositions.Add(currentPosition + Vector2Int.right);
@@ -127,8 +147,6 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
-    // --- MÉTODOS PARA BUSCAR POSICIONES DE PUZLE ---
-
     private Vector2Int GetSafeBoxPosition()
     {
         List<Vector2Int> safePos = new List<Vector2Int>();
@@ -157,13 +175,11 @@ public class DungeonGenerator : MonoBehaviour
         return fallback;
     }
 
-    // NUEVO: Busca una baldosa de suelo que tenga una pared justo en el Norte
     private Vector2Int GetNorthWallPosition()
     {
         List<Vector2Int> northWallPos = new List<Vector2Int>();
         foreach (Vector2Int pos in availablePositions)
         {
-            // Si la casilla de arriba NO es suelo, significa que es pared (o vacío)
             if (!floorPositions.Contains(pos + Vector2Int.up))
             {
                 northWallPos.Add(pos);
@@ -178,11 +194,9 @@ public class DungeonGenerator : MonoBehaviour
             return chosen;
         }
 
-        return GetSafeBoxPosition(); // Fallback por si acaso
+        return GetSafeBoxPosition();
     }
 
-
-    // --- GENERACIÓN DEL PUZLE ---
     private void SpawnExitAndPuzzle()
     {
         if (exitPrefab == null || logicDoorPrefab == null || switchPrefabs.Length == 0) return;
@@ -225,9 +239,12 @@ public class DungeonGenerator : MonoBehaviour
 
             GameObject doorObj = Instantiate(logicDoorPrefab, new Vector3(doorPosInt.x + 0.5f, doorPosInt.y + 0.5f, 0f), Quaternion.identity);
             LogicDoor logicDoorScript = doorObj.GetComponent<LogicDoor>();
+
+            // GUARDAMOS LA PUERTA EN MEMORIA
+            activeDoor = logicDoorScript;
+
             availablePositions.Remove(doorPosInt);
 
-            // ACTUALIZADO: Lista de PuzzleSwitches
             PuzzleSwitch[] spawnedSwitches = new PuzzleSwitch[numberOfSwitches];
 
             for (int i = 0; i < numberOfSwitches; i++)
@@ -236,33 +253,38 @@ public class DungeonGenerator : MonoBehaviour
                 PuzzleSwitch switchData = prefabToSpawn.GetComponent<PuzzleSwitch>();
 
                 Vector2Int spawnPos;
-                Vector3 finalInstantiatePos; // Nueva variable para la posición visual final
+                Vector3 finalInstantiatePos;
 
                 if (switchData.type == PuzzleSwitch.SwitchType.Melee)
                 {
                     spawnPos = GetNorthWallPosition();
-                    // ¡TRUCO AQUÍ! Le sumamos 1.5f a la Y en lugar de 0.5f para subirla a la pared
                     finalInstantiatePos = new Vector3(spawnPos.x + 0.5f, spawnPos.y + 1.5f, 0f);
                 }
                 else
                 {
                     spawnPos = GetSafeBoxPosition();
-                    // El botón normal se queda en el suelo (0.5f)
                     finalInstantiatePos = new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f);
 
                     Vector2Int boxPos = GetSafeBoxPosition();
                     if (boxPrefab != null)
                     {
-                        Instantiate(boxPrefab, new Vector3(boxPos.x + 0.5f, boxPos.y + 0.5f, 0f), Quaternion.identity);
+                        Vector3 finalBoxPos = new Vector3(boxPos.x + 0.5f, boxPos.y + 0.5f, 0f);
+                        GameObject box = Instantiate(boxPrefab, finalBoxPos, Quaternion.identity);
+
+                        // GUARDAMOS LA CAJA Y SU POSICIÓN ORIGINAL EN MEMORIA
+                        activeBoxes.Add(box);
+                        boxStartPositions.Add(finalBoxPos);
                     }
                 }
 
-                // Usamos la nueva posición final para crear el objeto
                 GameObject swObj = Instantiate(prefabToSpawn, finalInstantiatePos, Quaternion.identity);
                 spawnedSwitches[i] = swObj.GetComponent<PuzzleSwitch>();
             }
 
             logicDoorScript.requiredSwitches = spawnedSwitches;
+
+            // GUARDAMOS LOS INTERRUPTORES EN MEMORIA
+            activeSwitches = spawnedSwitches;
         }
     }
 
@@ -277,5 +299,42 @@ public class DungeonGenerator : MonoBehaviour
             Instantiate(enemyPrefab, new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f), Quaternion.identity);
             availablePositions.RemoveAt(randomIndex);
         }
+    }
+
+    // --- NUEVO: FUNCIÓN QUE EJECUTA EL RESET ---
+    private void ResetPuzzle()
+    {
+        // 1. Cerramos la puerta
+        if (activeDoor != null)
+        {
+            activeDoor.ResetDoor();
+        }
+
+        // 2. Apagamos todos los interruptores y palancas
+        if (activeSwitches != null)
+        {
+            foreach (PuzzleSwitch sw in activeSwitches)
+            {
+                if (sw != null) sw.ResetSwitch();
+            }
+        }
+
+        // 3. Teletransportamos las cajas a su origen y frenamos su inercia
+        for (int i = 0; i < activeBoxes.Count; i++)
+        {
+            if (activeBoxes[i] != null)
+            {
+                activeBoxes[i].transform.position = boxStartPositions[i];
+
+                Rigidbody2D rb = activeBoxes[i].GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    rb.linearVelocity = Vector2.zero; // Frenamos la caja en seco
+                    rb.angularVelocity = 0f;
+                }
+            }
+        }
+
+        Debug.Log("¡Puzle Reiniciado!");
     }
 }

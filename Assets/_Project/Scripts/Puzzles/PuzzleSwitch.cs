@@ -91,4 +91,17 @@ public class PuzzleSwitch : MonoBehaviour
         }
         isAnimating = false;
     }
+    // --- MÉTODO PARA RESETEAR ---
+    public void ResetSwitch()
+    {
+        StopAllCoroutines(); // Detenemos la animación por si estaba a medias
+        isAnimating = false;
+        isActivated = false;
+
+        // Volvemos a poner el primer sprite (apagado/sin pisar)
+        if (frames.Length > 0 && spriteRenderer != null)
+        {
+            spriteRenderer.sprite = frames[0];
+        }
+    }
 }
