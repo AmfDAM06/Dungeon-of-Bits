@@ -17,14 +17,21 @@ public class DungeonGenerator : MonoBehaviour
     public int walkLength = 50;
     public bool startRandomlyEachIteration = true;
 
-    [Header("Prefabs a Instanciar")]
+    [Header("Prefabs de Entidades")]
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
-    public GameObject exitPrefab; // <--- Referencia para la puerta
+    public GameObject exitPrefab;
     public int enemyCount = 5;
 
-    // Memoria de la hormiga excavadora
+    [Header("Prefabs de Puzles")]
+    public GameObject logicDoorPrefab;
+    [Tooltip("Añade aquí tanto el Botón como la Palanca")]
+    public GameObject[] switchPrefabs; // ¡Ahora es una lista (Array)!
+    public GameObject boxPrefab;
+    public int numberOfSwitches = 2;
+
     private HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
+    private List<Vector2Int> availablePositions = new List<Vector2Int>();
 
     void Start()
     {
@@ -33,58 +40,45 @@ public class DungeonGenerator : MonoBehaviour
 
     private void GenerateDungeon()
     {
-        // 1. Limpiamos mapas
         floorTilemap.ClearAllTiles();
         wallTilemap.ClearAllTiles();
         floorPositions.Clear();
+        availablePositions.Clear();
 
-        // 2. Ejecutamos el Random Walk
         RunRandomWalk();
-
-        // 3. Dibujamos los tiles de suelo
         DrawFloorTiles();
-
-        // 4. Calculamos y dibujamos las paredes sólidas
         CreateWalls();
 
-        // 5. Spawneamos al jugador en el centro de la primera casilla de suelo asegurada
-        if (playerPrefab != null && floorPositions.Count > 0)
-        {
-            Vector2Int[] floorArray = new Vector2Int[floorPositions.Count];
-            floorPositions.CopyTo(floorArray);
+        availablePositions = new List<Vector2Int>(floorPositions);
 
-            // Le sumamos 0.5f para que el jugador aparezca en el centro de la baldosa y no se atasque
-            Vector3 playerSpawnPos = new Vector3(floorArray[0].x + 0.5f, floorArray[0].y + 0.5f, 0f);
+        if (playerPrefab != null && availablePositions.Count > 0)
+        {
+            Vector2Int spawnPos = availablePositions[0];
+            Vector3 playerSpawnPos = new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f);
             Instantiate(playerPrefab, playerSpawnPos, Quaternion.identity);
+            availablePositions.Remove(spawnPos);
         }
 
-        // 6. Spawneamos a los enemigos
+        SpawnExitAndPuzzle();
         SpawnEnemies();
-
-        // 7. Spawneamos la puerta de salida incrustada en una pared superior
-        SpawnExit();
     }
 
     private void RunRandomWalk()
     {
         Vector2Int currentPosition = Vector2Int.zero;
-
         for (int i = 0; i < iterations; i++)
         {
             for (int j = 0; j < walkLength; j++)
             {
+                // Pasillos anchos de 2x2
                 floorPositions.Add(currentPosition);
+                floorPositions.Add(currentPosition + Vector2Int.up);
+                floorPositions.Add(currentPosition + Vector2Int.right);
+                floorPositions.Add(currentPosition + new Vector2Int(1, 1));
+
                 currentPosition += GetRandomDirection();
             }
-
-            if (startRandomlyEachIteration)
-            {
-                currentPosition = GetRandomFloorPosition();
-            }
-            else
-            {
-                currentPosition = Vector2Int.zero;
-            }
+            currentPosition = startRandomlyEachIteration ? GetRandomFloorPosition() : Vector2Int.zero;
         }
     }
 
@@ -111,7 +105,6 @@ public class DungeonGenerator : MonoBehaviour
     private void CreateWalls()
     {
         HashSet<Vector2Int> wallPositions = new HashSet<Vector2Int>();
-
         foreach (Vector2Int position in floorPositions)
         {
             for (int x = -1; x <= 1; x++)
@@ -119,10 +112,7 @@ public class DungeonGenerator : MonoBehaviour
                 for (int y = -1; y <= 1; y++)
                 {
                     if (x == 0 && y == 0) continue;
-
                     Vector2Int neighbor = new Vector2Int(position.x + x, position.y + y);
-
-                    // Si el vecino NO tiene suelo, es un borde. Ahí va una pared.
                     if (!floorPositions.Contains(neighbor))
                     {
                         wallPositions.Add(neighbor);
@@ -137,64 +127,155 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
-    private void SpawnEnemies()
+    // --- MÉTODOS PARA BUSCAR POSICIONES DE PUZLE ---
+
+    private Vector2Int GetSafeBoxPosition()
     {
-        if (enemyPrefab == null) return;
-
-        List<Vector2Int> availablePositions = new List<Vector2Int>(floorPositions);
-
-        if (floorPositions.Count > 0)
+        List<Vector2Int> safePos = new List<Vector2Int>();
+        foreach (Vector2Int pos in availablePositions)
         {
-            Vector2Int[] floorArray = new Vector2Int[floorPositions.Count];
-            floorPositions.CopyTo(floorArray);
-            availablePositions.Remove(floorArray[0]);
-        }
-
-        for (int i = 0; i < enemyCount; i++)
-        {
-            if (availablePositions.Count == 0) break;
-
-            int randomIndex = Random.Range(0, availablePositions.Count);
-            Vector2Int spawnPos = availablePositions[randomIndex];
-
-            // Enemigos también centrados con el 0.5f
-            Instantiate(enemyPrefab, new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f), Quaternion.identity);
-
-            availablePositions.RemoveAt(randomIndex);
-        }
-    }
-
-    // --- MAGIA DE LA PUERTA ---
-    private void SpawnExit()
-    {
-        if (exitPrefab == null) return;
-
-        List<Vector2Int> topWalls = new List<Vector2Int>();
-
-        // Escaneamos el mapa en busca de paredes que estén justo ARRIBA de un suelo
-        foreach (Vector2Int floorPos in floorPositions)
-        {
-            Vector2Int potentialTopWall = floorPos + Vector2Int.up; // Miramos la baldosa de arriba
-
-            // Si la casilla de arriba no es suelo, es una pared segura.
-            if (!floorPositions.Contains(potentialTopWall))
+            if (floorPositions.Contains(pos + Vector2Int.up) &&
+                floorPositions.Contains(pos + Vector2Int.down) &&
+                floorPositions.Contains(pos + Vector2Int.left) &&
+                floorPositions.Contains(pos + Vector2Int.right))
             {
-                topWalls.Add(potentialTopWall);
+                safePos.Add(pos);
             }
         }
 
-        // Si hemos encontrado alguna pared superior candidata...
-        if (topWalls.Count > 0)
+        if (safePos.Count > 0)
         {
-            // Elegimos una al azar
-            int randomIndex = Random.Range(0, topWalls.Count);
-            Vector2Int exitPos = topWalls[randomIndex];
+            int r = Random.Range(0, safePos.Count);
+            Vector2Int chosen = safePos[r];
+            availablePositions.Remove(chosen);
+            return chosen;
+        }
 
-            // 1. Borramos la pared de piedra para que el jugador pueda entrar al hueco
-            wallTilemap.SetTile(new Vector3Int(exitPos.x, exitPos.y, 0), null);
+        int fallbackIndex = Random.Range(0, availablePositions.Count);
+        Vector2Int fallback = availablePositions[fallbackIndex];
+        availablePositions.RemoveAt(fallbackIndex);
+        return fallback;
+    }
 
-            // 2. Instanciamos la puerta visualmente en ese hueco (centrada con 0.5f)
-            Instantiate(exitPrefab, new Vector3(exitPos.x + 0.5f, exitPos.y + 0.5f, 0f), Quaternion.identity);
+    // NUEVO: Busca una baldosa de suelo que tenga una pared justo en el Norte
+    private Vector2Int GetNorthWallPosition()
+    {
+        List<Vector2Int> northWallPos = new List<Vector2Int>();
+        foreach (Vector2Int pos in availablePositions)
+        {
+            // Si la casilla de arriba NO es suelo, significa que es pared (o vacío)
+            if (!floorPositions.Contains(pos + Vector2Int.up))
+            {
+                northWallPos.Add(pos);
+            }
+        }
+
+        if (northWallPos.Count > 0)
+        {
+            int r = Random.Range(0, northWallPos.Count);
+            Vector2Int chosen = northWallPos[r];
+            availablePositions.Remove(chosen);
+            return chosen;
+        }
+
+        return GetSafeBoxPosition(); // Fallback por si acaso
+    }
+
+
+    // --- GENERACIÓN DEL PUZLE ---
+    private void SpawnExitAndPuzzle()
+    {
+        if (exitPrefab == null || logicDoorPrefab == null || switchPrefabs.Length == 0) return;
+
+        List<Vector2Int> validDoorPositions = new List<Vector2Int>();
+        foreach (Vector2Int floorPos in floorPositions)
+        {
+            Vector2Int wallAbove = floorPos + Vector2Int.up;
+            Vector2Int floorBelow = floorPos + Vector2Int.down;
+
+            if (!floorPositions.Contains(wallAbove) && floorPositions.Contains(floorBelow))
+            {
+                validDoorPositions.Add(floorPos);
+            }
+        }
+
+        if (validDoorPositions.Count > 0)
+        {
+            int randomIndex = Random.Range(0, validDoorPositions.Count);
+            Vector2Int doorPosInt = validDoorPositions[randomIndex];
+            Vector2Int exitPosInt = doorPosInt + Vector2Int.up;
+
+            Vector2Int[] wallsToForce = {
+                doorPosInt + Vector2Int.left,
+                doorPosInt + Vector2Int.right,
+                exitPosInt + Vector2Int.left,
+                exitPosInt + Vector2Int.right
+            };
+
+            foreach (Vector2Int w in wallsToForce)
+            {
+                floorPositions.Remove(w);
+                availablePositions.Remove(w);
+                floorTilemap.SetTile(new Vector3Int(w.x, w.y, 0), null);
+                wallTilemap.SetTile(new Vector3Int(w.x, w.y, 0), wallTile);
+            }
+
+            wallTilemap.SetTile(new Vector3Int(exitPosInt.x, exitPosInt.y, 0), null);
+            Instantiate(exitPrefab, new Vector3(exitPosInt.x + 0.5f, exitPosInt.y + 0.5f, 0f), Quaternion.identity);
+
+            GameObject doorObj = Instantiate(logicDoorPrefab, new Vector3(doorPosInt.x + 0.5f, doorPosInt.y + 0.5f, 0f), Quaternion.identity);
+            LogicDoor logicDoorScript = doorObj.GetComponent<LogicDoor>();
+            availablePositions.Remove(doorPosInt);
+
+            // ACTUALIZADO: Lista de PuzzleSwitches
+            PuzzleSwitch[] spawnedSwitches = new PuzzleSwitch[numberOfSwitches];
+
+            for (int i = 0; i < numberOfSwitches; i++)
+            {
+                GameObject prefabToSpawn = switchPrefabs[Random.Range(0, switchPrefabs.Length)];
+                PuzzleSwitch switchData = prefabToSpawn.GetComponent<PuzzleSwitch>();
+
+                Vector2Int spawnPos;
+                Vector3 finalInstantiatePos; // Nueva variable para la posición visual final
+
+                if (switchData.type == PuzzleSwitch.SwitchType.Melee)
+                {
+                    spawnPos = GetNorthWallPosition();
+                    // ¡TRUCO AQUÍ! Le sumamos 1.5f a la Y en lugar de 0.5f para subirla a la pared
+                    finalInstantiatePos = new Vector3(spawnPos.x + 0.5f, spawnPos.y + 1.5f, 0f);
+                }
+                else
+                {
+                    spawnPos = GetSafeBoxPosition();
+                    // El botón normal se queda en el suelo (0.5f)
+                    finalInstantiatePos = new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f);
+
+                    Vector2Int boxPos = GetSafeBoxPosition();
+                    if (boxPrefab != null)
+                    {
+                        Instantiate(boxPrefab, new Vector3(boxPos.x + 0.5f, boxPos.y + 0.5f, 0f), Quaternion.identity);
+                    }
+                }
+
+                // Usamos la nueva posición final para crear el objeto
+                GameObject swObj = Instantiate(prefabToSpawn, finalInstantiatePos, Quaternion.identity);
+                spawnedSwitches[i] = swObj.GetComponent<PuzzleSwitch>();
+            }
+
+            logicDoorScript.requiredSwitches = spawnedSwitches;
+        }
+    }
+
+    private void SpawnEnemies()
+    {
+        if (enemyPrefab == null) return;
+        for (int i = 0; i < enemyCount; i++)
+        {
+            if (availablePositions.Count == 0) break;
+            int randomIndex = Random.Range(0, availablePositions.Count);
+            Vector2Int spawnPos = availablePositions[randomIndex];
+            Instantiate(enemyPrefab, new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f), Quaternion.identity);
+            availablePositions.RemoveAt(randomIndex);
         }
     }
 }

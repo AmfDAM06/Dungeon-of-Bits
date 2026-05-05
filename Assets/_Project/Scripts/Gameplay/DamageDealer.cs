@@ -10,6 +10,12 @@ public class DamageDealer : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         DealDamage(collision.gameObject);
+
+        PuzzleSwitch puzzleSwitch = collision.GetComponent<PuzzleSwitch>();
+        if (puzzleSwitch != null)
+        {
+            puzzleSwitch.ToggleByHit();
+        }
     }
 
     // 2. Detecta choques "Sólidos" (El cuerpo del enemigo chocando contra ti)
