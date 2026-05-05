@@ -1758,15 +1758,17 @@ MonoBehaviour:
   walkLength: 50
   startRandomlyEachIteration: 1
   playerPrefab: {fileID: 1051362847008129558, guid: eb2330d443be166458296ad1fcd2c1ae, type: 3}
-  enemyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 722221942561595826, guid: 1be59e6ffa471444ba934cc7f8634e9a, type: 3}
   exitPrefab: {fileID: 427829974147682653, guid: b1024dc47f1990d48935b7ba32f4a4e7, type: 3}
-  enemyCount: 5
+  enemyCount: 0
   logicDoorPrefab: {fileID: 4777220876329190072, guid: 12dbe297fe21b5e49a8c45f1e00a6163, type: 3}
   switchPrefabs:
   - {fileID: 2904876517007592087, guid: aa03885cb1b0f724cb7275a3b2a7ed5b, type: 3}
   - {fileID: 2430638966732786622, guid: fa530a9c23c9c6b4a98d9fee7cc79b34, type: 3}
   boxPrefab: {fileID: 8834876767804197301, guid: af3cca0816d5e0a468da3db16e144fe5, type: 3}
   numberOfSwitches: 2
+  sciFiDoorPrefab: {fileID: 7789706252811503263, guid: a511f72ae3660ab4e9c30317fe4d55cc, type: 3}
+  hackingTerminalPrefab: {fileID: 8015857886381361116, guid: 9547c7b09ca8af24394d8fa697b04ef5, type: 3}
 --- !u!1 &1585451565
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     public float blinkInterval = 0.1f;
 
     private bool isInvulnerable = false;
+    public bool isShielded = false;
     private SpriteRenderer spriteRenderer;
 
     void Start()
@@ -28,7 +29,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (isInvulnerable) return;
+        if (isInvulnerable || isShielded) return;
 
         currentHealth -= damage;
         Debug.Log(gameObject.name + " took damage. HP: " + currentHealth);

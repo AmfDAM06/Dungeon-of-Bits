@@ -2,37 +2,43 @@ using UnityEngine;
 
 public class DamageDealer : MonoBehaviour
 {
-    [Header("Configuración de Daño")]
-    public int damageAmount = 1; // Cuánta vida quita este ataque
-    public string targetTag = "Enemy"; // A quién queremos hacerle daño
+    public int damageAmount = 1;
+    public string targetTag = "Enemy";
 
-    // 1. Detecta ataques "Fantasma" (Espadas, proyectiles mágicos...)
-    private void OnTriggerEnter2D(Collider2D collision)
+    [Header("Configuración de Ataque")]
+    public float attackCooldown = 1.5f; // Segundos entre ataque y ataque
+    private float lastAttackTime = -999f; // Memoria de cuándo fue el último ataque
+
+    // Detectan el primer impacto
+    private void OnTriggerEnter2D(Collider2D collision) { TryDealDamage(collision.gameObject); }
+    private void OnCollisionEnter2D(Collision2D collision) { TryDealDamage(collision.gameObject); }
+
+    // NUEVO: Detectan si los objetos se quedan pegados rozándose
+    private void OnTriggerStay2D(Collider2D collision) { TryDealDamage(collision.gameObject); }
+    private void OnCollisionStay2D(Collision2D collision) { TryDealDamage(collision.gameObject); }
+
+    private void TryDealDamage(GameObject targetObj)
     {
-        DealDamage(collision.gameObject);
-
-        PuzzleSwitch puzzleSwitch = collision.GetComponent<PuzzleSwitch>();
+        // Las palancas y puzles no tienen cooldown, reaccionan al instante
+        PuzzleSwitch puzzleSwitch = targetObj.GetComponent<PuzzleSwitch>();
         if (puzzleSwitch != null)
         {
             puzzleSwitch.ToggleByHit();
+            return;
         }
-    }
 
-    // 2. Detecta choques "Sólidos" (El cuerpo del enemigo chocando contra ti)
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        DealDamage(collision.gameObject);
-    }
-
-    // Método centralizado para no repetir código
-    private void DealDamage(GameObject target)
-    {
-        if (target.CompareTag(targetTag))
+        // Sistema de daño a entidades (Enemigos o Jugador)
+        if (targetObj.CompareTag(targetTag))
         {
-            Health targetHealth = target.GetComponent<Health>();
-            if (targetHealth != null)
+            // Comprobamos si ya ha pasado el tiempo suficiente desde el último golpe
+            if (Time.time >= lastAttackTime + attackCooldown)
             {
-                targetHealth.TakeDamage(damageAmount);
+                Health targetHealth = targetObj.GetComponent<Health>();
+                if (targetHealth != null)
+                {
+                    targetHealth.TakeDamage(damageAmount);
+                    lastAttackTime = Time.time; // Reiniciamos el cronómetro
+                }
             }
         }
     }
