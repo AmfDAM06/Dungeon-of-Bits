@@ -7,10 +7,17 @@ public class ExitDoor : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // Sumamos 1 al contador estático de nuestro UIManager
+            // 1. Subimos de piso
             UIManager.currentFloor++;
 
-            // Recargamos la escena para generar el siguiente piso
+            // 2. Guardamos la partida con la vida exacta que tiene el jugador
+            Health playerHealth = collision.GetComponent<Health>();
+            if (playerHealth != null)
+            {
+                SaveSystem.Save(UIManager.currentFloor, playerHealth.GetCurrentHealth(), playerHealth.maxHealth);
+            }
+
+            // 3. Generamos la nueva mazmorra
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }

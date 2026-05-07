@@ -1,21 +1,39 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // Necesario para cambiar de escena
+using UnityEngine.SceneManagement;
+using UnityEngine.UI; // Para activar/desactivar botones visualmente
 
 public class MainMenu : MonoBehaviour
 {
-    // Método que llamará el botón START GAME
-    public void StartGame()
+    public Button continueButton; // Arrastra aquí tu botón de continuar en el Inspector
+
+    private void Start()
     {
-        // Cargamos la escena del juego (asegúrate de que el nombre coincide exactamente)
-        // También puedes usar SceneManager.LoadScene(1); si la pusiste en el índice 1
-        SceneManager.LoadScene("LevelGenerationScene");
+        // Si hay una partida guardada, activamos el botón de Continuar. Si no, lo apagamos.
+        if (continueButton != null)
+        {
+            continueButton.interactable = SaveSystem.HasSaveFile();
+        }
     }
 
-    // Método que llamará el botón QUIT
+    public void StartNewGame()
+    {
+        SaveSystem.DeleteSave(); // Borramos cualquier partida vieja
+        UIManager.currentFloor = 1; // Reiniciamos el piso
+        SceneManager.LoadScene("LevelGenerationScene"); // Pon el nombre exacto de tu escena
+    }
+
+    public void ContinueGame()
+    {
+        if (SaveSystem.HasSaveFile())
+        {
+            SaveData data = SaveSystem.Load();
+            UIManager.currentFloor = data.floor; // Recuperamos el piso donde nos quedamos
+            SceneManager.LoadScene("LevelGenerationScene"); // Pon el nombre exacto de tu escena
+        }
+    }
+
     public void QuitGame()
     {
-        // Esto cierra el juego cuando está compilado (.exe)
-        Debug.Log("Quit Game!");
         Application.Quit();
     }
 }

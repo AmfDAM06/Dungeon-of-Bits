@@ -14,11 +14,27 @@ public class Health : MonoBehaviour
 
     private bool isInvulnerable = false;
     public bool isShielded = false;
+
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        currentHealth = maxHealth;
+        // SISTEMA DE CARGA DE VIDA
+        if (isPlayer)
+        {
+            SaveData data = SaveSystem.Load();
+            if (data != null)
+            {
+                maxHealth = data.maxHealth;
+                currentHealth = data.currentHealth;
+            }
+            else currentHealth = maxHealth;
+        }
+        else
+        {
+            currentHealth = maxHealth;
+        }
+
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         if (isPlayer && UIManager.Instance != null)
@@ -27,26 +43,25 @@ public class Health : MonoBehaviour
         }
     }
 
+    // NUEVA FUNCIÓN: Permite a la Puerta leer cuánta vida nos queda al salir
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
     public void TakeDamage(int damage)
     {
         if (isInvulnerable || isShielded) return;
 
         currentHealth -= damage;
-        Debug.Log(gameObject.name + " took damage. HP: " + currentHealth);
 
         if (isPlayer && UIManager.Instance != null)
         {
             UIManager.Instance.UpdateHealthUI(currentHealth, maxHealth);
         }
 
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-        else if (isPlayer)
-        {
-            StartCoroutine(InvulnerabilityRoutine());
-        }
+        if (currentHealth <= 0) Die();
+        else if (isPlayer) StartCoroutine(InvulnerabilityRoutine());
     }
 
     // --- NUEVO: MÉTODO PARA CURAR ---
@@ -106,6 +121,7 @@ public class Health : MonoBehaviour
 
         if (isPlayer && UIManager.Instance != null)
         {
+            SaveSystem.DeleteSave(); // ¡Si morimos, la partida se borra!
             UIManager.Instance.ShowGameOver();
         }
         else // Si NO es el jugador (es un enemigo u otro objeto destruible)

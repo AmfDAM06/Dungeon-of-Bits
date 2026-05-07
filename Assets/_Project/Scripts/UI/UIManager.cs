@@ -77,4 +77,10 @@ public class UIManager : MonoBehaviour
         currentFloor = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    public void LoadMainMenu()
+    {
+        currentFloor = 1; // Reiniciamos el contador de pisos por si acaso
+
+        SceneManager.LoadScene("MainMenuScene");
+    }
 }

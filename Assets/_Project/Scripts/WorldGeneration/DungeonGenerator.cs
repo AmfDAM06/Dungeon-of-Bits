@@ -161,29 +161,58 @@ public class DungeonGenerator : MonoBehaviour
         Vector2Int entrance = Vector2Int.zero;
         bool found = false;
 
-        foreach (Vector2Int pos in floorPositions)
+        // Convertimos el HashSet a Lista para poder elegir un punto al azar
+        List<Vector2Int> candidates = new List<Vector2Int>(floorPositions);
+        int startIndex = Random.Range(0, candidates.Count);
+
+        // Buscamos un candidato seguro
+        for (int i = 0; i < candidates.Count; i++)
         {
-            if (!floorPositions.Contains(pos + new Vector2Int(0, 1)))
+            Vector2Int pos = candidates[(startIndex + i) % candidates.Count];
+
+            // 1. Evitamos que se ponga muy cerca de la salida
+            if (exitFound && Vector2Int.Distance(pos, logicDoorPosInt) < 8) continue;
+
+            // 2. EL ARREGLO: Comprobamos si el área de 7x7 está COMPLETAMENTE llena de muros (sin suelo)
+            bool isAreaClear = true;
+            for (int x = -3; x <= 3; x++)
             {
-                if (exitFound && Vector2Int.Distance(pos, logicDoorPosInt) < 6) continue;
+                for (int y = 1; y <= 7; y++)
+                {
+                    if (floorPositions.Contains(pos + new Vector2Int(x, y)))
+                    {
+                        isAreaClear = false; // ¡Hay un pasillo aquí! Abortamos esta posición.
+                        break;
+                    }
+                }
+                if (!isAreaClear) break;
+            }
+
+            // Si el terreno está limpio y es pura pared, construimos aquí.
+            if (isAreaClear)
+            {
                 entrance = pos;
                 found = true;
                 break;
             }
         }
 
+        // Si no encuentra hueco (muy raro), pilla uno al azar como último recurso
         if (!found) entrance = GetRandomFloorPosition();
 
+        // Limpiamos la zona (ahora sabemos que es seguro)
         for (int x = -3; x <= 3; x++)
         {
             for (int y = 1; y <= 7; y++) floorPositions.Remove(entrance + new Vector2Int(x, y));
         }
 
+        // Construimos la bóveda de 5x5
         for (int x = -2; x <= 2; x++)
         {
             for (int y = 2; y <= 6; y++) floorPositions.Add(entrance + new Vector2Int(x, y));
         }
 
+        // Colocamos el suelo de la puerta y la terminal
         sciFiDoorPosInt = entrance + Vector2Int.up;
         floorPositions.Add(sciFiDoorPosInt);
 
