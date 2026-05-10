@@ -33,6 +33,10 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject sciFiDoorPrefab;
     public GameObject hackingTerminalPrefab;
 
+    [Header("Prefabs de Botín")] // NUEVO
+    public GameObject chestPrefab;
+    public int chestCount = 1; // Cuántos cofres aparecen por nivel
+
     private HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
     private List<Vector2Int> availablePositions = new List<Vector2Int>();
 
@@ -47,7 +51,6 @@ public class DungeonGenerator : MonoBehaviour
     private Vector2Int sciFiDoorPosInt;
     private Vector2Int terminalPosInt;
 
-    // NUEVO: Flag para saber si se debe generar la Bóveda en este nivel
     private bool spawnHackingVault = false;
 
     void Start() { GenerateDungeon(); }
@@ -161,19 +164,15 @@ public class DungeonGenerator : MonoBehaviour
         Vector2Int entrance = Vector2Int.zero;
         bool found = false;
 
-        // Convertimos el HashSet a Lista para poder elegir un punto al azar
         List<Vector2Int> candidates = new List<Vector2Int>(floorPositions);
         int startIndex = Random.Range(0, candidates.Count);
 
-        // Buscamos un candidato seguro
         for (int i = 0; i < candidates.Count; i++)
         {
             Vector2Int pos = candidates[(startIndex + i) % candidates.Count];
 
-            // 1. Evitamos que se ponga muy cerca de la salida
             if (exitFound && Vector2Int.Distance(pos, logicDoorPosInt) < 8) continue;
 
-            // 2. EL ARREGLO: Comprobamos si el área de 7x7 está COMPLETAMENTE llena de muros (sin suelo)
             bool isAreaClear = true;
             for (int x = -3; x <= 3; x++)
             {
@@ -181,14 +180,13 @@ public class DungeonGenerator : MonoBehaviour
                 {
                     if (floorPositions.Contains(pos + new Vector2Int(x, y)))
                     {
-                        isAreaClear = false; // ¡Hay un pasillo aquí! Abortamos esta posición.
+                        isAreaClear = false;
                         break;
                     }
                 }
                 if (!isAreaClear) break;
             }
 
-            // Si el terreno está limpio y es pura pared, construimos aquí.
             if (isAreaClear)
             {
                 entrance = pos;
@@ -197,22 +195,18 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
-        // Si no encuentra hueco (muy raro), pilla uno al azar como último recurso
         if (!found) entrance = GetRandomFloorPosition();
 
-        // Limpiamos la zona (ahora sabemos que es seguro)
         for (int x = -3; x <= 3; x++)
         {
             for (int y = 1; y <= 7; y++) floorPositions.Remove(entrance + new Vector2Int(x, y));
         }
 
-        // Construimos la bóveda de 5x5
         for (int x = -2; x <= 2; x++)
         {
             for (int y = 2; y <= 6; y++) floorPositions.Add(entrance + new Vector2Int(x, y));
         }
 
-        // Colocamos el suelo de la puerta y la terminal
         sciFiDoorPosInt = entrance + Vector2Int.up;
         floorPositions.Add(sciFiDoorPosInt);
 
@@ -322,6 +316,21 @@ public class DungeonGenerator : MonoBehaviour
 
             activeDoor.requiredSwitches = spawnedSwitches;
             activeSwitches = spawnedSwitches;
+        }
+
+        // --- NUEVO: COLOCAR COFRES DE BOTÍN ---
+        if (chestPrefab != null)
+        {
+            for (int i = 0; i < chestCount; i++)
+            {
+                if (availablePositions.Count == 0) break;
+                // Elegimos una posición libre al azar para el cofre
+                int r = Random.Range(0, availablePositions.Count);
+                Vector2Int spawnPos = availablePositions[r];
+
+                Instantiate(chestPrefab, new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f), Quaternion.identity);
+                availablePositions.RemoveAt(r);
+            }
         }
 
         if (enemyPrefab != null)
