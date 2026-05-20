@@ -324,12 +324,18 @@ public class DungeonGenerator : MonoBehaviour
             for (int i = 0; i < chestCount; i++)
             {
                 if (availablePositions.Count == 0) break;
-                // Elegimos una posición libre al azar para el cofre
-                int r = Random.Range(0, availablePositions.Count);
-                Vector2Int spawnPos = availablePositions[r];
+
+                // Usamos la función que ya creaste para las cajas. 
+                // Esto garantiza que el cofre tenga espacio libre en las 4 direcciones.
+                Vector2Int spawnPos = GetSafeBoxPosition();
+
+                // Nos aseguramos de borrar la posición de la lista para no poner otra cosa encima
+                if (availablePositions.Contains(spawnPos))
+                {
+                    availablePositions.Remove(spawnPos);
+                }
 
                 Instantiate(chestPrefab, new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f), Quaternion.identity);
-                availablePositions.RemoveAt(r);
             }
         }
 
