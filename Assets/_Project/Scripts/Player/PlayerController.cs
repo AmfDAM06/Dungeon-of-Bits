@@ -11,38 +11,56 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 movement;
-
-    // Guardamos hacia dónde mira (1 = derecha, -1 = izquierda)
     private float facingDir = 1f;
+
+    private Animator animator;
+    private Vector2 lastMovement = new Vector2(0, -1);
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
         if (visualTransform == null) visualTransform = transform;
+
+        animator = visualTransform.GetComponent<Animator>();
+        if (animator == null) animator = GetComponentInChildren<Animator>();
+        if (animator == null) animator = GetComponent<Animator>();
     }
 
     void Update()
     {
+        // 1. Recogemos el movimiento
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         movement = movement.normalized;
 
-        // --- SISTEMA DE FLIP FÍSICO (ESCALA) ---
-        // Si vamos a la izquierda, la escala X será negativa (-1)
+        // 2. Decidimos la dirección del Flip
         if (movement.x < 0) facingDir = -1f;
-        // Si vamos a la derecha, la escala X será positiva (1)
         else if (movement.x > 0) facingDir = 1f;
 
-        // Efecto de tambaleo al caminar + Flip integrado
+        // 3. Memoria direccional
         if (movement.magnitude > 0)
         {
-            // Aplicamos la dirección (facingDir) a la X, y el tambaleo a la Y
+            lastMovement = movement;
+        }
+
+        // 4. Mandamos las órdenes al Animator
+        if (animator != null)
+        {
+            animator.SetFloat("MoveX", Mathf.Abs(lastMovement.x));
+            animator.SetFloat("MoveY", lastMovement.y);
+            animator.SetFloat("Speed", movement.magnitude);
+        }
+    }
+
+    // NUEVO: Esto se ejecuta DESPUÉS del Animator. ¡Aquí nadie nos quita la escala!
+    void LateUpdate()
+    {
+        if (movement.magnitude > 0)
+        {
             visualTransform.localScale = new Vector3(facingDir, 1f + Mathf.Sin(Time.time * 20f) * 0.1f, 1f);
         }
         else
         {
-            // Si está quieto, mantiene hacia dónde miraba (facingDir) pero sin tambaleo
             visualTransform.localScale = new Vector3(facingDir, 1f, 1f);
         }
     }
