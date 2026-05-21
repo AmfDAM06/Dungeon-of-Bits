@@ -1765,7 +1765,7 @@ MonoBehaviour:
   floorTilemap: {fileID: 711453181}
   wallTilemap: {fileID: 1202037684}
   floorTile: {fileID: 11400000, guid: 15b4822153ff36647ab3cfdc05e36200, type: 2}
-  wallTile: {fileID: 11400000, guid: 0a92063c9981e9a48a9474e9196e11da, type: 2}
+  wallTile: {fileID: 11400000, guid: 80e690a1d80eca242bfcfe9bb88fd56d, type: 2}
   iterations: 10
   walkLength: 50
   startRandomlyEachIteration: 1

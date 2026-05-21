@@ -33,9 +33,9 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject sciFiDoorPrefab;
     public GameObject hackingTerminalPrefab;
 
-    [Header("Prefabs de Botín")] // NUEVO
+    [Header("Prefabs de Botín")]
     public GameObject chestPrefab;
-    public int chestCount = 1; // Cuántos cofres aparecen por nivel
+    public int chestCount = 1;
 
     private HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
     private List<Vector2Int> availablePositions = new List<Vector2Int>();
@@ -57,9 +57,7 @@ public class DungeonGenerator : MonoBehaviour
 
     void Update()
     {
-        // Ignorar el reinicio si el jugador está hackeando
         if (HackingTerminal.isTerminalOpen) return;
-
         if (Input.GetKeyDown(KeyCode.R)) ResetPuzzle();
     }
 
@@ -73,32 +71,30 @@ public class DungeonGenerator : MonoBehaviour
         boxStartPositions.Clear();
         exitFound = false;
 
-        // --- SISTEMA DE DIFICULTAD ---
         int currentFloor = UIManager.currentFloor;
 
         if (currentFloor == 1)
         {
-            iterations = 5; // Mapa pequeño
-            enemyCount = 0; // Sin enemigos
-            numberOfSwitches = Random.Range(1, 3); // 1 o 2 switches
-            spawnHackingVault = false; // Sin terminal de hackeo
+            iterations = 5;
+            enemyCount = 0;
+            numberOfSwitches = Random.Range(1, 3);
+            spawnHackingVault = false;
         }
         else if (currentFloor == 2)
         {
-            iterations = 8; // Mapa mediano
-            enemyCount = 1; // 1 enemigo introductorio
+            iterations = 8;
+            enemyCount = 1;
             numberOfSwitches = 3;
-            spawnHackingVault = true; // Empieza el hackeo
+            spawnHackingVault = true;
         }
         else
         {
-            iterations = 8 + currentFloor; // Crece cada nivel
-            enemyCount = currentFloor - 1; // Más enemigos
-            numberOfSwitches = Mathf.Clamp(2 + (currentFloor / 2), 3, 5); // Tope en 5
+            iterations = 8 + currentFloor;
+            enemyCount = currentFloor - 1;
+            numberOfSwitches = Mathf.Clamp(2 + (currentFloor / 2), 3, 5);
             spawnHackingVault = true;
         }
 
-        // 1. DIBUJAR LOS PLANOS (Topología)
         RunRandomWalk();
         PrepareExitBottleneck();
 
@@ -108,14 +104,9 @@ public class DungeonGenerator : MonoBehaviour
             vaultCenter = BuildHackerVault();
         }
 
-        // 2. CONSTRUIR MAPA FÍSICO 
         DrawFloorTiles();
         CreateWalls();
 
-        // 3. LIMPIAR MUROS
-        CleanDoorsWalls();
-
-        // 4. COLOCAR OBJETOS
         availablePositions = new List<Vector2Int>(floorPositions);
         SpawnEntities(vaultCenter);
     }
@@ -127,11 +118,14 @@ public class DungeonGenerator : MonoBehaviour
         {
             for (int j = 0; j < walkLength; j++)
             {
-                floorPositions.Add(currentPosition);
-                floorPositions.Add(currentPosition + Vector2Int.up);
-                floorPositions.Add(currentPosition + Vector2Int.right);
-                floorPositions.Add(currentPosition + new Vector2Int(1, 1));
-                currentPosition += GetRandomDirection();
+                for (int x = -1; x <= 1; x++)
+                {
+                    for (int y = -1; y <= 1; y++)
+                    {
+                        floorPositions.Add(currentPosition + new Vector2Int(x, y));
+                    }
+                }
+                currentPosition += GetRandomDirection() * 2;
             }
             currentPosition = startRandomlyEachIteration ? GetRandomFloorPosition() : Vector2Int.zero;
         }
@@ -142,78 +136,88 @@ public class DungeonGenerator : MonoBehaviour
         List<Vector2Int> validDoorPositions = new List<Vector2Int>();
         foreach (Vector2Int pos in floorPositions)
         {
-            if (!floorPositions.Contains(pos + Vector2Int.up) && floorPositions.Contains(pos + Vector2Int.down))
+            bool isSolidNorth = true;
+            for (int x = -1; x <= 1; x++)
+            {
+                for (int y = 1; y <= 3; y++)
+                {
+                    if (floorPositions.Contains(pos + new Vector2Int(x, y)))
+                    {
+                        isSolidNorth = false;
+                        break;
+                    }
+                }
+                if (!isSolidNorth) break;
+            }
+
+            if (isSolidNorth && floorPositions.Contains(pos + Vector2Int.left) && floorPositions.Contains(pos + Vector2Int.right))
+            {
                 validDoorPositions.Add(pos);
+            }
         }
 
         if (validDoorPositions.Count > 0)
         {
-            logicDoorPosInt = validDoorPositions[Random.Range(0, validDoorPositions.Count)];
-            exitPosInt = logicDoorPosInt + Vector2Int.up;
+            Vector2Int chosen = validDoorPositions[Random.Range(0, validDoorPositions.Count)];
+
+            logicDoorPosInt = chosen + Vector2Int.up;
+            exitPosInt = chosen + new Vector2Int(0, 2);
             exitFound = true;
 
-            Vector2Int[] wallsToForce = { logicDoorPosInt + Vector2Int.left, logicDoorPosInt + Vector2Int.right, exitPosInt + Vector2Int.left, exitPosInt + Vector2Int.right };
-            foreach (Vector2Int w in wallsToForce) floorPositions.Remove(w);
-
+            floorPositions.Add(logicDoorPosInt);
             floorPositions.Add(exitPosInt);
         }
     }
 
     private Vector2Int BuildHackerVault()
     {
-        Vector2Int entrance = Vector2Int.zero;
-        bool found = false;
-
-        List<Vector2Int> candidates = new List<Vector2Int>(floorPositions);
-        int startIndex = Random.Range(0, candidates.Count);
-
-        for (int i = 0; i < candidates.Count; i++)
+        List<Vector2Int> candidates = new List<Vector2Int>();
+        foreach (Vector2Int pos in floorPositions)
         {
-            Vector2Int pos = candidates[(startIndex + i) % candidates.Count];
-
-            if (exitFound && Vector2Int.Distance(pos, logicDoorPosInt) < 8) continue;
-
-            bool isAreaClear = true;
+            bool isSolidNorth = true;
+            // Aumentamos la zona de búsqueda para asegurarnos de que cabe una sala 5x5
             for (int x = -3; x <= 3; x++)
             {
-                for (int y = 1; y <= 7; y++)
+                for (int y = 1; y <= 8; y++)
                 {
                     if (floorPositions.Contains(pos + new Vector2Int(x, y)))
                     {
-                        isAreaClear = false;
+                        isSolidNorth = false;
                         break;
                     }
                 }
-                if (!isAreaClear) break;
+                if (!isSolidNorth) break;
             }
 
-            if (isAreaClear)
+            if (isSolidNorth && (!exitFound || Vector2Int.Distance(pos, logicDoorPosInt) > 10))
             {
-                entrance = pos;
-                found = true;
-                break;
+                candidates.Add(pos);
             }
         }
 
-        if (!found) entrance = GetRandomFloorPosition();
-
-        for (int x = -3; x <= 3; x++)
-        {
-            for (int y = 1; y <= 7; y++) floorPositions.Remove(entrance + new Vector2Int(x, y));
-        }
-
-        for (int x = -2; x <= 2; x++)
-        {
-            for (int y = 2; y <= 6; y++) floorPositions.Add(entrance + new Vector2Int(x, y));
-        }
+        Vector2Int entrance = candidates.Count > 0 ? candidates[Random.Range(0, candidates.Count)] : GetRandomFloorPosition();
 
         sciFiDoorPosInt = entrance + Vector2Int.up;
         floorPositions.Add(sciFiDoorPosInt);
 
-        terminalPosInt = entrance + Vector2Int.right;
-        floorPositions.Add(terminalPosInt);
+        terminalPosInt = entrance + new Vector2Int(-1, 1);
+        floorPositions.Add(entrance + Vector2Int.left);
 
-        return entrance + new Vector2Int(0, 4);
+        // Pasillo de conexión interior (ahora más largo para conectar con la nueva sala)
+        floorPositions.Add(entrance + new Vector2Int(0, 2));
+        floorPositions.Add(entrance + new Vector2Int(0, 3));
+
+        // NUEVO: Sala acorazada gigante de 5x5 (Centro desplazado a Y+6)
+        Vector2Int vaultCenter = entrance + new Vector2Int(0, 6);
+        for (int x = -2; x <= 2; x++)
+        {
+            for (int y = -2; y <= 2; y++)
+            {
+                floorPositions.Add(vaultCenter + new Vector2Int(x, y));
+            }
+        }
+
+        return vaultCenter;
     }
 
     private void DrawFloorTiles()
@@ -223,26 +227,34 @@ public class DungeonGenerator : MonoBehaviour
 
     private void CreateWalls()
     {
-        HashSet<Vector2Int> wallPositions = new HashSet<Vector2Int>();
-        foreach (Vector2Int position in floorPositions)
+        if (floorPositions.Count == 0) return;
+
+        int minX = int.MaxValue; int maxX = int.MinValue;
+        int minY = int.MaxValue; int maxY = int.MinValue;
+
+        foreach (Vector2Int pos in floorPositions)
         {
-            for (int x = -1; x <= 1; x++)
+            if (pos.x < minX) minX = pos.x;
+            if (pos.x > maxX) maxX = pos.x;
+            if (pos.y < minY) minY = pos.y;
+            if (pos.y > maxY) maxY = pos.y;
+        }
+
+        int padding = 10;
+        minX -= padding; maxX += padding;
+        minY -= padding; maxY += padding;
+
+        for (int x = minX; x <= maxX; x++)
+        {
+            for (int y = minY; y <= maxY; y++)
             {
-                for (int y = -1; y <= 1; y++)
+                Vector2Int currentPos = new Vector2Int(x, y);
+                if (!floorPositions.Contains(currentPos))
                 {
-                    if (x == 0 && y == 0) continue;
-                    Vector2Int neighbor = new Vector2Int(position.x + x, position.y + y);
-                    if (!floorPositions.Contains(neighbor)) wallPositions.Add(neighbor);
+                    wallTilemap.SetTile(new Vector3Int(x, y, 0), wallTile);
                 }
             }
         }
-        foreach (Vector2Int pos in wallPositions) wallTilemap.SetTile(new Vector3Int(pos.x, pos.y, 0), wallTile);
-    }
-
-    private void CleanDoorsWalls()
-    {
-        if (exitFound) wallTilemap.SetTile(new Vector3Int(exitPosInt.x, exitPosInt.y, 0), null);
-        if (spawnHackingVault) wallTilemap.SetTile(new Vector3Int(sciFiDoorPosInt.x, sciFiDoorPosInt.y, 0), null);
     }
 
     private void SpawnEntities(Vector2Int vaultCenter)
@@ -266,11 +278,15 @@ public class DungeonGenerator : MonoBehaviour
         if (spawnHackingVault)
         {
             GameObject sfDoorObj = Instantiate(sciFiDoorPrefab, new Vector3(sciFiDoorPosInt.x + 0.5f, sciFiDoorPosInt.y + 0.5f, 0f), Quaternion.identity);
-            GameObject terminalObj = Instantiate(hackingTerminalPrefab, new Vector3(terminalPosInt.x + 0.5f, terminalPosInt.y + 0.5f, 0f), Quaternion.identity);
+
+            Vector3 visualOffsetPos = new Vector3(terminalPosInt.x + 0.2f, terminalPosInt.y + 0.85f, 0f);
+            GameObject terminalObj = Instantiate(hackingTerminalPrefab, visualOffsetPos, Quaternion.identity);
 
             HackingTerminal terminalScript = terminalObj.GetComponent<HackingTerminal>();
             if (terminalScript != null) terminalScript.sciFiDoor = sfDoorObj;
+
             availablePositions.Remove(sciFiDoorPosInt);
+            availablePositions.Remove(terminalPosInt);
         }
 
         if (activeDoor != null && switchPrefabs.Length > 0)
@@ -287,6 +303,7 @@ public class DungeonGenerator : MonoBehaviour
 
                 if (switchData.type == PuzzleSwitch.SwitchType.Melee)
                 {
+                    // NUEVO: Como la sala ahora llega hasta Y+2, colocamos el interruptor en la nueva pared superior
                     if (spawnHackingVault && i == 0) spawnPos = vaultCenter + new Vector2Int(0, 2);
                     else spawnPos = GetNorthWallPosition();
 
@@ -294,14 +311,15 @@ public class DungeonGenerator : MonoBehaviour
                 }
                 else
                 {
-                    if (spawnHackingVault && i == 0) spawnPos = vaultCenter;
+                    // Estos se quedan igual, pero al ser la sala más ancha, tendrán 1 bloque libre a cada lado
+                    if (spawnHackingVault && i == 0) spawnPos = vaultCenter + Vector2Int.left;
                     else spawnPos = GetSafeBoxPosition();
 
                     instantiatePos = new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f);
 
                     if (boxPrefab != null)
                     {
-                        Vector2Int boxPos = (spawnHackingVault && i == 0) ? vaultCenter + Vector2Int.down : GetSafeBoxPosition();
+                        Vector2Int boxPos = (spawnHackingVault && i == 0) ? vaultCenter + Vector2Int.right : GetSafeBoxPosition();
                         Vector3 fBoxPos = new Vector3(boxPos.x + 0.5f, boxPos.y + 0.5f, 0f);
 
                         GameObject box = Instantiate(boxPrefab, fBoxPos, Quaternion.identity);
@@ -318,23 +336,13 @@ public class DungeonGenerator : MonoBehaviour
             activeSwitches = spawnedSwitches;
         }
 
-        // --- NUEVO: COLOCAR COFRES DE BOTÍN ---
         if (chestPrefab != null)
         {
             for (int i = 0; i < chestCount; i++)
             {
                 if (availablePositions.Count == 0) break;
-
-                // Usamos la función que ya creaste para las cajas. 
-                // Esto garantiza que el cofre tenga espacio libre en las 4 direcciones.
                 Vector2Int spawnPos = GetSafeBoxPosition();
-
-                // Nos aseguramos de borrar la posición de la lista para no poner otra cosa encima
-                if (availablePositions.Contains(spawnPos))
-                {
-                    availablePositions.Remove(spawnPos);
-                }
-
+                if (availablePositions.Contains(spawnPos)) availablePositions.Remove(spawnPos);
                 Instantiate(chestPrefab, new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f), Quaternion.identity);
             }
         }

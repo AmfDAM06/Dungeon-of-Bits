@@ -1,40 +1,73 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class RobotAutomaton : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    public enum Command { MoveForward, TurnLeft, TurnRight }
 
-    void Awake()
+    [Header("Configuración")]
+    public float moveSpeed = 3f;
+
+    private Vector3 startPosition;
+    private Quaternion startRotation;
+    private bool isExecuting = false;
+
+    void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        // Guardamos su posición inicial para reiniciarlo si falla
+        startPosition = transform.position;
+        startRotation = transform.rotation;
     }
 
-    void Update()
+    public void ExecuteProgram(List<Command> program)
     {
-        // --- CÓDIGO TEMPORAL PARA PROBAR EL FLIP ---
-        // Puedes probar a pulsar las flechas del teclado para ver cómo gira.
-        // Borraremos este Update cuando programemos el menú del puzle.
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) FaceDirection(Vector2.left);
-        else if (Input.GetKeyDown(KeyCode.RightArrow)) FaceDirection(Vector2.right);
+        if (isExecuting) return;
+        StartCoroutine(RunProgramRoutine(program));
     }
 
-    // --- FUNCIÓN PARA GIRAR AL ROBOT ---
-    public void FaceDirection(Vector2 direction)
+    private IEnumerator RunProgramRoutine(List<Command> program)
     {
-        if (spriteRenderer == null) return;
+        isExecuting = true;
 
-        // Si la orden es ir a la izquierda (X negativa), activamos el modo espejo (Flip)
-        if (direction.x < 0)
+        // Siempre empieza desde la posición inicial al ejecutar
+        transform.position = startPosition;
+        transform.rotation = startRotation;
+        yield return new WaitForSeconds(0.5f);
+
+        foreach (Command cmd in program)
         {
-            spriteRenderer.flipX = true;
+            if (cmd == Command.MoveForward)
+            {
+                // Vector3.up es "Hacia adelante" relativo a la rotación actual del robot
+                Vector3 targetPos = transform.position + transform.up;
+
+                // Animación de movimiento suave hacia la siguiente cuadrícula
+                float t = 0;
+                Vector3 currentPos = transform.position;
+                while (t < 1f)
+                {
+                    t += Time.deltaTime * moveSpeed;
+                    transform.position = Vector3.Lerp(currentPos, targetPos, t);
+                    yield return null;
+                }
+                transform.position = targetPos; // Aseguramos que encaje perfecto
+            }
+            else if (cmd == Command.TurnLeft)
+            {
+                // Gira 90 grados a la izquierda en el eje Z (2D)
+                transform.Rotate(0, 0, 90f);
+            }
+            else if (cmd == Command.TurnRight)
+            {
+                // Gira 90 grados a la derecha
+                transform.Rotate(0, 0, -90f);
+            }
+
+            // Pausa entre línea de código y línea de código para que el jugador lo vea pensar
+            yield return new WaitForSeconds(0.3f);
         }
-        // Si la orden es ir a la derecha (X positiva), quitamos el modo espejo
-        else if (direction.x > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-        // Nota: Si el robot se mueve arriba/abajo (eje Y), dejamos que siga mirando 
-        // hacia la última dirección horizontal que tuvo.
+
+        isExecuting = false;
     }
 }

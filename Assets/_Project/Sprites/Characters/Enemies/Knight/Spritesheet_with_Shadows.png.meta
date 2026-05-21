@@ -1,0 +1,4017 @@
+fileFormatVersion: 2
+guid: 025397fb4d8e8d34ab7a8a63dde3038e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8728209698594506395
+    second: Spritesheet_with_Shadows_0
+  - first:
+      213: -6233184398336571582
+    second: Spritesheet_with_Shadows_1
+  - first:
+      213: -8303038796944189457
+    second: Spritesheet_with_Shadows_2
+  - first:
+      213: -4577210306945095880
+    second: Spritesheet_with_Shadows_3
+  - first:
+      213: 3320654193573002646
+    second: Spritesheet_with_Shadows_4
+  - first:
+      213: 5400656283416358604
+    second: Spritesheet_with_Shadows_5
+  - first:
+      213: -336818887813855562
+    second: Spritesheet_with_Shadows_6
+  - first:
+      213: -9187789418570043613
+    second: Spritesheet_with_Shadows_7
+  - first:
+      213: -7771619884216561113
+    second: Spritesheet_with_Shadows_8
+  - first:
+      213: 4263413413526266185
+    second: Spritesheet_with_Shadows_9
+  - first:
+      213: -2263712828825242326
+    second: Spritesheet_with_Shadows_10
+  - first:
+      213: 3370251185714265493
+    second: Spritesheet_with_Shadows_11
+  - first:
+      213: -8851945002839075685
+    second: Spritesheet_with_Shadows_12
+  - first:
+      213: 9096085597368196653
+    second: Spritesheet_with_Shadows_13
+  - first:
+      213: -5179405438390068302
+    second: Spritesheet_with_Shadows_14
+  - first:
+      213: 6810061496680997938
+    second: Spritesheet_with_Shadows_15
+  - first:
+      213: 5102286344281275751
+    second: Spritesheet_with_Shadows_16
+  - first:
+      213: -4364196685657963560
+    second: Spritesheet_with_Shadows_17
+  - first:
+      213: 3539888659563273610
+    second: Spritesheet_with_Shadows_18
+  - first:
+      213: -192453433582861006
+    second: Spritesheet_with_Shadows_19
+  - first:
+      213: 6316963119948138794
+    second: Spritesheet_with_Shadows_20
+  - first:
+      213: 14147019002374116
+    second: Spritesheet_with_Shadows_21
+  - first:
+      213: 2809511739311348735
+    second: Spritesheet_with_Shadows_22
+  - first:
+      213: -1519576230792504052
+    second: Spritesheet_with_Shadows_23
+  - first:
+      213: 699991429598312858
+    second: Spritesheet_with_Shadows_24
+  - first:
+      213: -7038149949989121947
+    second: Spritesheet_with_Shadows_25
+  - first:
+      213: 3559591416713374747
+    second: Spritesheet_with_Shadows_26
+  - first:
+      213: -764916777276804064
+    second: Spritesheet_with_Shadows_27
+  - first:
+      213: -4229608738605723700
+    second: Spritesheet_with_Shadows_28
+  - first:
+      213: 7676710305529036397
+    second: Spritesheet_with_Shadows_29
+  - first:
+      213: -3489109612473611737
+    second: Spritesheet_with_Shadows_30
+  - first:
+      213: -1386084036532538508
+    second: Spritesheet_with_Shadows_31
+  - first:
+      213: -6729837590574270492
+    second: Spritesheet_with_Shadows_32
+  - first:
+      213: 272561652336239572
+    second: Spritesheet_with_Shadows_33
+  - first:
+      213: 9074955854144660412
+    second: Spritesheet_with_Shadows_34
+  - first:
+      213: 684423275186112541
+    second: Spritesheet_with_Shadows_35
+  - first:
+      213: -5006948340615696994
+    second: Spritesheet_with_Shadows_36
+  - first:
+      213: 7973069838718057258
+    second: Spritesheet_with_Shadows_37
+  - first:
+      213: 6683098623323720061
+    second: Spritesheet_with_Shadows_38
+  - first:
+      213: -4464556105115337861
+    second: Spritesheet_with_Shadows_39
+  - first:
+      213: -1253930784296497250
+    second: Spritesheet_with_Shadows_40
+  - first:
+      213: 6643698257446071284
+    second: Spritesheet_with_Shadows_41
+  - first:
+      213: -1778449724103371147
+    second: Spritesheet_with_Shadows_42
+  - first:
+      213: 5899058254945567645
+    second: Spritesheet_with_Shadows_43
+  - first:
+      213: -5680105728055301801
+    second: Spritesheet_with_Shadows_44
+  - first:
+      213: 5193054920572689619
+    second: Spritesheet_with_Shadows_45
+  - first:
+      213: 2819326166284229875
+    second: Spritesheet_with_Shadows_46
+  - first:
+      213: -4009409670854199840
+    second: Spritesheet_with_Shadows_47
+  - first:
+      213: -2790201171989599624
+    second: Spritesheet_with_Shadows_48
+  - first:
+      213: -4148552356238598074
+    second: Spritesheet_with_Shadows_49
+  - first:
+      213: 5886031518171574288
+    second: Spritesheet_with_Shadows_50
+  - first:
+      213: -695774378643533039
+    second: Spritesheet_with_Shadows_51
+  - first:
+      213: -8566956744456972357
+    second: Spritesheet_with_Shadows_52
+  - first:
+      213: -4150610485135668344
+    second: Spritesheet_with_Shadows_53
+  - first:
+      213: -4802436319026745242
+    second: Spritesheet_with_Shadows_54
+  - first:
+      213: 4547988481081023109
+    second: Spritesheet_with_Shadows_55
+  - first:
+      213: 3511582956180750051
+    second: Spritesheet_with_Shadows_56
+  - first:
+      213: 6202082850801188721
+    second: Spritesheet_with_Shadows_57
+  - first:
+      213: 6788095115396605047
+    second: Spritesheet_with_Shadows_58
+  - first:
+      213: -9183359873613968597
+    second: Spritesheet_with_Shadows_59
+  - first:
+      213: -2360588660077214727
+    second: Spritesheet_with_Shadows_60
+  - first:
+      213: 6141933301044154906
+    second: Spritesheet_with_Shadows_61
+  - first:
+      213: -4837805158236434417
+    second: Spritesheet_with_Shadows_62
+  - first:
+      213: -5781491718562874944
+    second: Spritesheet_with_Shadows_63
+  - first:
+      213: -9137759898362831948
+    second: Spritesheet_with_Shadows_64
+  - first:
+      213: 5065072209421680112
+    second: Spritesheet_with_Shadows_65
+  - first:
+      213: 6926048925623290681
+    second: Spritesheet_with_Shadows_66
+  - first:
+      213: 3931196484889014381
+    second: Spritesheet_with_Shadows_67
+  - first:
+      213: -916636616877576739
+    second: Spritesheet_with_Shadows_68
+  - first:
+      213: -4338053115205679780
+    second: Spritesheet_with_Shadows_69
+  - first:
+      213: -611490556679730507
+    second: Spritesheet_with_Shadows_70
+  - first:
+      213: -2463700793269813249
+    second: Spritesheet_with_Shadows_71
+  - first:
+      213: -8025640284842754187
+    second: Spritesheet_with_Shadows_72
+  - first:
+      213: 1815115617003009265
+    second: Spritesheet_with_Shadows_73
+  - first:
+      213: 1283494397827396709
+    second: Spritesheet_with_Shadows_74
+  - first:
+      213: 8113805113979486552
+    second: Spritesheet_with_Shadows_75
+  - first:
+      213: 5060073273482519635
+    second: Spritesheet_with_Shadows_76
+  - first:
+      213: -3278220696498665736
+    second: Spritesheet_with_Shadows_77
+  - first:
+      213: -7935404863828528113
+    second: Spritesheet_with_Shadows_78
+  - first:
+      213: -2415152874999267119
+    second: Spritesheet_with_Shadows_79
+  - first:
+      213: 1945258613836015965
+    second: Spritesheet_with_Shadows_80
+  - first:
+      213: -8738727409608866428
+    second: Spritesheet_with_Shadows_81
+  - first:
+      213: -6453314956020609807
+    second: Spritesheet_with_Shadows_82
+  - first:
+      213: 2632661786853613466
+    second: Spritesheet_with_Shadows_83
+  - first:
+      213: 427338612538886919
+    second: Spritesheet_with_Shadows_84
+  - first:
+      213: -4851369841102573898
+    second: Spritesheet_with_Shadows_85
+  - first:
+      213: -6107130713945762189
+    second: Spritesheet_with_Shadows_86
+  - first:
+      213: 6894436483475835691
+    second: Spritesheet_with_Shadows_87
+  - first:
+      213: 4524684039412713064
+    second: Spritesheet_with_Shadows_88
+  - first:
+      213: -3560745308682515675
+    second: Spritesheet_with_Shadows_89
+  - first:
+      213: -3530679578200089120
+    second: Spritesheet_with_Shadows_90
+  - first:
+      213: 7312817092814961005
+    second: Spritesheet_with_Shadows_91
+  - first:
+      213: 8621113165853245843
+    second: Spritesheet_with_Shadows_92
+  - first:
+      213: -2659575025567545456
+    second: Spritesheet_with_Shadows_93
+  - first:
+      213: -5314747832194536785
+    second: Spritesheet_with_Shadows_94
+  - first:
+      213: -1023280025694007652
+    second: Spritesheet_with_Shadows_95
+  - first:
+      213: 6188931422730307181
+    second: Spritesheet_with_Shadows_96
+  - first:
+      213: 9117832746899917138
+    second: Spritesheet_with_Shadows_97
+  - first:
+      213: -8492154111626056274
+    second: Spritesheet_with_Shadows_98
+  - first:
+      213: -2112795775831806735
+    second: Spritesheet_with_Shadows_99
+  - first:
+      213: -6584693781040777812
+    second: Spritesheet_with_Shadows_100
+  - first:
+      213: -8011201957192381911
+    second: Spritesheet_with_Shadows_101
+  - first:
+      213: -215005519933829575
+    second: Spritesheet_with_Shadows_102
+  - first:
+      213: -4969288887083419618
+    second: Spritesheet_with_Shadows_103
+  - first:
+      213: -280837801559111271
+    second: Spritesheet_with_Shadows_104
+  - first:
+      213: 1658666582858554144
+    second: Spritesheet_with_Shadows_105
+  - first:
+      213: -6317481891881687707
+    second: Spritesheet_with_Shadows_106
+  - first:
+      213: 5830241777215751114
+    second: Spritesheet_with_Shadows_107
+  - first:
+      213: -2651173588152481162
+    second: Spritesheet_with_Shadows_108
+  - first:
+      213: 1553531094456175385
+    second: Spritesheet_with_Shadows_109
+  - first:
+      213: -6214110908567481320
+    second: Spritesheet_with_Shadows_110
+  - first:
+      213: -5118118728238266957
+    second: Spritesheet_with_Shadows_111
+  - first:
+      213: -7115060987556380564
+    second: Spritesheet_with_Shadows_112
+  - first:
+      213: -5491313860126964891
+    second: Spritesheet_with_Shadows_113
+  - first:
+      213: -7409166874763604507
+    second: Spritesheet_with_Shadows_114
+  - first:
+      213: 3363506516713195532
+    second: Spritesheet_with_Shadows_115
+  - first:
+      213: 2354632277558290803
+    second: Spritesheet_with_Shadows_116
+  - first:
+      213: -6582889883990950047
+    second: Spritesheet_with_Shadows_117
+  - first:
+      213: -6458078575791036779
+    second: Spritesheet_with_Shadows_118
+  - first:
+      213: 2192618744535346931
+    second: Spritesheet_with_Shadows_119
+  - first:
+      213: 7534319281954229099
+    second: Spritesheet_with_Shadows_120
+  - first:
+      213: -2771884704430157347
+    second: Spritesheet_with_Shadows_121
+  - first:
+      213: -1164345806584605642
+    second: Spritesheet_with_Shadows_122
+  - first:
+      213: 7615921551433883879
+    second: Spritesheet_with_Shadows_123
+  - first:
+      213: -3490450417906807730
+    second: Spritesheet_with_Shadows_124
+  - first:
+      213: -3442534568871689611
+    second: Spritesheet_with_Shadows_125
+  - first:
+      213: -2958650793585380782
+    second: Spritesheet_with_Shadows_126
+  - first:
+      213: -4120423823991453325
+    second: Spritesheet_with_Shadows_127
+  - first:
+      213: 1779774910769859260
+    second: Spritesheet_with_Shadows_128
+  - first:
+      213: -1395105370443094759
+    second: Spritesheet_with_Shadows_129
+  - first:
+      213: -1473934885197117077
+    second: Spritesheet_with_Shadows_130
+  - first:
+      213: -363141444884191017
+    second: Spritesheet_with_Shadows_131
+  - first:
+      213: -4614521859425730170
+    second: Spritesheet_with_Shadows_132
+  - first:
+      213: 7537459788603227527
+    second: Spritesheet_with_Shadows_133
+  - first:
+      213: -3782081351276186751
+    second: Spritesheet_with_Shadows_134
+  - first:
+      213: 936401540553704616
+    second: Spritesheet_with_Shadows_135
+  - first:
+      213: -8087168931832333281
+    second: Spritesheet_with_Shadows_136
+  - first:
+      213: -7362166977370962010
+    second: Spritesheet_with_Shadows_137
+  - first:
+      213: -4895984918564107845
+    second: Spritesheet_with_Shadows_138
+  - first:
+      213: 1454337816104069797
+    second: Spritesheet_with_Shadows_139
+  - first:
+      213: 6004526174704747284
+    second: Spritesheet_with_Shadows_140
+  - first:
+      213: -4501447031634081440
+    second: Spritesheet_with_Shadows_141
+  - first:
+      213: -4989461635947272153
+    second: Spritesheet_with_Shadows_142
+  - first:
+      213: 8728809450445660721
+    second: Spritesheet_with_Shadows_143
+  - first:
+      213: 2451814802871517572
+    second: Spritesheet_with_Shadows_144
+  - first:
+      213: -8124181732437428874
+    second: Spritesheet_with_Shadows_145
+  - first:
+      213: -4218379661582226138
+    second: Spritesheet_with_Shadows_146
+  - first:
+      213: -2323433125651767437
+    second: Spritesheet_with_Shadows_147
+  - first:
+      213: -5614294926166266606
+    second: Spritesheet_with_Shadows_148
+  - first:
+      213: 6432183727188086333
+    second: Spritesheet_with_Shadows_149
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 1117
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 569b72ee58b2fd680800000000000000
+      internalID: -8728209698594506395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1117
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24744a580d74f79a0800000000000000
+      internalID: -6233184398336571582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_2
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 1117
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe7dadf943ea5cc80800000000000000
+      internalID: -8303038796944189457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_3
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1117
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 837e7481a7b7a70c0800000000000000
+      internalID: -4577210306945095880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_4
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 1117
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69d74dd3565551e20800000000000000
+      internalID: 3320654193573002646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_5
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1117
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cce630f964cf2fa40800000000000000
+      internalID: 5400656283416358604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_6
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 1069
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b6863e8101635bf0800000000000000
+      internalID: -336818887813855562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_7
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1069
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32f2a0be33a6e7080800000000000000
+      internalID: -9187789418570043613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_8
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 1069
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 722d8ef14e8a52490800000000000000
+      internalID: -7771619884216561113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_9
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1069
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9416edb39efaa2b30800000000000000
+      internalID: 4263413413526266185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_10
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 1069
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2570640d2da590e0800000000000000
+      internalID: -2263712828825242326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_11
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1069
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59d7658d89985ce20800000000000000
+      internalID: 3370251185714265493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_12
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 1021
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b949b766be2972580800000000000000
+      internalID: -8851945002839075685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_13
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1021
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2e9dad58a9cb3e70800000000000000
+      internalID: 9096085597368196653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_14
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 1021
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bb9809023e0f18b0800000000000000
+      internalID: -5179405438390068302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_15
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1021
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2346c3899d2328e50800000000000000
+      internalID: 6810061496680997938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_16
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 1021
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76d3635a566fec640800000000000000
+      internalID: 5102286344281275751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_17
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1021
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d38b65ac324f63c0800000000000000
+      internalID: -4364196685657963560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_18
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 973
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8dd3b11bf5302130800000000000000
+      internalID: 3539888659563273610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_19
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 973
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2354d7f2f94445df0800000000000000
+      internalID: -192453433582861006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_20
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 973
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2980c72d7c5aa750800000000000000
+      internalID: 6316963119948138794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_21
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 973
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e7644a83a2423000800000000000000
+      internalID: 14147019002374116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_22
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 973
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffb51fd9a046df620800000000000000
+      internalID: 2809511739311348735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_23
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 973
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0d5c7a187169eae0800000000000000
+      internalID: -1519576230792504052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_24
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 925
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a99760b1f7ed6b900800000000000000
+      internalID: 699991429598312858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_25
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 925
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56017f209e7735e90800000000000000
+      internalID: -7038149949989121947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_26
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 925
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1ceab2b885366130800000000000000
+      internalID: 3559591416713374747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_27
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 925
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 024fda76e387265f0800000000000000
+      internalID: -764916777276804064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_28
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 925
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccf848cf2496d45c0800000000000000
+      internalID: -4229608738605723700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_29
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 925
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6e73a49957298a60800000000000000
+      internalID: 7676710305529036397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_30
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 877
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72a0c162b41349fc0800000000000000
+      internalID: -3489109612473611737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_31
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 877
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47373ad99e3a3cce0800000000000000
+      internalID: -1386084036532538508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_32
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 877
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e7ffb91e50da92a0800000000000000
+      internalID: -6729837590574270492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_33
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 877
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d325e2f06558c300800000000000000
+      internalID: 272561652336239572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_34
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 877
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb3e4a6a448b0fd70800000000000000
+      internalID: 9074955854144660412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_35
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 877
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d184a71b75f8f7900800000000000000
+      internalID: 684423275186112541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_36
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 829
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9daedc130fb38ab0800000000000000
+      internalID: -5006948340615696994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_37
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 829
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2bbb2276c806ae60800000000000000
+      internalID: 7973069838718057258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_38
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 829
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d79cc121ac22fbc50800000000000000
+      internalID: 6683098623323720061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_39
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 829
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7b7cca60e5ba02c0800000000000000
+      internalID: -4464556105115337861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_40
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 829
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9f84156894299ee0800000000000000
+      internalID: -1253930784296497250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_41
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 829
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fb64f58d58233c50800000000000000
+      internalID: 6643698257446071284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_42
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 781
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5765de7066da157e0800000000000000
+      internalID: -1778449724103371147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_43
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 781
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d93cd537a3aadd150800000000000000
+      internalID: 5899058254945567645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_44
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 781
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7592a905fe53c21b0800000000000000
+      internalID: -5680105728055301801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_45
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 781
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dc54dfafef611840800000000000000
+      internalID: 5193054920572689619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_46
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 781
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fcd557f532402720800000000000000
+      internalID: 2819326166284229875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_47
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 781
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e538b9a527bb58c0800000000000000
+      internalID: -4009409670854199840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_48
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 733
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87a6ea331d63749d0800000000000000
+      internalID: -2790201171989599624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_49
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 733
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 640e94aac916d66c0800000000000000
+      internalID: -4148552356238598074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_50
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 733
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 010be51fa726fa150800000000000000
+      internalID: 5886031518171574288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_51
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 733
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 113522593ec1856f0800000000000000
+      internalID: -695774378643533039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_52
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 685
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb751880b3e0c1980800000000000000
+      internalID: -8566956744456972357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_53
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 685
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88b0a7031c11666c0800000000000000
+      internalID: -4150610485135668344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_54
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 685
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 660f9fbbc915a5db0800000000000000
+      internalID: -4802436319026745242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_55
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 685
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58a17616d63bd1f30800000000000000
+      internalID: 4547988481081023109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_56
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 637
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ee387ee716abb030800000000000000
+      internalID: 3511582956180750051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_57
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 637
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17ffb852e79321650800000000000000
+      internalID: 6202082850801188721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_58
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 637
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77467c6ea88243e50800000000000000
+      internalID: 6788095115396605047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_59
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 637
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2bc9a8b9d62e8080800000000000000
+      internalID: -9183359873613968597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_60
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 589
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f3484fde118d3fd0800000000000000
+      internalID: -2360588660077214727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_61
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 589
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1211e2cbc78c3550800000000000000
+      internalID: 6141933301044154906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_62
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 589
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f00d3c227d9acdcb0800000000000000
+      internalID: -4837805158236434417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_63
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 589
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c97233e9e304cfa0800000000000000
+      internalID: -5781491718562874944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_64
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 541
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bb164f49c7203180800000000000000
+      internalID: -9137759898362831948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_65
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 541
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fd384ca650ca4640800000000000000
+      internalID: 5065072209421680112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_66
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 541
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93b80c45dc44e1060800000000000000
+      internalID: 6926048925623290681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_67
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 554
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d60f218ef5a6e8630800000000000000
+      internalID: 3931196484889014381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_68
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 541
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddd65ee7ad37743f0800000000000000
+      internalID: -916636616877576739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_69
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 557
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c55836bfca32cc3c0800000000000000
+      internalID: -4338053115205679780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_70
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 541
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ba4999149c8387f0800000000000000
+      internalID: -611490556679730507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_71
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 558
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffffd488e2d2fcdd0800000000000000
+      internalID: -2463700793269813249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_72
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 493
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57ff1eebea23f9090800000000000000
+      internalID: -8025640284842754187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_73
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 493
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f47ab96906903910800000000000000
+      internalID: 1815115617003009265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_74
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 493
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 564b4b5ca53efc110800000000000000
+      internalID: 1283494397827396709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_75
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 506
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 851ce7b23c60a9070800000000000000
+      internalID: 8113805113979486552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_76
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 493
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 354af5335ddf83640800000000000000
+      internalID: 5060073273482519635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_77
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 509
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f60dd135ab6182d0800000000000000
+      internalID: -3278220696498665736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_78
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 493
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f04f796e157cfd190800000000000000
+      internalID: -7935404863828528113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_79
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 510
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d0c7679147ab7ed0800000000000000
+      internalID: -2415152874999267119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_80
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 445
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d59e6f12762fefa10800000000000000
+      internalID: 1945258613836015965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_81
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 445
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4854b4188bdc9b680800000000000000
+      internalID: -8738727409608866428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_82
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 445
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fc0da61d383176a0800000000000000
+      internalID: -6453314956020609807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_83
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 458
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9f972b52f7198420800000000000000
+      internalID: 2632661786853613466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_84
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 445
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70b403734363ee500800000000000000
+      internalID: 427338612538886919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_85
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 461
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bea90b45d87cacb0800000000000000
+      internalID: -4851369841102573898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_86
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 445
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 376926ef8fc1f3ba0800000000000000
+      internalID: -6107130713945762189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_87
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 462
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2b02141475fdaf50800000000000000
+      internalID: 6894436483475835691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_88
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 397
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 866031a3928eace30800000000000000
+      internalID: 4524684039412713064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_89
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 397
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52b0754e101b59ec0800000000000000
+      internalID: -3560745308682515675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_90
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 397
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ed58a541a1800fc0800000000000000
+      internalID: -3530679578200089120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_91
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 410
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d69f3a4a6685c7560800000000000000
+      internalID: 7312817092814961005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_92
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 397
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 391402b6fb854a770800000000000000
+      internalID: 8621113165853245843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_93
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 413
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 097cb83fa9a471bd0800000000000000
+      internalID: -2659575025567545456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_94
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 397
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faa644f51093e36b0800000000000000
+      internalID: -5314747832194536785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_95
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 414
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9e81cafc349cc1f0800000000000000
+      internalID: -1023280025694007652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_96
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 349
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d66c71fa65083e550800000000000000
+      internalID: 6188931422730307181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_97
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 349
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 259c460339c098e70800000000000000
+      internalID: 9117832746899917138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_98
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 349
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eade7ae24dec52a80800000000000000
+      internalID: -8492154111626056274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_99
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 343
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fc699a9f67dda2e0800000000000000
+      internalID: -2112795775831806735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_100
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 345
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca53752b4e77e94a0800000000000000
+      internalID: -6584693781040777812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_101
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 349
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92a42add34e72d090800000000000000
+      internalID: -8011201957192381911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_102
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 301
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93e88976e95240df0800000000000000
+      internalID: -215005519933829575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_103
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 301
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e18b81be51a890bb0800000000000000
+      internalID: -4969288887083419618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_104
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 301
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9994196e1834a1cf0800000000000000
+      internalID: -280837801559111271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_105
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 301
+        width: 25
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02b58181874c40710800000000000000
+      internalID: 1658666582858554144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_106
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 301
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 565ed67d0bbc358a0800000000000000
+      internalID: -6317481891881687707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_107
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 301
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac34695a10e29e050800000000000000
+      internalID: 5830241777215751114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_108
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 253
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67a06480ba3253bd0800000000000000
+      internalID: -2651173588152481162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_109
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 253
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91b8598ac404f8510800000000000000
+      internalID: 1553531094456175385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_110
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 252
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81494fb6d0b03c9a0800000000000000
+      internalID: -6214110908567481320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_111
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 253
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b58515322ac8f8b0800000000000000
+      internalID: -5118118728238266957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_112
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 253
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c604671aab9324d90800000000000000
+      internalID: -7115060987556380564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_113
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 253
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56304f0732feac3b0800000000000000
+      internalID: -5491313860126964891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_114
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 205
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5edcf1c9bf95d2990800000000000000
+      internalID: -7409166874763604507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_115
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 205
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c08c6683b539dae20800000000000000
+      internalID: 3363506516713195532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_116
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 205
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 379e780c4955da020800000000000000
+      internalID: 2354632277558290803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_117
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 205
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16ff4353780e4a4a0800000000000000
+      internalID: -6582889883990950047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_118
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 205
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5962a6e60cb4066a0800000000000000
+      internalID: -6458078575791036779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_119
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 205
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fe64e3912fbd6e10800000000000000
+      internalID: 2192618744535346931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_120
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 157
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6b0249e7774f8860800000000000000
+      internalID: 7534319281954229099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_121
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 157
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd11a122c894889d0800000000000000
+      internalID: -2771884704430157347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_122
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 157
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6341fca68a967dfe0800000000000000
+      internalID: -1164345806584605642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_123
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 144
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e06576dc4031b960800000000000000
+      internalID: 7615921551433883879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_124
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 150
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4c0d8e86dd6f8fc0800000000000000
+      internalID: -3490450417906807730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_125
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 150
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57286678c09a930d0800000000000000
+      internalID: -3442534568871689611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_126
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 157
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2527ae167c2c0f6d0800000000000000
+      internalID: -2958650793585380782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_127
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 145
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 379ceeeec5051d6c0800000000000000
+      internalID: -4120423823991453325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_128
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 109
+        width: 19
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cba07980ad703b810800000000000000
+      internalID: 1779774910769859260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_129
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 109
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 915ef72ae0793ace0800000000000000
+      internalID: -1395105370443094759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_130
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 132
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6905c9f7088b8be0800000000000000
+      internalID: -1473934885197117077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_131
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 109
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d8a476a7ccd5faf0800000000000000
+      internalID: -363141444884191017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_132
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 109
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68187a051dce5ffb0800000000000000
+      internalID: -4614521859425730170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_133
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 107
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78d7c781ebf6a9860800000000000000
+      internalID: 7537459788603227527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_134
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 109
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 183bd81ac09538bc0800000000000000
+      internalID: -3782081351276186751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_135
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 61
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a405d76d34cefc00800000000000000
+      internalID: 936401540553704616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_136
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 61
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1cfe8344ba94cf80800000000000000
+      internalID: -8087168931832333281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_137
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 61
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a741b8f32454d990800000000000000
+      internalID: -7362166977370962010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_138
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 61
+        width: 26
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb9015718a7fd0cb0800000000000000
+      internalID: -4895984918564107845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_139
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 63
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aaec40d988de2410800000000000000
+      internalID: 1454337816104069797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_140
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 61
+        width: 26
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 413cfc71ebc545350800000000000000
+      internalID: 6004526174704747284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_141
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 64
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 069c63046c5a781c0800000000000000
+      internalID: -4501447031634081440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_142
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 61
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7286ce0d31fd1cab0800000000000000
+      internalID: -4989461635947272153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_143
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 13
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 132e2eda2f5f22970800000000000000
+      internalID: 8728809450445660721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_144
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 13
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 481833ca298960220800000000000000
+      internalID: 2451814802871517572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_145
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 13
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 675795312cb114f80800000000000000
+      internalID: -8124181732437428874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_146
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 13
+        width: 32
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62da8a73c0e4575c0800000000000000
+      internalID: -4218379661582226138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_147
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 17
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37f962ed1e181cfd0800000000000000
+      internalID: -2323433125651767437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_148
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 13
+        width: 27
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21de49da2840612b0800000000000000
+      internalID: -5614294926166266606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_with_Shadows_149
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 13
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3e081d4505b34950800000000000000
+      internalID: 6432183727188086333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Spritesheet_with_Shadows_0: -8728209698594506395
+      Spritesheet_with_Shadows_1: -6233184398336571582
+      Spritesheet_with_Shadows_10: -2263712828825242326
+      Spritesheet_with_Shadows_100: -6584693781040777812
+      Spritesheet_with_Shadows_101: -8011201957192381911
+      Spritesheet_with_Shadows_102: -215005519933829575
+      Spritesheet_with_Shadows_103: -4969288887083419618
+      Spritesheet_with_Shadows_104: -280837801559111271
+      Spritesheet_with_Shadows_105: 1658666582858554144
+      Spritesheet_with_Shadows_106: -6317481891881687707
+      Spritesheet_with_Shadows_107: 5830241777215751114
+      Spritesheet_with_Shadows_108: -2651173588152481162
+      Spritesheet_with_Shadows_109: 1553531094456175385
+      Spritesheet_with_Shadows_11: 3370251185714265493
+      Spritesheet_with_Shadows_110: -6214110908567481320
+      Spritesheet_with_Shadows_111: -5118118728238266957
+      Spritesheet_with_Shadows_112: -7115060987556380564
+      Spritesheet_with_Shadows_113: -5491313860126964891
+      Spritesheet_with_Shadows_114: -7409166874763604507
+      Spritesheet_with_Shadows_115: 3363506516713195532
+      Spritesheet_with_Shadows_116: 2354632277558290803
+      Spritesheet_with_Shadows_117: -6582889883990950047
+      Spritesheet_with_Shadows_118: -6458078575791036779
+      Spritesheet_with_Shadows_119: 2192618744535346931
+      Spritesheet_with_Shadows_12: -8851945002839075685
+      Spritesheet_with_Shadows_120: 7534319281954229099
+      Spritesheet_with_Shadows_121: -2771884704430157347
+      Spritesheet_with_Shadows_122: -1164345806584605642
+      Spritesheet_with_Shadows_123: 7615921551433883879
+      Spritesheet_with_Shadows_124: -3490450417906807730
+      Spritesheet_with_Shadows_125: -3442534568871689611
+      Spritesheet_with_Shadows_126: -2958650793585380782
+      Spritesheet_with_Shadows_127: -4120423823991453325
+      Spritesheet_with_Shadows_128: 1779774910769859260
+      Spritesheet_with_Shadows_129: -1395105370443094759
+      Spritesheet_with_Shadows_13: 9096085597368196653
+      Spritesheet_with_Shadows_130: -1473934885197117077
+      Spritesheet_with_Shadows_131: -363141444884191017
+      Spritesheet_with_Shadows_132: -4614521859425730170
+      Spritesheet_with_Shadows_133: 7537459788603227527
+      Spritesheet_with_Shadows_134: -3782081351276186751
+      Spritesheet_with_Shadows_135: 936401540553704616
+      Spritesheet_with_Shadows_136: -8087168931832333281
+      Spritesheet_with_Shadows_137: -7362166977370962010
+      Spritesheet_with_Shadows_138: -4895984918564107845
+      Spritesheet_with_Shadows_139: 1454337816104069797
+      Spritesheet_with_Shadows_14: -5179405438390068302
+      Spritesheet_with_Shadows_140: 6004526174704747284
+      Spritesheet_with_Shadows_141: -4501447031634081440
+      Spritesheet_with_Shadows_142: -4989461635947272153
+      Spritesheet_with_Shadows_143: 8728809450445660721
+      Spritesheet_with_Shadows_144: 2451814802871517572
+      Spritesheet_with_Shadows_145: -8124181732437428874
+      Spritesheet_with_Shadows_146: -4218379661582226138
+      Spritesheet_with_Shadows_147: -2323433125651767437
+      Spritesheet_with_Shadows_148: -5614294926166266606
+      Spritesheet_with_Shadows_149: 6432183727188086333
+      Spritesheet_with_Shadows_15: 6810061496680997938
+      Spritesheet_with_Shadows_16: 5102286344281275751
+      Spritesheet_with_Shadows_17: -4364196685657963560
+      Spritesheet_with_Shadows_18: 3539888659563273610
+      Spritesheet_with_Shadows_19: -192453433582861006
+      Spritesheet_with_Shadows_2: -8303038796944189457
+      Spritesheet_with_Shadows_20: 6316963119948138794
+      Spritesheet_with_Shadows_21: 14147019002374116
+      Spritesheet_with_Shadows_22: 2809511739311348735
+      Spritesheet_with_Shadows_23: -1519576230792504052
+      Spritesheet_with_Shadows_24: 699991429598312858
+      Spritesheet_with_Shadows_25: -7038149949989121947
+      Spritesheet_with_Shadows_26: 3559591416713374747
+      Spritesheet_with_Shadows_27: -764916777276804064
+      Spritesheet_with_Shadows_28: -4229608738605723700
+      Spritesheet_with_Shadows_29: 7676710305529036397
+      Spritesheet_with_Shadows_3: -4577210306945095880
+      Spritesheet_with_Shadows_30: -3489109612473611737
+      Spritesheet_with_Shadows_31: -1386084036532538508
+      Spritesheet_with_Shadows_32: -6729837590574270492
+      Spritesheet_with_Shadows_33: 272561652336239572
+      Spritesheet_with_Shadows_34: 9074955854144660412
+      Spritesheet_with_Shadows_35: 684423275186112541
+      Spritesheet_with_Shadows_36: -5006948340615696994
+      Spritesheet_with_Shadows_37: 7973069838718057258
+      Spritesheet_with_Shadows_38: 6683098623323720061
+      Spritesheet_with_Shadows_39: -4464556105115337861
+      Spritesheet_with_Shadows_4: 3320654193573002646
+      Spritesheet_with_Shadows_40: -1253930784296497250
+      Spritesheet_with_Shadows_41: 6643698257446071284
+      Spritesheet_with_Shadows_42: -1778449724103371147
+      Spritesheet_with_Shadows_43: 5899058254945567645
+      Spritesheet_with_Shadows_44: -5680105728055301801
+      Spritesheet_with_Shadows_45: 5193054920572689619
+      Spritesheet_with_Shadows_46: 2819326166284229875
+      Spritesheet_with_Shadows_47: -4009409670854199840
+      Spritesheet_with_Shadows_48: -2790201171989599624
+      Spritesheet_with_Shadows_49: -4148552356238598074
+      Spritesheet_with_Shadows_5: 5400656283416358604
+      Spritesheet_with_Shadows_50: 5886031518171574288
+      Spritesheet_with_Shadows_51: -695774378643533039
+      Spritesheet_with_Shadows_52: -8566956744456972357
+      Spritesheet_with_Shadows_53: -4150610485135668344
+      Spritesheet_with_Shadows_54: -4802436319026745242
+      Spritesheet_with_Shadows_55: 4547988481081023109
+      Spritesheet_with_Shadows_56: 3511582956180750051
+      Spritesheet_with_Shadows_57: 6202082850801188721
+      Spritesheet_with_Shadows_58: 6788095115396605047
+      Spritesheet_with_Shadows_59: -9183359873613968597
+      Spritesheet_with_Shadows_6: -336818887813855562
+      Spritesheet_with_Shadows_60: -2360588660077214727
+      Spritesheet_with_Shadows_61: 6141933301044154906
+      Spritesheet_with_Shadows_62: -4837805158236434417
+      Spritesheet_with_Shadows_63: -5781491718562874944
+      Spritesheet_with_Shadows_64: -9137759898362831948
+      Spritesheet_with_Shadows_65: 5065072209421680112
+      Spritesheet_with_Shadows_66: 6926048925623290681
+      Spritesheet_with_Shadows_67: 3931196484889014381
+      Spritesheet_with_Shadows_68: -916636616877576739
+      Spritesheet_with_Shadows_69: -4338053115205679780
+      Spritesheet_with_Shadows_7: -9187789418570043613
+      Spritesheet_with_Shadows_70: -611490556679730507
+      Spritesheet_with_Shadows_71: -2463700793269813249
+      Spritesheet_with_Shadows_72: -8025640284842754187
+      Spritesheet_with_Shadows_73: 1815115617003009265
+      Spritesheet_with_Shadows_74: 1283494397827396709
+      Spritesheet_with_Shadows_75: 8113805113979486552
+      Spritesheet_with_Shadows_76: 5060073273482519635
+      Spritesheet_with_Shadows_77: -3278220696498665736
+      Spritesheet_with_Shadows_78: -7935404863828528113
+      Spritesheet_with_Shadows_79: -2415152874999267119
+      Spritesheet_with_Shadows_8: -7771619884216561113
+      Spritesheet_with_Shadows_80: 1945258613836015965
+      Spritesheet_with_Shadows_81: -8738727409608866428
+      Spritesheet_with_Shadows_82: -6453314956020609807
+      Spritesheet_with_Shadows_83: 2632661786853613466
+      Spritesheet_with_Shadows_84: 427338612538886919
+      Spritesheet_with_Shadows_85: -4851369841102573898
+      Spritesheet_with_Shadows_86: -6107130713945762189
+      Spritesheet_with_Shadows_87: 6894436483475835691
+      Spritesheet_with_Shadows_88: 4524684039412713064
+      Spritesheet_with_Shadows_89: -3560745308682515675
+      Spritesheet_with_Shadows_9: 4263413413526266185
+      Spritesheet_with_Shadows_90: -3530679578200089120
+      Spritesheet_with_Shadows_91: 7312817092814961005
+      Spritesheet_with_Shadows_92: 8621113165853245843
+      Spritesheet_with_Shadows_93: -2659575025567545456
+      Spritesheet_with_Shadows_94: -5314747832194536785
+      Spritesheet_with_Shadows_95: -1023280025694007652
+      Spritesheet_with_Shadows_96: 6188931422730307181
+      Spritesheet_with_Shadows_97: 9117832746899917138
+      Spritesheet_with_Shadows_98: -8492154111626056274
+      Spritesheet_with_Shadows_99: -2112795775831806735
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
