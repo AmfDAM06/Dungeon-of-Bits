@@ -84,7 +84,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3576151578685919624, guid: 090508923478d884d9a674422ab71bfb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -226,3 +226,4 @@ MonoBehaviour:
   iFramesDuration: 1.5
   blinkInterval: 0.1
   isShielded: 0
+  isBoss: 0

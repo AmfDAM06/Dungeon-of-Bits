@@ -10,6 +10,9 @@ public class DamageDealer : MonoBehaviour
     public float attackCooldown = 1.5f;
     private float lastAttackTime = -999f;
 
+    // NUEVO: Cooldown independiente para evitar golpear varios raíles en un solo tajo
+    private float lastRailHitTime = -999f;
+
     private SpriteRenderer spriteRenderer;
 
     void Start()
@@ -31,6 +34,25 @@ public class DamageDealer : MonoBehaviour
             return;
         }
 
+        PuzzleRail puzzleRail = targetObj.GetComponent<PuzzleRail>();
+        if (puzzleRail != null)
+        {
+            // NUEVO: Comprobamos si han pasado 0.2s desde el último raíl girado
+            if (Time.time >= lastRailHitTime + 0.2f)
+            {
+                puzzleRail.RotateRail();
+                lastRailHitTime = Time.time;
+            }
+            return;
+        }
+
+        Minecart minecart = targetObj.GetComponent<Minecart>();
+        if (minecart != null)
+        {
+            minecart.ActivateCart();
+            return;
+        }
+
         if (targetObj.CompareTag(targetTag))
         {
             if (Time.time >= lastAttackTime + attackCooldown)
@@ -41,7 +63,6 @@ public class DamageDealer : MonoBehaviour
                     targetHealth.TakeDamage(damageAmount);
                     lastAttackTime = Time.time;
 
-                    // Activamos el color rojo de golpe
                     if (spriteRenderer != null && gameObject.activeInHierarchy)
                     {
                         StartCoroutine(AttackVisualFeedback());
@@ -55,9 +76,7 @@ public class DamageDealer : MonoBehaviour
     {
         Color originalColor = spriteRenderer.color;
         spriteRenderer.color = Color.red;
-
         yield return new WaitForSeconds(0.2f);
-
         spriteRenderer.color = originalColor;
     }
 }

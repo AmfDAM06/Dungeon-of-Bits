@@ -85,7 +85,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7829212896737242494, guid: e6bd3696799e68248b1ba6f1fe3ef8d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -186,6 +186,8 @@ MonoBehaviour:
   isPlayer: 0
   iFramesDuration: 1.5
   blinkInterval: 0.1
+  isShielded: 0
+  isBoss: 0
 --- !u!114 &1959665886143505801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,6 +215,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   moveSpeed: 2.5
+  detectionRange: 6
+  attackRange: 1.2
+  attackCooldown: 1.5
+  attackDamage: 1
   target: {fileID: 0}
 --- !u!114 &4509025746707119507
 MonoBehaviour:
@@ -228,3 +234,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
   damageAmount: 1
   targetTag: Player
+  attackCooldown: 1.5

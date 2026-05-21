@@ -1781,6 +1781,11 @@ MonoBehaviour:
   numberOfSwitches: 2
   sciFiDoorPrefab: {fileID: 7789706252811503263, guid: a511f72ae3660ab4e9c30317fe4d55cc, type: 3}
   hackingTerminalPrefab: {fileID: 8015857886381361116, guid: 9547c7b09ca8af24394d8fa697b04ef5, type: 3}
+  minecartPrefab: {fileID: 3061459574211981897, guid: 7d0460ec290905e49a5c3eb5869e7136, type: 3}
+  railPrefabs:
+  - {fileID: 1880514699765447116, guid: 1f175002d5ee54441a19229bc51baf2f, type: 3}
+  - {fileID: 7764874312559942313, guid: 789ceac20c1484640979f456a960f5d9, type: 3}
+  pressurePlatePrefab: {fileID: 2904876517007592087, guid: aa03885cb1b0f724cb7275a3b2a7ed5b, type: 3}
   chestPrefab: {fileID: 273767103678031494, guid: a08c33d1eaece4e49aac2f0ddc197805, type: 3}
   chestCount: 1
 --- !u!1 &1585451565
