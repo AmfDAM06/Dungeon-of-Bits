@@ -226,6 +226,7 @@ MonoBehaviour:
   iFramesDuration: 1.5
   blinkInterval: 0.1
   isShielded: 0
+  isBoss: 0
 --- !u!114 &8206268143544947683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,7 +469,7 @@ GameObject:
   - component: {fileID: 3108122070372340488}
   m_Layer: 0
   m_Name: ShieldVisual
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
