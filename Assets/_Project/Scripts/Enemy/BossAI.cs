@@ -7,13 +7,16 @@ public class BossAI : MonoBehaviour
     [Header("Configuración de Boss")]
     public float moveSpeed = 3.5f;
     public float detectionRange = 15f;
-    public float attack1Range = 1.2f; // Si estás a su lado
-    public float attack2Range = 3.0f; // Si intentas huir
+    public float attack1Range = 1.2f;
+    public float attack2Range = 3.0f;
     public float attackCooldown = 1.5f;
 
     [Header("Daño")]
     public int attack1Damage = 1;
-    public int attack2Damage = 2; // El ataque especial quita más
+    public int attack2Damage = 2;
+
+    [Header("Efectos Visuales")]
+    public GameObject specialAttackParticles; // <-- NUEVO: Aquí pondremos el Prefab del polvo
 
     public Transform target;
     private Rigidbody2D rb;
@@ -46,7 +49,6 @@ public class BossAI : MonoBehaviour
         float distanceToTarget = Vector2.Distance(rb.position, target.position);
         Vector2 direction = ((Vector2)target.position - rb.position).normalized;
 
-        // Le mandamos la dirección al Animator para saber si mira Arriba, Abajo, Izq o Der
         if (animator != null)
         {
             animator.SetFloat("MoveX", direction.x);
@@ -60,7 +62,7 @@ public class BossAI : MonoBehaviour
         }
         else if (distanceToTarget <= attack2Range && distanceToTarget > attack1Range && Time.time >= lastAttackTime + attackCooldown)
         {
-            StartCoroutine(AttackRoutine(2, attack2Range, attack2Damage)); // Ataque especial
+            StartCoroutine(AttackRoutine(2, attack2Range, attack2Damage));
         }
         // --- PERSECUCIÓN ---
         else if (distanceToTarget <= detectionRange)
@@ -82,10 +84,15 @@ public class BossAI : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         if (animator != null) animator.SetFloat("Speed", 0f);
 
-        // Activamos "Attack1" o "Attack2" en el Animator
         if (animator != null) animator.SetTrigger(attackType == 1 ? "Attack1" : "Attack2");
 
-        yield return new WaitForSeconds(0.3f); // Esperamos a que la animación golpee
+        // --- NUEVO: Disparamos las partículas del ataque de área ---
+        if (attackType == 2 && specialAttackParticles != null)
+        {
+            Instantiate(specialAttackParticles, transform.position, Quaternion.identity);
+        }
+
+        yield return new WaitForSeconds(0.3f);
 
         if (target != null && Vector2.Distance(rb.position, target.position) <= range + 0.5f)
         {
@@ -93,7 +100,7 @@ public class BossAI : MonoBehaviour
             if (playerHealth != null) playerHealth.TakeDamage(damage);
         }
 
-        yield return new WaitForSeconds(0.6f); // Esperar a que recupere la postura
+        yield return new WaitForSeconds(0.6f);
         isAttacking = false;
     }
 }

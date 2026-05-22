@@ -9,9 +9,11 @@ public class DamageDealer : MonoBehaviour
     [Header("Configuración de Ataque")]
     public float attackCooldown = 1.5f;
     private float lastAttackTime = -999f;
-
-    // NUEVO: Cooldown independiente para evitar golpear varios raíles en un solo tajo
     private float lastRailHitTime = -999f;
+
+    [Header("Juice (Sensación de Impacto)")]
+    public bool useHitStop = true;
+    public float hitStopDuration = 0.05f; // El tiempo que el juego se congela (50 milisegundos)
 
     private SpriteRenderer spriteRenderer;
 
@@ -37,7 +39,6 @@ public class DamageDealer : MonoBehaviour
         PuzzleRail puzzleRail = targetObj.GetComponent<PuzzleRail>();
         if (puzzleRail != null)
         {
-            // NUEVO: Comprobamos si han pasado 0.2s desde el último raíl girado
             if (Time.time >= lastRailHitTime + 0.2f)
             {
                 puzzleRail.RotateRail();
@@ -63,9 +64,21 @@ public class DamageDealer : MonoBehaviour
                     targetHealth.TakeDamage(damageAmount);
                     lastAttackTime = Time.time;
 
+                    // --- NUEVO: SONIDO DE IMPACTO ---
+                    if (SoundManager.instance != null)
+                    {
+                        SoundManager.instance.PlaySFX(SoundManager.instance.hitClip);
+                    }
+
                     if (spriteRenderer != null && gameObject.activeInHierarchy)
                     {
                         StartCoroutine(AttackVisualFeedback());
+                    }
+
+                    // --- NUEVO: Ejecutar el parón de tiempo (Hit-Stop) ---
+                    if (useHitStop)
+                    {
+                        StartCoroutine(HitStopRoutine());
                     }
                 }
             }
@@ -78,5 +91,12 @@ public class DamageDealer : MonoBehaviour
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(0.2f);
         spriteRenderer.color = originalColor;
+    }
+
+    private IEnumerator HitStopRoutine()
+    {
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(hitStopDuration);
+        Time.timeScale = 1f;
     }
 }

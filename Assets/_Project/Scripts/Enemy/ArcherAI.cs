@@ -103,17 +103,13 @@ public class ArcherAI : MonoBehaviour
         }
     }
 
-    // 1. Empieza el ataque, bloquea el movimiento y dispara la animación
     private void StartRangedAttack()
     {
         isAttacking = true;
         rb.linearVelocity = Vector2.zero;
         anim.SetTrigger("Shoot");
-
-        // El disparo real ahora lo hará el Animation Event llamando a FireArrow()
     }
 
-    // 2. NUEVO: Esta función la llamará la animación EXACTAMENTE cuando queramos
     public void FireArrow()
     {
         if (player != null && projectilePrefab != null && firePoint != null)
@@ -121,12 +117,17 @@ public class ArcherAI : MonoBehaviour
             Vector2 direction = player.position - firePoint.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Instantiate(projectilePrefab, firePoint.position, Quaternion.Euler(0, 0, angle));
+
+            // --- NUEVO: SONIDO DE LA FLECHA ---
+            if (SoundManager.instance != null)
+            {
+                SoundManager.instance.PlaySFX(SoundManager.instance.arrowShootClip);
+            }
         }
 
         nextFireTime = Time.time + fireRate;
     }
 
-    // 3. NUEVO: Esta función la llamará la animación cuando TERMINE, para dejarle moverse de nuevo
     public void FinishRangedAttack()
     {
         isAttacking = false;

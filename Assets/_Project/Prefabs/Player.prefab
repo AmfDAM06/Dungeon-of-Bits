@@ -424,6 +424,8 @@ MonoBehaviour:
   damageAmount: 1
   targetTag: Enemy
   attackCooldown: 1.5
+  useHitStop: 1
+  hitStopDuration: 0.2
 --- !u!1 &4742214796302471834
 GameObject:
   m_ObjectHideFlags: 0

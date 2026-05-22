@@ -8,6 +8,8 @@ TagManager:
   - Potion
   - Pushable
   - Shield
+  - Wall
+  - Obstacle
   layers:
   - Default
   - TransparentFX

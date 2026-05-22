@@ -188,6 +188,7 @@ MonoBehaviour:
   attackCooldown: 1.5
   attack1Damage: 1
   attack2Damage: 2
+  specialAttackParticles: {fileID: 5139904001937312196, guid: c29bb256448b4614a8b98af97b521761, type: 3}
   target: {fileID: 0}
 --- !u!114 &4033601912779364549
 MonoBehaviour:

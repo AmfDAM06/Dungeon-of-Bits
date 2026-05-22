@@ -16,17 +16,15 @@ public class Health : MonoBehaviour
     public bool isShielded = false;
 
     [Header("Efectos de Jefe (Sin animaciones)")]
-    public bool isBoss = false; // <-- Asegúrate de marcar esto solo en el Inspector del Ninja
+    public bool isBoss = false;
 
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        // Buscamos el SpriteRenderer (en este objeto o en los hijos)
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // SISTEMA DE CARGA DE VIDA
         if (isPlayer)
         {
             SaveData data = SaveSystem.Load();
@@ -63,9 +61,27 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         Debug.Log(gameObject.name + " ha recibido daño. Vida restante: " + currentHealth);
 
-        if (isPlayer && UIManager.Instance != null)
+        // --- NUEVO: LLAMADA AL SONIDO ---
+        if (SoundManager.instance != null)
         {
-            UIManager.Instance.UpdateHealthUI(currentHealth, maxHealth);
+            if (isPlayer) SoundManager.instance.PlaySFX(SoundManager.instance.playerHurtClip);
+            else SoundManager.instance.PlaySFX(SoundManager.instance.enemyHurtClip);
+        }
+
+        // --- AQUÍ ESTÁ EL CAMBIO (EL JUICE) ---
+        if (isPlayer)
+        {
+            // 1. Actualizamos los corazones de la pantalla
+            if (UIManager.Instance != null)
+            {
+                UIManager.Instance.UpdateHealthUI(currentHealth, maxHealth);
+            }
+
+            // 2. NUEVO: Hacemos que la pantalla tiemble por el golpe
+            if (CameraFollow.instance != null)
+            {
+                CameraFollow.instance.TriggerShake(0.15f, 0.1f);
+            }
         }
 
         if (currentHealth <= 0)
@@ -80,7 +96,6 @@ public class Health : MonoBehaviour
             }
             else
             {
-                // --- LÓGICA DE DAÑO: JEFE O ENEMIGO NORMAL ---
                 if (isBoss)
                 {
                     StartCoroutine(BossFlashRoutine(Color.red, 0.15f));
@@ -147,7 +162,6 @@ public class Health : MonoBehaviour
             }
             else
             {
-                // --- MUERTE DE ENEMIGO NORMAL ---
                 LootDropper lootDropper = GetComponent<LootDropper>();
                 if (lootDropper != null) lootDropper.TryDropLoot();
 
@@ -161,14 +175,10 @@ public class Health : MonoBehaviour
                 Collider2D col = GetComponent<Collider2D>();
                 if (col != null) col.enabled = false;
 
-                Destroy(gameObject, 1f); // Se destruye en 1 segundo para ver la animación
+                Destroy(gameObject, 1f);
             }
         }
     }
-
-    // ==========================================
-    // NUEVAS RUTINAS EXCLUSIVAS PARA EL JEFE
-    // ==========================================
 
     private IEnumerator BossFlashRoutine(Color flashColor, float duration)
     {
@@ -177,24 +187,21 @@ public class Health : MonoBehaviour
             Color originalColor = spriteRenderer.color;
             spriteRenderer.color = flashColor;
             yield return new WaitForSeconds(duration);
-            spriteRenderer.color = Color.white; // Reseteamos al color base
+            spriteRenderer.color = Color.white;
         }
     }
 
     private IEnumerator BossDeathRoutine()
     {
-        // 1. Apagamos todos los scripts (excepto este) para que deje de moverse y atacar
         MonoBehaviour[] scripts = GetComponents<MonoBehaviour>();
         foreach (MonoBehaviour script in scripts)
         {
             if (script != this) script.enabled = false;
         }
 
-        // 2. Apagamos su colisionador
         Collider2D col = GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
-        // 3. Efecto visual: Parpadea en blanco y negro súper rápido (Bomba de humo)
         if (spriteRenderer != null)
         {
             for (int i = 0; i < 6; i++)
@@ -206,11 +213,9 @@ public class Health : MonoBehaviour
             }
         }
 
-        // 4. Tira el botín especial (Llave, cofre, etc)
         LootDropper lootDropper = GetComponent<LootDropper>();
         if (lootDropper != null) lootDropper.TryDropLoot();
 
-        // 5. Destruimos al jefe de la escena
         Destroy(gameObject);
     }
 }
