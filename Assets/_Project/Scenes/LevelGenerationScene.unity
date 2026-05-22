@@ -1770,7 +1770,12 @@ MonoBehaviour:
   walkLength: 50
   startRandomlyEachIteration: 1
   playerPrefab: {fileID: 1051362847008129558, guid: eb2330d443be166458296ad1fcd2c1ae, type: 3}
-  enemyPrefab: {fileID: 722221942561595826, guid: 1be59e6ffa471444ba934cc7f8634e9a, type: 3}
+  enemyPrefabs:
+  - {fileID: 2455011927375348530, guid: 866c041cb230beb49a4d6e5870dbd0aa, type: 3}
+  - {fileID: 2242675147414079698, guid: 677303c80e86d4341a2160a535c6eb04, type: 3}
+  - {fileID: 3242118103140215149, guid: b31a694beb2067548a74db5331e42806, type: 3}
+  - {fileID: 6864374293752378638, guid: fc1809678f552ad408b35a5ac27d14cb, type: 3}
+  bossPrefab: {fileID: 207304648639352239, guid: 413b4bcd7d3736d4dba5b8284f5b590d, type: 3}
   exitPrefab: {fileID: 427829974147682653, guid: b1024dc47f1990d48935b7ba32f4a4e7, type: 3}
   enemyCount: 0
   logicDoorPrefab: {fileID: 4777220876329190072, guid: 12dbe297fe21b5e49a8c45f1e00a6163, type: 3}
@@ -2213,7 +2218,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2311,12 +2316,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   musicSource: {fileID: 1773339901}
   sfxSource: {fileID: 1773339900}
-  swordSwingClip: {fileID: 0}
-  hitClip: {fileID: 0}
-  playerHurtClip: {fileID: 0}
-  enemyHurtClip: {fileID: 0}
-  arrowShootClip: {fileID: 0}
-  bgMusic: {fileID: 0}
+  swordSwingClip: {fileID: 8300000, guid: ba3d425fa4d85484287f54450d9c0e4f, type: 3}
+  hitClip: {fileID: 8300000, guid: dedf6a3cebd1dd24d8bf1b3f605b1132, type: 3}
+  playerHurtClip: {fileID: 8300000, guid: be5e0ad546bc121438ff148df2b3e745, type: 3}
+  enemyHurtClip: {fileID: 8300000, guid: e1e635096327ed4468f2ba3f645ed5ff, type: 3}
+  arrowShootClip: {fileID: 8300000, guid: 8b353d8e586ee0a4a8041935268ac8f2, type: 3}
+  bgMusic: {fileID: 8300000, guid: 1755d338c4ac6414daf717db779c49f6, type: 3}
 --- !u!4 &1773339903
 Transform:
   m_ObjectHideFlags: 0

@@ -22,15 +22,28 @@ public class PlayerCombat : MonoBehaviour
 
     private bool isAttacking = false;
 
+    // --- NUEVO: Referencia a la vida ---
+    private Health health;
+
     void Start()
     {
+        health = GetComponent<Health>(); // Buscamos el script de vida
+
         if (animator == null) animator = GetComponentInChildren<Animator>();
         if (animator == null) animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if ((Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space)) && !isAttacking)
+        // --- NUEVO: Comprobamos si el escudo está levantado ---
+        bool isShieldUp = false;
+        if (health != null && health.isShielded)
+        {
+            isShieldUp = true;
+        }
+
+        // Añadimos "!isShieldUp" a la condición para evitar que ataque
+        if ((Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space)) && !isAttacking && !isShieldUp)
         {
             StartCoroutine(AttackRoutine());
         }
@@ -40,7 +53,6 @@ public class PlayerCombat : MonoBehaviour
     {
         isAttacking = true;
 
-        // --- NUEVO: SONIDO DE TAJO AL AIRE ---
         if (SoundManager.instance != null)
         {
             SoundManager.instance.PlaySFX(SoundManager.instance.swordSwingClip);

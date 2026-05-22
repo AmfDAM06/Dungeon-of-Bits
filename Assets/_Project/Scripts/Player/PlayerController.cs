@@ -16,9 +16,14 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Vector2 lastMovement = new Vector2(0, -1);
 
+    // --- NUEVO: Referencia a la vida para saber si el escudo está activo ---
+    private Health health;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<Health>(); // Buscamos el script de vida
+
         if (visualTransform == null) visualTransform = transform;
 
         animator = visualTransform.GetComponent<Animator>();
@@ -52,7 +57,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // NUEVO: Esto se ejecuta DESPUÉS del Animator. ¡Aquí nadie nos quita la escala!
     void LateUpdate()
     {
         if (movement.magnitude > 0)
@@ -67,6 +71,16 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        // --- NUEVO: Lógica de penalización de velocidad ---
+        float currentSpeed = moveSpeed;
+
+        // Si tenemos el script de vida y el escudo está levantado, vamos a la mitad de velocidad
+        if (health != null && health.isShielded)
+        {
+            currentSpeed = moveSpeed * 0.5f;
+            // Nota: Si quieres que se quede totalmente quieto, cambia el 0.5f por un 0f
+        }
+
+        rb.MovePosition(rb.position + movement * currentSpeed * Time.fixedDeltaTime);
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.SceneManagement; // Necesario para el atajo F12
+using UnityEngine.SceneManagement;
 
 public class DungeonGenerator : MonoBehaviour
 {
@@ -20,7 +20,9 @@ public class DungeonGenerator : MonoBehaviour
 
     [Header("Prefabs de Entidades")]
     public GameObject playerPrefab;
-    public GameObject enemyPrefab;
+    // --- NUEVO: Array para guardar varios tipos de enemigos y el jefe ---
+    public GameObject[] enemyPrefabs;
+    public GameObject bossPrefab;
     public GameObject exitPrefab;
     public int enemyCount = 5;
 
@@ -65,11 +67,13 @@ public class DungeonGenerator : MonoBehaviour
     private List<Vector2Int> railPositions = new List<Vector2Int>();
     private bool spawnMinecartRoom = false;
 
+    // --- NUEVO: Variable para saber si toca jefe ---
+    private bool isBossFloor = false;
+
     void Start() { GenerateDungeon(); }
 
     void Update()
     {
-        // NUEVO ATAJO DE TECLADO PARA DESARROLLADORES
         if (Input.GetKeyDown(KeyCode.F12))
         {
             Debug.Log("Saltando al siguiente piso...");
@@ -94,6 +98,9 @@ public class DungeonGenerator : MonoBehaviour
         exitFound = false;
 
         int currentFloor = UIManager.currentFloor;
+
+        // --- NUEVO: Detectar si es múltiplo de 10 ---
+        isBossFloor = (currentFloor > 0 && currentFloor % 10 == 0);
 
         if (currentFloor == 1) { iterations = 5; enemyCount = 0; numberOfSwitches = Random.Range(1, 3); spawnHackingVault = false; spawnMinecartRoom = false; }
         else if (currentFloor == 2) { iterations = 8; enemyCount = 1; numberOfSwitches = 3; spawnHackingVault = true; spawnMinecartRoom = true; }
@@ -201,7 +208,6 @@ public class DungeonGenerator : MonoBehaviour
         foreach (Vector2Int pos in floorPositions)
         {
             bool isSolidEast = true;
-            // NUEVO: Comprobamos un área gigante (8 de largo x 7 de ancho) para que quepa la sala grande
             for (int x = 1; x <= 8; x++)
             {
                 for (int y = -3; y <= 3; y++)
@@ -222,18 +228,17 @@ public class DungeonGenerator : MonoBehaviour
             floorPositions.Add(entrance + new Vector2Int(2, 0));
 
             Vector2Int roomCenter = entrance + new Vector2Int(5, 0);
-            // NUEVO: Sala de 7x5 para dejar pasillos alrededor del puzle
             for (int x = -3; x <= 3; x++)
             {
                 for (int y = -2; y <= 2; y++) floorPositions.Add(roomCenter + new Vector2Int(x, y));
             }
 
-            minecartPosInt = roomCenter + new Vector2Int(-2, 0); // Vagoneta a la izquierda
-            railPlatePosInt = roomCenter + new Vector2Int(2, 0); // Placa a la derecha
+            minecartPosInt = roomCenter + new Vector2Int(-2, 0);
+            railPlatePosInt = roomCenter + new Vector2Int(2, 0);
 
             for (int x = -1; x <= 1; x++)
             {
-                for (int y = -1; y <= 1; y++) railPositions.Add(roomCenter + new Vector2Int(x, y)); // 3x3 centro
+                for (int y = -1; y <= 1; y++) railPositions.Add(roomCenter + new Vector2Int(x, y));
             }
         }
         else
@@ -361,46 +366,39 @@ public class DungeonGenerator : MonoBehaviour
                 activeDoor.requiredSwitches = activeSwitches;
             }
 
-            // NUEVO: Algoritmo para garantizar que el puzle siempre tiene solución
-            int layoutIndex = Random.Range(0, 3); // Elegimos 1 de 3 plantillas de caminos garantizados
+            int layoutIndex = Random.Range(0, 3);
 
             foreach (Vector2Int rPos in railPositions)
             {
-                // Calculamos en qué fila y columna de la cuadrícula 3x3 estamos
-                int localX = rPos.x - (minecartPosInt.x + 2); // Devuelve -1, 0, 1
-                int localY = rPos.y - minecartPosInt.y;       // Devuelve -1, 0, 1
+                int localX = rPos.x - (minecartPosInt.x + 2);
+                int localY = rPos.y - minecartPosInt.y;
 
-                int requiredType = Random.Range(0, 2); // Por defecto, ponemos Recta o Curva al azar para despistar
+                int requiredType = Random.Range(0, 2);
 
-                // Plantilla 0: Camino en "U" por arriba
                 if (layoutIndex == 0)
                 {
-                    if (localX == -1 && localY == 0) requiredType = 1;      // Curva sube
-                    else if (localX == -1 && localY == 1) requiredType = 1; // Curva derecha
-                    else if (localX == 0 && localY == 1) requiredType = 0;  // Recta cruza
-                    else if (localX == 1 && localY == 1) requiredType = 1;  // Curva baja
-                    else if (localX == 1 && localY == 0) requiredType = 1;  // Curva sale
+                    if (localX == -1 && localY == 0) requiredType = 1;
+                    else if (localX == -1 && localY == 1) requiredType = 1;
+                    else if (localX == 0 && localY == 1) requiredType = 0;
+                    else if (localX == 1 && localY == 1) requiredType = 1;
+                    else if (localX == 1 && localY == 0) requiredType = 1;
                 }
-                // Plantilla 1: Camino en "U" por abajo
                 else if (layoutIndex == 1)
                 {
-                    if (localX == -1 && localY == 0) requiredType = 1;       // Curva baja
-                    else if (localX == -1 && localY == -1) requiredType = 1; // Curva derecha
-                    else if (localX == 0 && localY == -1) requiredType = 0;  // Recta cruza
-                    else if (localX == 1 && localY == -1) requiredType = 1;  // Curva sube
-                    else if (localX == 1 && localY == 0) requiredType = 1;   // Curva sale
+                    if (localX == -1 && localY == 0) requiredType = 1;
+                    else if (localX == -1 && localY == -1) requiredType = 1;
+                    else if (localX == 0 && localY == -1) requiredType = 0;
+                    else if (localX == 1 && localY == -1) requiredType = 1;
+                    else if (localX == 1 && localY == 0) requiredType = 1;
                 }
-                // Plantilla 2: Camino directo por el centro
                 else
                 {
-                    if (localY == 0) requiredType = 0; // Tres rectas en la fila del medio
+                    if (localY == 0) requiredType = 0;
                 }
 
-                // IMPORTANTE: railPrefabs[0] debe ser tu Raíl Recto, y railPrefabs[1] tu Raíl Curvo.
                 GameObject railPrefab = (requiredType == 0) ? railPrefabs[0] : railPrefabs[1];
                 GameObject spawnedRail = Instantiate(railPrefab, new Vector3(rPos.x + 0.5f, rPos.y + 0.5f, 0), Quaternion.identity);
 
-                // Rotamos las piezas para que el jugador tenga que descubrir el camino
                 int randomRot = Random.Range(0, 4);
                 spawnedRail.transform.rotation = Quaternion.Euler(0, 0, randomRot * 90f);
 
@@ -422,14 +420,31 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
-        if (enemyPrefab != null)
+        // --- NUEVO: Generar los enemigos aleatorios del Array ---
+        if (enemyPrefabs != null && enemyPrefabs.Length > 0)
         {
             for (int i = 0; i < enemyCount; i++)
             {
                 if (availablePositions.Count == 0) break;
                 int r = Random.Range(0, availablePositions.Count);
-                Instantiate(enemyPrefab, new Vector3(availablePositions[r].x + 0.5f, availablePositions[r].y + 0.5f, 0f), Quaternion.identity);
+
+                // Elegimos un enemigo al azar de tu lista
+                GameObject randomEnemy = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+
+                Instantiate(randomEnemy, new Vector3(availablePositions[r].x + 0.5f, availablePositions[r].y + 0.5f, 0f), Quaternion.identity);
                 availablePositions.RemoveAt(r);
+            }
+        }
+
+        // --- NUEVO: Generar al Jefe si es el piso correcto ---
+        if (isBossFloor && bossPrefab != null)
+        {
+            if (availablePositions.Count > 0)
+            {
+                // Le damos una posición segura y vacía
+                Vector2Int spawnPos = GetSafeBoxPosition();
+                Instantiate(bossPrefab, new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f), Quaternion.identity);
+                if (availablePositions.Contains(spawnPos)) availablePositions.Remove(spawnPos);
             }
         }
     }

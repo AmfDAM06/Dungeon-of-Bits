@@ -203,11 +203,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 840bfd08c97c76d41b52e72115d9ae6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  moveSpeed: 2.5
+  moveSpeed: 0.5
   detectionRange: 6
   attackRange: 2
   attackCooldown: 1.5
-  attackDamage: 1
+  attackDamage: 2
   target: {fileID: 0}
 --- !u!114 &6087587286479675553
 MonoBehaviour:
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05bfc1cece37d0b44a78d0bfdd6e491c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 3
+  maxHealth: 10
   isPlayer: 0
   iFramesDuration: 1.5
   blinkInterval: 0.1

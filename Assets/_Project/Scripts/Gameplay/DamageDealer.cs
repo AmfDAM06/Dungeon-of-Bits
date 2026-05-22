@@ -13,7 +13,8 @@ public class DamageDealer : MonoBehaviour
 
     [Header("Juice (Sensación de Impacto)")]
     public bool useHitStop = true;
-    public float hitStopDuration = 0.05f; // El tiempo que el juego se congela (50 milisegundos)
+    public float hitStopDuration = 0.05f;
+    public float knockbackForce = 10f; // <--- NUEVO: La fuerza del empujón
 
     private SpriteRenderer spriteRenderer;
 
@@ -62,9 +63,12 @@ public class DamageDealer : MonoBehaviour
                 if (targetHealth != null)
                 {
                     targetHealth.TakeDamage(damageAmount);
+
+                    // --- NUEVO: APLICAMOS EL EMPUJÓN HACIA ATRÁS ---
+                    targetHealth.ApplyKnockback(transform.position, knockbackForce);
+
                     lastAttackTime = Time.time;
 
-                    // --- NUEVO: SONIDO DE IMPACTO ---
                     if (SoundManager.instance != null)
                     {
                         SoundManager.instance.PlaySFX(SoundManager.instance.hitClip);
@@ -75,7 +79,6 @@ public class DamageDealer : MonoBehaviour
                         StartCoroutine(AttackVisualFeedback());
                     }
 
-                    // --- NUEVO: Ejecutar el parón de tiempo (Hit-Stop) ---
                     if (useHitStop)
                     {
                         StartCoroutine(HitStopRoutine());

@@ -61,23 +61,19 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         Debug.Log(gameObject.name + " ha recibido daño. Vida restante: " + currentHealth);
 
-        // --- NUEVO: LLAMADA AL SONIDO ---
         if (SoundManager.instance != null)
         {
             if (isPlayer) SoundManager.instance.PlaySFX(SoundManager.instance.playerHurtClip);
             else SoundManager.instance.PlaySFX(SoundManager.instance.enemyHurtClip);
         }
 
-        // --- AQUÍ ESTÁ EL CAMBIO (EL JUICE) ---
         if (isPlayer)
         {
-            // 1. Actualizamos los corazones de la pantalla
             if (UIManager.Instance != null)
             {
                 UIManager.Instance.UpdateHealthUI(currentHealth, maxHealth);
             }
 
-            // 2. NUEVO: Hacemos que la pantalla tiemble por el golpe
             if (CameraFollow.instance != null)
             {
                 CameraFollow.instance.TriggerShake(0.15f, 0.1f);
@@ -109,6 +105,50 @@ public class Health : MonoBehaviour
             }
         }
     }
+
+    // --- NUEVO: SISTEMA DE EMPUJÓN (KNOCKBACK) ---
+    public void ApplyKnockback(Vector3 attackerPosition, float force, float duration = 0.15f)
+    {
+        // Los jefes son demasiado grandes para ser empujados, y los muertos no se mueven
+        if (isBoss || currentHealth <= 0) return;
+
+        StartCoroutine(KnockbackRoutine(attackerPosition, force, duration));
+    }
+
+    private IEnumerator KnockbackRoutine(Vector3 attackerPosition, float force, float duration)
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            // 1. Apagamos los scripts de movimiento para que no luchen contra la física
+            EnemyAI enemyAI = GetComponent<EnemyAI>();
+            ArcherAI archerAI = GetComponent<ArcherAI>();
+            PlayerController playerCtrl = GetComponent<PlayerController>();
+
+            if (enemyAI != null) enemyAI.enabled = false;
+            if (archerAI != null) archerAI.enabled = false;
+            if (playerCtrl != null) playerCtrl.enabled = false;
+
+            // 2. Calculamos la dirección contraria a ti y aplicamos la fuerza
+            Vector2 direction = (transform.position - attackerPosition).normalized;
+            rb.linearVelocity = direction * force;
+
+            // 3. Esperamos el tiempo que dura el empujón
+            yield return new WaitForSeconds(duration);
+
+            // 4. Frenamos en seco
+            if (rb != null) rb.linearVelocity = Vector2.zero;
+
+            // 5. Devolvemos el control al enemigo si sigue vivo
+            if (currentHealth > 0)
+            {
+                if (enemyAI != null) enemyAI.enabled = true;
+                if (archerAI != null) archerAI.enabled = true;
+                if (playerCtrl != null) playerCtrl.enabled = true;
+            }
+        }
+    }
+    // ----------------------------------------------
 
     public bool Heal(int amount)
     {
@@ -171,6 +211,9 @@ public class Health : MonoBehaviour
 
                 EnemyAI ai = GetComponent<EnemyAI>();
                 if (ai != null) ai.enabled = false;
+
+                ArcherAI archerAi = GetComponent<ArcherAI>();
+                if (archerAi != null) archerAi.enabled = false;
 
                 Collider2D col = GetComponent<Collider2D>();
                 if (col != null) col.enabled = false;
