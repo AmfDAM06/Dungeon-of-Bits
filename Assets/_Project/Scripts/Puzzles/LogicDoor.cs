@@ -2,96 +2,69 @@ using UnityEngine;
 
 public class LogicDoor : MonoBehaviour
 {
-    [Header("Condiciones Lógicas (AND)")]
-    [Tooltip("Arrastra aquí los interruptores que deben estar pisados a la vez")]
-    public PuzzleSwitch[] requiredSwitches; // ARRAY: Una lista de interruptores
+    [Header("Configuración")]
+    public PuzzleSwitch[] requiredSwitches;
 
-    [Header("Visuales de la Puerta")]
-    public Sprite closedSprite; // Sprite de puerta cerrada
-    public Sprite openedSprite; // Sprite de puerta abierta (o suelo normal)
-
-    private SpriteRenderer spriteRenderer;
-    private Collider2D doorCollider;
     private bool isOpen = false;
+    private BoxCollider2D doorCollider;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
+        doorCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        doorCollider = GetComponent<Collider2D>();
-
-        // Empezamos con la puerta cerrada
-        if (spriteRenderer != null && closedSprite != null)
-        {
-            spriteRenderer.sprite = closedSprite;
-        }
     }
 
     void Update()
     {
-        // Si la puerta está cerrada, estamos evaluando constantemente la condición
-        if (!isOpen)
-        {
-            // Llama a la función que actúa como nuestro operador AND
-            if (CheckAllSwitches())
-            {
-                OpenDoor();
-            }
-        }
-    }
+        if (requiredSwitches == null || requiredSwitches.Length == 0) return;
 
-    // MÉTODO LÓGICO: Comprueba el Array con un Bucle
-    private bool CheckAllSwitches()
-    {
-        // Si no hemos asignado ningún interruptor, devolvemos falso por seguridad
-        if (requiredSwitches.Length == 0) return false;
+        int activatedCount = 0;
 
-        // BUCLE FOREACH: "Por cada interruptor en la lista..."
+        // Contamos cuántos interruptores del puzle están encendidos ahora mismo
         foreach (PuzzleSwitch sw in requiredSwitches)
         {
-            // LÓGICA AND: Si encontramos tan solo UN interruptor sin pisar, la condición falla
-            if (!sw.isActivated)
+            if (sw != null && sw.isActivated)
             {
-                return false;
+                activatedCount++;
             }
         }
 
-        // Si el bucle termina sin problemas, significa que TODOS están pisados
-        return true;
+        // --- NUEVO: Enviamos el recuento en tiempo real a la interfaz ---
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.UpdatePuzzleUI(activatedCount, requiredSwitches.Length);
+        }
+
+        // Si todos están activados, abrimos la puerta
+        if (activatedCount == requiredSwitches.Length)
+        {
+            if (!isOpen) OpenDoor();
+        }
+        else
+        {
+            if (isOpen) CloseDoor();
+        }
     }
 
     private void OpenDoor()
     {
         isOpen = true;
-
-        // Cambiamos el dibujo para que parezca abierta
-        if (spriteRenderer != null && openedSprite != null)
-        {
-            spriteRenderer.sprite = openedSprite;
-        }
-
-        // Desactivamos las físicas para que el jugador pueda atravesarla
-        if (doorCollider != null)
-        {
-            doorCollider.enabled = false;
-        }
-
-        Debug.Log("¡Condición IF cumplida! Puerta Lógica abierta.");
+        if (doorCollider != null) doorCollider.enabled = false;
+        if (spriteRenderer != null) spriteRenderer.color = new Color(1f, 1f, 1f, 0.3f);
+        Debug.Log("La puerta lógica se ha ABIERTO.");
     }
-    // --- MÉTODO PARA RESETEAR ---
-    public void ResetDoor()
+
+    private void CloseDoor()
     {
         isOpen = false;
+        if (doorCollider != null) doorCollider.enabled = true;
+        if (spriteRenderer != null) spriteRenderer.color = Color.white;
+        Debug.Log("La puerta lógica se ha CERRADO.");
+    }
 
-        // Volvemos a poner el dibujo de la puerta cerrada
-        if (spriteRenderer != null && closedSprite != null)
-        {
-            spriteRenderer.sprite = closedSprite;
-        }
-
-        // Volvemos a activar la colisión para que bloquee el paso
-        if (doorCollider != null)
-        {
-            doorCollider.enabled = true;
-        }
+    public void ResetDoor()
+    {
+        CloseDoor();
     }
 }
