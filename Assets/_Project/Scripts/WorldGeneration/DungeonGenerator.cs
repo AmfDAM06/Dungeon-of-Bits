@@ -45,11 +45,16 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject chestPrefab;
     public int chestCount = 1;
 
-    // --- NUEVO: PREFABS DE DECORACIÓN ---
+    // --- NUEVO: TRAMPAS ---
+    [Header("Trampas de Entorno")]
+    public GameObject spikeTrapPrefab;
+    [Range(0f, 15f)]
+    [Tooltip("Probabilidad de que aparezca una trampa en una baldosa vacía (Recomendado: 2% a 4%)")]
+    public float trapChance = 3f;
+
     [Header("Decoración Visual")]
     public GameObject[] decorationPrefabs;
     [Range(0f, 100f)]
-    [Tooltip("Probabilidad de que aparezca un adorno en cada baldosa vacía (Recomendado: 3% a 8%)")]
     public float decorationChance = 5f;
 
     private HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
@@ -327,22 +332,18 @@ public class DungeonGenerator : MonoBehaviour
                 Vector2Int spawnPos;
                 Vector3 instantiatePos;
 
-                // --- EL SISTEMA NUEVO ESTÁ JUSTO AQUÍ ---
                 if (switchData.type == PuzzleSwitch.SwitchType.Melee && switchData.isWallMounted)
                 {
-                    // Si es Melee Y va en la pared (Botón de Pared)
                     if (spawnHackingVault && i == 0) spawnPos = vaultCenter + new Vector2Int(0, 2);
                     else spawnPos = GetNorthWallPosition();
                     instantiatePos = new Vector3(spawnPos.x + 0.5f, spawnPos.y + 1.5f, 0f);
                 }
                 else
                 {
-                    // Si es una Placa de Presión o una Palanca de Suelo
                     if (spawnHackingVault && i == 0) spawnPos = vaultCenter + Vector2Int.left;
                     else spawnPos = GetSafeBoxPosition();
                     instantiatePos = new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f);
 
-                    // IMPORTANTE: Solo soltamos una caja si es de Presión Y requiere caja
                     if (boxPrefab != null && switchData.type == PuzzleSwitch.SwitchType.Pressure && switchData.requiredTag == "Pushable")
                     {
                         Vector2Int boxPos = (spawnHackingVault && i == 0) ? vaultCenter + Vector2Int.right : GetSafeBoxPosition();
@@ -352,7 +353,6 @@ public class DungeonGenerator : MonoBehaviour
                         boxStartPositions.Add(fBoxPos);
                     }
                 }
-                // ----------------------------------------
 
                 GameObject swObj = Instantiate(prefab, instantiatePos, Quaternion.identity);
                 spawnedSwitches[i] = swObj.GetComponent<PuzzleSwitch>();
@@ -456,12 +456,30 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
-        // --- NUEVO: REPARTIR DECORACIÓN AL FINAL ---
+        // --- NUEVO: REPARTIR TRAMPAS DE PINCHOS ---
+        // Solo empiezan a aparecer a partir del Piso 2
+        if (spikeTrapPrefab != null && UIManager.currentFloor > 1)
+        {
+            // Iteramos al revés por la lista porque vamos a ir borrando las posiciones que ocupemos
+            for (int i = availablePositions.Count - 1; i >= 0; i--)
+            {
+                // Tiramos un dado de 100 caras
+                if (Random.Range(0f, 100f) <= trapChance)
+                {
+                    Vector2Int pos = availablePositions[i];
+                    Instantiate(spikeTrapPrefab, new Vector3(pos.x + 0.5f, pos.y + 0.5f, 0f), Quaternion.identity);
+
+                    // Borramos esta baldosa para que no aparezcan huesos o decoraciones pisando la trampa
+                    availablePositions.RemoveAt(i);
+                }
+            }
+        }
+
+        // --- REPARTIR DECORACIÓN AL FINAL ---
         if (decorationPrefabs != null && decorationPrefabs.Length > 0)
         {
             foreach (Vector2Int pos in availablePositions)
             {
-                // Tiramos un número del 0 al 100
                 if (Random.Range(0f, 100f) <= decorationChance)
                 {
                     int randIndex = Random.Range(0, decorationPrefabs.Length);

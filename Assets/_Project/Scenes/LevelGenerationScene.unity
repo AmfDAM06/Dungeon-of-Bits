@@ -3939,6 +3939,8 @@ MonoBehaviour:
   pressurePlatePrefab: {fileID: 2904876517007592087, guid: aa03885cb1b0f724cb7275a3b2a7ed5b, type: 3}
   chestPrefab: {fileID: 273767103678031494, guid: a08c33d1eaece4e49aac2f0ddc197805, type: 3}
   chestCount: 1
+  spikeTrapPrefab: {fileID: 279933121595164073, guid: ae4a07ebbbe214e4cac6346a37718966, type: 3}
+  trapChance: 2
   decorationPrefabs:
   - {fileID: 3639425369160330886, guid: ba517d8d20b02344f8daacc2b31d5e80, type: 3}
   - {fileID: 4911357128697349953, guid: f20bf9fc83815e64588b0063aa4f5958, type: 3}

@@ -4,7 +4,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    [Header("Paneles de UI")]
     public Button continueButton;
+    public GameObject mainButtonsPanel; // <-- NUEVO: El panel con New Game, Continue, Quit...
+    public GameObject instructionsPanel; // <-- NUEVO: Tu nuevo panel de instrucciones
 
     [Header("Configuración de Escenas")]
     [Tooltip("Escribe aquí el nombre EXACTO de la escena de tu mazmorra")]
@@ -12,6 +15,10 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        // Nos aseguramos de que el estado inicial sea el correcto
+        if (instructionsPanel != null) instructionsPanel.SetActive(false);
+        if (mainButtonsPanel != null) mainButtonsPanel.SetActive(true);
+
         if (SoundManager.instance != null)
         {
             SoundManager.instance.PlayMusic(SoundManager.instance.mainMenuMusic);
@@ -23,33 +30,40 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    // --- NUEVAS FUNCIONES PARA EL PANEL DE INSTRUCCIONES ---
+    public void OpenInstructions()
+    {
+        if (mainButtonsPanel != null) mainButtonsPanel.SetActive(false); // Ocultamos los botones principales
+        if (instructionsPanel != null) instructionsPanel.SetActive(true);  // Mostramos las instrucciones
+    }
+
+    public void CloseInstructions()
+    {
+        if (instructionsPanel != null) instructionsPanel.SetActive(false); // Ocultamos instrucciones
+        if (mainButtonsPanel != null) mainButtonsPanel.SetActive(true);   // Volvemos a mostrar los botones
+    }
+    // -------------------------------------------------------
+
     public void StartNewGame()
     {
-        if (SoundManager.instance != null)
-        {
-            SoundManager.instance.PlayMusic(SoundManager.instance.bgMusic);
-        }
+        if (SoundManager.instance != null) SoundManager.instance.PlayMusic(SoundManager.instance.bgMusic);
 
         SaveSystem.DeleteSave();
         UIManager.currentFloor = 1;
-        PlayerInventory.ResetInventory(); // Vaciamos los bolsillos
+        PlayerInventory.ResetInventory();
 
         SceneManager.LoadScene(dungeonSceneName);
     }
 
     public void ContinueGame()
     {
-        if (SoundManager.instance != null)
-        {
-            SoundManager.instance.PlayMusic(SoundManager.instance.bgMusic);
-        }
+        if (SoundManager.instance != null) SoundManager.instance.PlayMusic(SoundManager.instance.bgMusic);
 
         if (SaveSystem.HasSaveFile())
         {
             SaveData data = SaveSystem.Load();
             UIManager.currentFloor = data.floor;
 
-            // --- NUEVO: Recuperamos la mochila ---
             PlayerInventory.globalHealthPotions = data.healthPotions;
             PlayerInventory.globalInvisPotions = data.invisPotions;
             PlayerInventory.globalStrengthPotions = data.strengthPotions;
