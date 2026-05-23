@@ -21,7 +21,6 @@ public class HealthPotion : MonoBehaviour
         canBePickedUp = true;
     }
 
-    // Esta función centraliza la recogida
     private void TryPickup(GameObject playerObj)
     {
         if (!canBePickedUp) return;
@@ -30,11 +29,14 @@ public class HealthPotion : MonoBehaviour
         if (inventory != null)
         {
             inventory.AddItem(itemType, 1);
+
+            // --- NUEVO: Sonido de recoger ---
+            if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.instance.pickupItemClip);
+
             Destroy(gameObject);
         }
     }
 
-    // Cubrimos todas las físicas posibles de Unity por si acaso
     private void OnTriggerStay2D(Collider2D collision) { if (collision.CompareTag("Player")) TryPickup(collision.gameObject); }
     private void OnTriggerEnter2D(Collider2D collision) { if (collision.CompareTag("Player")) TryPickup(collision.gameObject); }
     private void OnCollisionEnter2D(Collision2D collision) { if (collision.gameObject.CompareTag("Player")) TryPickup(collision.gameObject); }

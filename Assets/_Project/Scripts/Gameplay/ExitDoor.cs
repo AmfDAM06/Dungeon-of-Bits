@@ -7,17 +7,17 @@ public class ExitDoor : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // 1. Subimos de piso
+            // --- NUEVO: Sonido de Fanfarria / Victoria ---
+            if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.instance.levelCompleteClip);
+
             UIManager.currentFloor++;
 
-            // 2. Guardamos la partida con la vida exacta que tiene el jugador
             Health playerHealth = collision.GetComponent<Health>();
             if (playerHealth != null)
             {
                 SaveSystem.Save(UIManager.currentFloor, playerHealth.GetCurrentHealth(), playerHealth.maxHealth);
             }
 
-            // 3. Generamos la nueva mazmorra
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }

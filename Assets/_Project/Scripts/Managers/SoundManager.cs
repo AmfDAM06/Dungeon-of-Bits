@@ -2,27 +2,50 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    // Esta línea crea el "Singleton" (instancia global accesible desde cualquier script)
     public static SoundManager instance;
 
     [Header("Reproductores (AudioSource)")]
-    public AudioSource musicSource; // Para la música de fondo
-    public AudioSource sfxSource;   // Para los efectos de sonido cortos
-
-    [Header("Efectos de Sonido (SFX)")]
-    public AudioClip swordSwingClip;
-    public AudioClip hitClip;
-    public AudioClip playerHurtClip;
-    public AudioClip enemyHurtClip;
-    public AudioClip arrowShootClip;
+    public AudioSource musicSource;
+    public AudioSource sfxSource;
+    public AudioSource loopSource; // <-- NUEVO: Para sonidos continuos (como el escudo o la vagoneta)
 
     [Header("Música")]
     public AudioClip bgMusic;
+    public AudioClip mainMenuMusic; // <-- NUEVO
+
+    [Header("Jugador (SFX)")]
+    public AudioClip swordSwingClip;
+    public AudioClip hitClip;
+    public AudioClip playerHurtClip;
+    public AudioClip shieldLoopClip; // <-- NUEVO
+    public AudioClip footstepClip;   // <-- NUEVO
+    public AudioClip drinkPotionClip; // <-- NUEVO
+
+    [Header("Inventario y Botín (SFX)")]
+    public AudioClip pickupItemClip; // <-- NUEVO
+    public AudioClip openChestClip;  // <-- NUEVO
+    public AudioClip bombExplosionClip; // <-- NUEVO
+
+    [Header("Entorno y Puzles (SFX)")]
+    public AudioClip switchToggleClip; // <-- NUEVO (Para palancas y placas)
+    public AudioClip moveBoxClip;      // <-- NUEVO
+    public AudioClip rotateRailClip;   // <-- NUEVO
+    public AudioClip minecartMoveClip; // <-- NUEVO
+    public AudioClip logicDoorClip;    // <-- NUEVO
+    public AudioClip levelCompleteClip; // <-- NUEVO
+
+    [Header("Hacking Terminal (SFX)")]
+    public AudioClip terminalStartClip;   // <-- NUEVO
+    public AudioClip terminalSuccessClip; // <-- NUEVO
+    public AudioClip terminalErrorClip;   // <-- NUEVO
+
+    [Header("Enemigos (SFX)")]
+    public AudioClip enemyHurtClip;
+    public AudioClip arrowShootClip;
+    public AudioClip bossDeathClip; // <-- NUEVO
 
     void Awake()
     {
-        // Si no hay ningún SoundManager, este se convierte en el oficial.
-        // Si ya hay uno (por ejemplo, al cambiar de nivel), destruimos la copia para que la música no se reinicie ni se duplique.
         if (instance == null)
         {
             instance = this;
@@ -36,22 +59,47 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
-        // Al arrancar, reproducimos la música en bucle
-        if (bgMusic != null && musicSource != null)
+        PlayMusic(bgMusic);
+    }
+
+    // Reproduce música de fondo
+    public void PlayMusic(AudioClip musicClip)
+    {
+        if (musicClip != null && musicSource != null)
         {
-            musicSource.clip = bgMusic;
+            musicSource.clip = musicClip;
             musicSource.loop = true;
             musicSource.Play();
         }
     }
 
-    // Esta es la función mágica que llamaremos desde otros scripts
+    // Reproduce un efecto corto
     public void PlaySFX(AudioClip clip)
     {
         if (clip != null && sfxSource != null)
         {
-            // PlayOneShot permite que suenen varios efectos a la vez sin cortarse entre ellos
             sfxSource.PlayOneShot(clip);
+        }
+    }
+
+    // Inicia un sonido en bucle (para el escudo, vagoneta...)
+    public void PlayLoop(AudioClip clip)
+    {
+        if (clip != null && loopSource != null && loopSource.clip != clip)
+        {
+            loopSource.clip = clip;
+            loopSource.loop = true;
+            loopSource.Play();
+        }
+    }
+
+    // Detiene el sonido en bucle
+    public void StopLoop()
+    {
+        if (loopSource != null)
+        {
+            loopSource.Stop();
+            loopSource.clip = null;
         }
     }
 }

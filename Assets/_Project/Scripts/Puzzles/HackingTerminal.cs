@@ -62,6 +62,9 @@ public class HackingTerminal : MonoBehaviour
             playerControllerScript.enabled = false;
         }
 
+        // --- NUEVO: Sonido de iniciar la terminal ---
+        if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.instance.terminalStartClip);
+
         // Seleccionamos automáticamente el InputField para escribir del tirón
         inputField.Select();
         inputField.ActivateInputField();
@@ -88,6 +91,10 @@ public class HackingTerminal : MonoBehaviour
         {
             feedbackText.color = Color.green;
             feedbackText.text = "> Access Granted. Executing Open() method.";
+
+            // --- NUEVO: Sonido de éxito en el hackeo ---
+            if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.instance.terminalSuccessClip);
+
             OpenSciFiDoor();
             isHacked = true;
 
@@ -98,6 +105,10 @@ public class HackingTerminal : MonoBehaviour
         {
             feedbackText.color = Color.red;
             feedbackText.text = "> Syntax error or undefined method.";
+
+            // --- NUEVO: Sonido de error en el hackeo ---
+            if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.instance.terminalErrorClip);
+
             inputField.text = "";
 
             // Reactivamos el campo por si quiere volver a intentarlo sin usar el ratón

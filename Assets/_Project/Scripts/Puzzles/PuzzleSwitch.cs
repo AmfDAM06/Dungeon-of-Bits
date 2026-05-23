@@ -28,36 +28,27 @@ public class PuzzleSwitch : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (type == SwitchType.Pressure && !isActivated && collision.CompareTag(requiredTag))
-        {
-            SetState(true);
-        }
+        if (type == SwitchType.Pressure && !isActivated && collision.CompareTag(requiredTag)) SetState(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (type == SwitchType.Pressure && isActivated && collision.CompareTag(requiredTag))
-        {
-            SetState(false);
-        }
+        if (type == SwitchType.Pressure && isActivated && collision.CompareTag(requiredTag)) SetState(false);
     }
 
     public void ToggleByHit()
     {
-        if (type == SwitchType.Melee && !isAnimating)
-        {
-            SetState(!isActivated);
-        }
+        if (type == SwitchType.Melee && !isAnimating) SetState(!isActivated);
     }
 
-    // --- CAMBIO CLAVE: AHORA ES PÚBLICO PARA QUE LA VAGONETA PUEDA USARLO ---
     public void SetState(bool active)
     {
-        // Evitamos que intente animarse de nuevo si ya está en ese estado
         if (isActivated == active) return;
 
         isActivated = active;
-        Debug.Log(gameObject.name + " activado: " + isActivated);
+
+        // --- NUEVO: Sonido de interruptor ---
+        if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.instance.switchToggleClip);
 
         if (gameObject.activeInHierarchy)
         {
@@ -72,19 +63,11 @@ public class PuzzleSwitch : MonoBehaviour
         {
             if (forward)
             {
-                for (int i = 0; i < frames.Length; i++)
-                {
-                    spriteRenderer.sprite = frames[i];
-                    yield return new WaitForSeconds(frameRate);
-                }
+                for (int i = 0; i < frames.Length; i++) { spriteRenderer.sprite = frames[i]; yield return new WaitForSeconds(frameRate); }
             }
             else
             {
-                for (int i = frames.Length - 1; i >= 0; i--)
-                {
-                    spriteRenderer.sprite = frames[i];
-                    yield return new WaitForSeconds(frameRate);
-                }
+                for (int i = frames.Length - 1; i >= 0; i--) { spriteRenderer.sprite = frames[i]; yield return new WaitForSeconds(frameRate); }
             }
         }
         isAnimating = false;
@@ -95,10 +78,6 @@ public class PuzzleSwitch : MonoBehaviour
         StopAllCoroutines();
         isAnimating = false;
         isActivated = false;
-
-        if (frames.Length > 0 && spriteRenderer != null)
-        {
-            spriteRenderer.sprite = frames[0];
-        }
+        if (frames.Length > 0 && spriteRenderer != null) spriteRenderer.sprite = frames[0];
     }
 }

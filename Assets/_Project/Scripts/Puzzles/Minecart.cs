@@ -13,10 +13,7 @@ public class Minecart : MonoBehaviour
     private bool isActive = false;
     private Vector2 currentDirection;
 
-    void Start()
-    {
-        startPosition = transform.position;
-    }
+    void Start() { startPosition = transform.position; }
 
     public void ActivateCart()
     {
@@ -24,6 +21,9 @@ public class Minecart : MonoBehaviour
 
         isActive = true;
         currentDirection = startDirection;
+
+        if (SoundManager.instance != null) SoundManager.instance.PlayLoop(SoundManager.instance.minecartMoveClip);
+
         StartCoroutine(MoveCartRoutine());
     }
 
@@ -47,12 +47,10 @@ public class Minecart : MonoBehaviour
             if (switchCollider != null)
             {
                 PuzzleSwitch pSwitch = switchCollider.GetComponent<PuzzleSwitch>();
-
-                // --- CAMBIO CLAVE: FORZAMOS EL ENCENDIDO DEL INTERRUPTOR ---
                 if (pSwitch != null) pSwitch.SetState(true);
 
                 isActive = false;
-                Debug.Log("¡Puzle completado!");
+                if (SoundManager.instance != null) SoundManager.instance.StopLoop();
                 yield break;
             }
 
@@ -60,35 +58,57 @@ public class Minecart : MonoBehaviour
             if (railCollider != null)
             {
                 PuzzleRail rail = railCollider.GetComponent<PuzzleRail>();
-                CalculateNewDirection(rail);
+
+                // --- NUEVO: Comprobamos si el raíl es seguro ---
+                bool isSafe = CalculateNewDirection(rail);
+                if (!isSafe)
+                {
+                    // Chocamos contra un raíl recto mal puesto
+                    yield return new WaitForSeconds(0.2f);
+                    ResetCart();
+                }
             }
             else
             {
-                Debug.Log("¡La vagoneta ha descarrilado!");
+                // Nos salimos del camino (no hay raíles)
                 yield return new WaitForSeconds(0.5f);
                 ResetCart();
             }
         }
     }
 
-    private void CalculateNewDirection(PuzzleRail rail)
+    private bool CalculateNewDirection(PuzzleRail rail)
     {
+        Vector2 localDir = rail.transform.InverseTransformDirection(currentDirection);
+
         if (rail.railType == PuzzleRail.RailType.Curve)
         {
-            Vector2 localDir = rail.transform.InverseTransformDirection(currentDirection);
-
-            if (Mathf.Abs(localDir.y) > 0.5f)
-                currentDirection = rail.transform.TransformDirection(new Vector2(-Mathf.Sign(localDir.y), 0));
-            else
-                currentDirection = rail.transform.TransformDirection(new Vector2(0, -Mathf.Sign(localDir.x)));
+            if (Mathf.Abs(localDir.y) > 0.5f) currentDirection = rail.transform.TransformDirection(new Vector2(-Mathf.Sign(localDir.y), 0));
+            else currentDirection = rail.transform.TransformDirection(new Vector2(0, -Mathf.Sign(localDir.x)));
 
             currentDirection = new Vector2(Mathf.Round(currentDirection.x), Mathf.Round(currentDirection.y));
+            return true;
+        }
+        else // RailType.Straight
+        {
+            // --- NUEVO: Lógica restrictiva para los raíles rectos ---
+            if (rail.isHorizontalByDefault)
+            {
+                if (Mathf.Abs(localDir.x) > 0.5f) return true; // Avanza bien por el eje X local
+                else return false; // Choca
+            }
+            else
+            {
+                if (Mathf.Abs(localDir.y) > 0.5f) return true; // Avanza bien por el eje Y local
+                else return false; // Choca
+            }
         }
     }
 
     private void ResetCart()
     {
         isActive = false;
+        if (SoundManager.instance != null) SoundManager.instance.StopLoop();
         transform.position = startPosition;
     }
 }

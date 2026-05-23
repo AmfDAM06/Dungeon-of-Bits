@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1378764748931131211}
   - component: {fileID: 3019880238014826969}
   - component: {fileID: 1360899637648665258}
+  - component: {fileID: 4282405910028897149}
   m_Layer: 0
   m_Name: PushableBox
   m_TagString: Pushable
@@ -151,8 +152,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
-  m_LinearDamping: 15
+  m_Mass: 50
+  m_LinearDamping: 50
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -166,3 +167,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4282405910028897149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8834876767804197301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7e44be5970c3549b9a4a61976e327b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PushableBox

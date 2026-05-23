@@ -8,6 +8,12 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        // --- NUEVO: Reproducir la música del Menú al iniciar ---
+        if (SoundManager.instance != null)
+        {
+            SoundManager.instance.PlayMusic(SoundManager.instance.mainMenuMusic);
+        }
+
         // Si hay una partida guardada, activamos el botón de Continuar. Si no, lo apagamos.
         if (continueButton != null)
         {
@@ -17,6 +23,12 @@ public class MainMenu : MonoBehaviour
 
     public void StartNewGame()
     {
+        // --- NUEVO: Cambiar a la música de la mazmorra al jugar ---
+        if (SoundManager.instance != null)
+        {
+            SoundManager.instance.PlayMusic(SoundManager.instance.bgMusic);
+        }
+
         SaveSystem.DeleteSave(); // Borramos cualquier partida vieja
         UIManager.currentFloor = 1; // Reiniciamos el piso
         SceneManager.LoadScene("LevelGenerationScene"); // Pon el nombre exacto de tu escena
@@ -24,6 +36,12 @@ public class MainMenu : MonoBehaviour
 
     public void ContinueGame()
     {
+        // --- NUEVO: Cambiar a la música de la mazmorra al jugar ---
+        if (SoundManager.instance != null)
+        {
+            SoundManager.instance.PlayMusic(SoundManager.instance.bgMusic);
+        }
+
         if (SaveSystem.HasSaveFile())
         {
             SaveData data = SaveSystem.Load();

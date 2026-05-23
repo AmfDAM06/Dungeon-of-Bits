@@ -153,3 +153,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleRail
   railType: 0
   rotationSpeed: 0.15
+  isHorizontalByDefault: 0

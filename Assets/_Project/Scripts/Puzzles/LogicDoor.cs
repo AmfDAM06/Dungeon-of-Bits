@@ -21,22 +21,13 @@ public class LogicDoor : MonoBehaviour
 
         int activatedCount = 0;
 
-        // Contamos cuántos interruptores del puzle están encendidos ahora mismo
         foreach (PuzzleSwitch sw in requiredSwitches)
         {
-            if (sw != null && sw.isActivated)
-            {
-                activatedCount++;
-            }
+            if (sw != null && sw.isActivated) activatedCount++;
         }
 
-        // --- NUEVO: Enviamos el recuento en tiempo real a la interfaz ---
-        if (UIManager.Instance != null)
-        {
-            UIManager.Instance.UpdatePuzzleUI(activatedCount, requiredSwitches.Length);
-        }
+        if (UIManager.Instance != null) UIManager.Instance.UpdatePuzzleUI(activatedCount, requiredSwitches.Length);
 
-        // Si todos están activados, abrimos la puerta
         if (activatedCount == requiredSwitches.Length)
         {
             if (!isOpen) OpenDoor();
@@ -52,7 +43,9 @@ public class LogicDoor : MonoBehaviour
         isOpen = true;
         if (doorCollider != null) doorCollider.enabled = false;
         if (spriteRenderer != null) spriteRenderer.color = new Color(1f, 1f, 1f, 0.3f);
-        Debug.Log("La puerta lógica se ha ABIERTO.");
+
+        // --- NUEVO ---
+        if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.instance.logicDoorClip);
     }
 
     private void CloseDoor()
@@ -60,11 +53,10 @@ public class LogicDoor : MonoBehaviour
         isOpen = false;
         if (doorCollider != null) doorCollider.enabled = true;
         if (spriteRenderer != null) spriteRenderer.color = Color.white;
-        Debug.Log("La puerta lógica se ha CERRADO.");
+
+        // --- NUEVO ---
+        if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.instance.logicDoorClip);
     }
 
-    public void ResetDoor()
-    {
-        CloseDoor();
-    }
+    public void ResetDoor() { CloseDoor(); }
 }

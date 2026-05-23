@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    // --- NUEVO: Variables estáticas (Memoria Global) para sobrevivir al cambio de nivel ---
     public static int globalHealthPotions = 0;
     public static int globalInvisPotions = 0;
     public static int globalStrengthPotions = 0;
@@ -24,63 +23,83 @@ public class PlayerInventory : MonoBehaviour
     {
         playerHealth = GetComponent<Health>();
 
-        // --- NUEVO: Al aparecer en un piso, cargamos la memoria global ---
-        healthPotions = globalHealthPotions;
-        invisPotions = globalInvisPotions;
-        strengthPotions = globalStrengthPotions;
-        bombs = globalBombs;
+        // --- LA SOLUCIÓN ---
+        // Si estamos en el piso 1 y has escrito números en el Inspector, los respetamos para hacer trampas/pruebas.
+        if (UIManager.currentFloor == 1 && (healthPotions > 0 || invisPotions > 0 || strengthPotions > 0 || bombs > 0))
+        {
+            SyncGlobals();
+        }
+        else
+        {
+            // Si no hay trampas, cargamos la memoria global normal
+            healthPotions = globalHealthPotions;
+            invisPotions = globalInvisPotions;
+            strengthPotions = globalStrengthPotions;
+            bombs = globalBombs;
+        }
 
         UpdateUI();
     }
 
     void Update()
     {
-        // 1. VIDA
-        if (Input.GetKeyDown(KeyCode.Alpha1) && healthPotions > 0)
+        // 1. VIDA (Acepta el '1' de arriba y el '1' del teclado numérico)
+        if ((Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) && healthPotions > 0)
         {
+            // Solo te deja beberla si te falta vida
             if (playerHealth != null && playerHealth.GetCurrentHealth() < playerHealth.maxHealth)
             {
                 playerHealth.Heal(1);
                 healthPotions--;
-                SyncGlobals(); // Guardamos el cambio
+                SyncGlobals();
                 UpdateUI();
+
+                if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.instance.drinkPotionClip);
             }
         }
 
         // 2. INVISIBILIDAD
-        if (Input.GetKeyDown(KeyCode.Alpha2) && invisPotions > 0)
+        if ((Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)) && invisPotions > 0)
         {
             if (playerHealth != null && !playerHealth.isInvisible)
             {
                 StartCoroutine(InvisibilityRoutine(10f));
                 invisPotions--;
-                SyncGlobals(); // Guardamos el cambio
+                SyncGlobals();
                 UpdateUI();
+
+                if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.instance.drinkPotionClip);
             }
         }
 
         // 3. FUERZA
-        if (Input.GetKeyDown(KeyCode.Alpha3) && strengthPotions > 0)
+        if ((Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)) && strengthPotions > 0)
         {
             DamageDealer swordDamage = GetComponentInChildren<DamageDealer>(true);
             if (swordDamage != null && !swordDamage.isBuffed)
             {
                 StartCoroutine(StrengthRoutine(swordDamage, 10f));
                 strengthPotions--;
-                SyncGlobals(); // Guardamos el cambio
+                SyncGlobals();
                 UpdateUI();
+
+                if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.instance.drinkPotionClip);
             }
         }
 
         // 4. BOMBA
-        if (Input.GetKeyDown(KeyCode.Alpha4) && bombs > 0)
+        if ((Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4)) && bombs > 0)
         {
             if (bombPrefabToSpawn != null)
             {
                 Instantiate(bombPrefabToSpawn, transform.position, Quaternion.identity);
                 bombs--;
-                SyncGlobals(); // Guardamos el cambio
+                SyncGlobals();
                 UpdateUI();
+            }
+            else
+            {
+                Debug.LogWarning("¡Intento usar una bomba pero la casilla 'Bomb Prefab To Spawn' está vacía en el Inspector!");
             }
         }
     }
@@ -94,7 +113,7 @@ public class PlayerInventory : MonoBehaviour
             case "Strength": strengthPotions += amount; break;
             case "Bomb": bombs += amount; break;
         }
-        SyncGlobals(); // Guardamos el cambio
+        SyncGlobals();
         UpdateUI();
     }
 
@@ -106,7 +125,6 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    // --- NUEVO: Sincroniza las variables locales con las globales ---
     private void SyncGlobals()
     {
         globalHealthPotions = healthPotions;
@@ -115,7 +133,6 @@ public class PlayerInventory : MonoBehaviour
         globalBombs = bombs;
     }
 
-    // --- NUEVO: Para borrar el inventario si morimos y reiniciamos ---
     public static void ResetInventory()
     {
         globalHealthPotions = 0;
