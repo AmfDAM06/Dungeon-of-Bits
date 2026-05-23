@@ -20,7 +20,6 @@ public class DungeonGenerator : MonoBehaviour
 
     [Header("Prefabs de Entidades")]
     public GameObject playerPrefab;
-    // --- NUEVO: Array para guardar varios tipos de enemigos y el jefe ---
     public GameObject[] enemyPrefabs;
     public GameObject bossPrefab;
     public GameObject exitPrefab;
@@ -46,6 +45,13 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject chestPrefab;
     public int chestCount = 1;
 
+    // --- NUEVO: PREFABS DE DECORACIÓN ---
+    [Header("Decoración Visual")]
+    public GameObject[] decorationPrefabs;
+    [Range(0f, 100f)]
+    [Tooltip("Probabilidad de que aparezca un adorno en cada baldosa vacía (Recomendado: 3% a 8%)")]
+    public float decorationChance = 5f;
+
     private HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
     private List<Vector2Int> availablePositions = new List<Vector2Int>();
 
@@ -67,7 +73,6 @@ public class DungeonGenerator : MonoBehaviour
     private List<Vector2Int> railPositions = new List<Vector2Int>();
     private bool spawnMinecartRoom = false;
 
-    // --- NUEVO: Variable para saber si toca jefe ---
     private bool isBossFloor = false;
 
     void Start() { GenerateDungeon(); }
@@ -99,7 +104,8 @@ public class DungeonGenerator : MonoBehaviour
 
         int currentFloor = UIManager.currentFloor;
 
-        // --- NUEVO: Detectar si es múltiplo de 10 ---
+        if (UIManager.Instance != null) UIManager.Instance.UpdateFloorUI();
+
         isBossFloor = (currentFloor > 0 && currentFloor % 10 == 0);
 
         if (currentFloor == 1) { iterations = 5; enemyCount = 0; numberOfSwitches = Random.Range(1, 3); spawnHackingVault = false; spawnMinecartRoom = false; }
@@ -321,19 +327,23 @@ public class DungeonGenerator : MonoBehaviour
                 Vector2Int spawnPos;
                 Vector3 instantiatePos;
 
-                if (switchData.type == PuzzleSwitch.SwitchType.Melee)
+                // --- EL SISTEMA NUEVO ESTÁ JUSTO AQUÍ ---
+                if (switchData.type == PuzzleSwitch.SwitchType.Melee && switchData.isWallMounted)
                 {
+                    // Si es Melee Y va en la pared (Botón de Pared)
                     if (spawnHackingVault && i == 0) spawnPos = vaultCenter + new Vector2Int(0, 2);
                     else spawnPos = GetNorthWallPosition();
                     instantiatePos = new Vector3(spawnPos.x + 0.5f, spawnPos.y + 1.5f, 0f);
                 }
                 else
                 {
+                    // Si es una Placa de Presión o una Palanca de Suelo
                     if (spawnHackingVault && i == 0) spawnPos = vaultCenter + Vector2Int.left;
                     else spawnPos = GetSafeBoxPosition();
                     instantiatePos = new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f);
 
-                    if (boxPrefab != null)
+                    // IMPORTANTE: Solo soltamos una caja si es de Presión Y requiere caja
+                    if (boxPrefab != null && switchData.type == PuzzleSwitch.SwitchType.Pressure && switchData.requiredTag == "Pushable")
                     {
                         Vector2Int boxPos = (spawnHackingVault && i == 0) ? vaultCenter + Vector2Int.right : GetSafeBoxPosition();
                         Vector3 fBoxPos = new Vector3(boxPos.x + 0.5f, boxPos.y + 0.5f, 0f);
@@ -342,6 +352,8 @@ public class DungeonGenerator : MonoBehaviour
                         boxStartPositions.Add(fBoxPos);
                     }
                 }
+                // ----------------------------------------
+
                 GameObject swObj = Instantiate(prefab, instantiatePos, Quaternion.identity);
                 spawnedSwitches[i] = swObj.GetComponent<PuzzleSwitch>();
             }
@@ -420,7 +432,6 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
-        // --- NUEVO: Generar los enemigos aleatorios del Array ---
         if (enemyPrefabs != null && enemyPrefabs.Length > 0)
         {
             for (int i = 0; i < enemyCount; i++)
@@ -428,7 +439,6 @@ public class DungeonGenerator : MonoBehaviour
                 if (availablePositions.Count == 0) break;
                 int r = Random.Range(0, availablePositions.Count);
 
-                // Elegimos un enemigo al azar de tu lista
                 GameObject randomEnemy = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
 
                 Instantiate(randomEnemy, new Vector3(availablePositions[r].x + 0.5f, availablePositions[r].y + 0.5f, 0f), Quaternion.identity);
@@ -436,15 +446,27 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
-        // --- NUEVO: Generar al Jefe si es el piso correcto ---
         if (isBossFloor && bossPrefab != null)
         {
             if (availablePositions.Count > 0)
             {
-                // Le damos una posición segura y vacía
                 Vector2Int spawnPos = GetSafeBoxPosition();
                 Instantiate(bossPrefab, new Vector3(spawnPos.x + 0.5f, spawnPos.y + 0.5f, 0f), Quaternion.identity);
                 if (availablePositions.Contains(spawnPos)) availablePositions.Remove(spawnPos);
+            }
+        }
+
+        // --- NUEVO: REPARTIR DECORACIÓN AL FINAL ---
+        if (decorationPrefabs != null && decorationPrefabs.Length > 0)
+        {
+            foreach (Vector2Int pos in availablePositions)
+            {
+                // Tiramos un número del 0 al 100
+                if (Random.Range(0f, 100f) <= decorationChance)
+                {
+                    int randIndex = Random.Range(0, decorationPrefabs.Length);
+                    Instantiate(decorationPrefabs[randIndex], new Vector3(pos.x + 0.5f, pos.y + 0.5f, 0f), Quaternion.identity);
+                }
             }
         }
     }

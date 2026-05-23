@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class LogicDoor : MonoBehaviour
 {
-    [Header("Configuración")]
+    [Header("Configuración del Puzle")]
     public PuzzleSwitch[] requiredSwitches;
+
+    [Header("Configuración Visual")]
+    public Sprite closedSprite; // <-- NUEVO: Tu dibujo de la puerta cerrada
+    public Sprite openSprite;   // <-- NUEVO: Tu dibujo de la puerta abierta
 
     private bool isOpen = false;
     private BoxCollider2D doorCollider;
@@ -13,6 +17,12 @@ public class LogicDoor : MonoBehaviour
     {
         doorCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Nos aseguramos de que al empezar, muestre el sprite cerrado
+        if (spriteRenderer != null && closedSprite != null)
+        {
+            spriteRenderer.sprite = closedSprite;
+        }
     }
 
     void Update()
@@ -42,9 +52,14 @@ public class LogicDoor : MonoBehaviour
     {
         isOpen = true;
         if (doorCollider != null) doorCollider.enabled = false;
-        if (spriteRenderer != null) spriteRenderer.color = new Color(1f, 1f, 1f, 0.3f);
 
-        // --- NUEVO ---
+        // --- CAMBIO: Ponemos el Sprite de la puerta abierta ---
+        if (spriteRenderer != null && openSprite != null)
+        {
+            spriteRenderer.sprite = openSprite;
+            spriteRenderer.color = Color.white; // Restauramos el color normal por si acaso
+        }
+
         if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.instance.logicDoorClip);
     }
 
@@ -52,9 +67,13 @@ public class LogicDoor : MonoBehaviour
     {
         isOpen = false;
         if (doorCollider != null) doorCollider.enabled = true;
-        if (spriteRenderer != null) spriteRenderer.color = Color.white;
 
-        // --- NUEVO ---
+        // --- CAMBIO: Ponemos el Sprite de la puerta cerrada ---
+        if (spriteRenderer != null && closedSprite != null)
+        {
+            spriteRenderer.sprite = closedSprite;
+        }
+
         if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.instance.logicDoorClip);
     }
 

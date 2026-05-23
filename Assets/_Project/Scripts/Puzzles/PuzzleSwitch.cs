@@ -9,6 +9,9 @@ public class PuzzleSwitch : MonoBehaviour
     public SwitchType type = SwitchType.Pressure;
     public string requiredTag = "Pushable";
 
+    // --- NUEVO: ¿Va pegado en la pared? ---
+    public bool isWallMounted = false;
+
     [Header("Animación")]
     public Sprite[] frames;
     public float frameRate = 0.05f;
@@ -16,6 +19,9 @@ public class PuzzleSwitch : MonoBehaviour
     public bool isActivated = false;
     private SpriteRenderer spriteRenderer;
     private bool isAnimating = false;
+
+    // --- NUEVO: Temporizador para evitar pulsaciones múltiples ---
+    private float lastToggleTime = -999f;
 
     void Start()
     {
@@ -38,7 +44,12 @@ public class PuzzleSwitch : MonoBehaviour
 
     public void ToggleByHit()
     {
-        if (type == SwitchType.Melee && !isAnimating) SetState(!isActivated);
+        // --- NUEVO: Solo se activa si ha pasado medio segundo desde el último golpe ---
+        if (type == SwitchType.Melee && !isAnimating && Time.time >= lastToggleTime + 0.5f)
+        {
+            lastToggleTime = Time.time;
+            SetState(!isActivated);
+        }
     }
 
     public void SetState(bool active)
@@ -47,7 +58,6 @@ public class PuzzleSwitch : MonoBehaviour
 
         isActivated = active;
 
-        // --- NUEVO: Sonido de interruptor ---
         if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.instance.switchToggleClip);
 
         if (gameObject.activeInHierarchy)

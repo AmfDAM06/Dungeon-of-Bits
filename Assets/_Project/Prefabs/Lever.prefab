@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleSwitch
   type: 1
   requiredTag: 
+  isWallMounted: 1
   frames:
   - {fileID: -4454914845596493489, guid: f71f06e14af66a349931577cc944023b, type: 3}
   - {fileID: 1694985531360637023, guid: f71f06e14af66a349931577cc944023b, type: 3}

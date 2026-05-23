@@ -7,42 +7,42 @@ public class SoundManager : MonoBehaviour
     [Header("Reproductores (AudioSource)")]
     public AudioSource musicSource;
     public AudioSource sfxSource;
-    public AudioSource loopSource; // <-- NUEVO: Para sonidos continuos (como el escudo o la vagoneta)
+    public AudioSource loopSource;
 
     [Header("Música")]
     public AudioClip bgMusic;
-    public AudioClip mainMenuMusic; // <-- NUEVO
+    public AudioClip mainMenuMusic;
 
     [Header("Jugador (SFX)")]
     public AudioClip swordSwingClip;
     public AudioClip hitClip;
     public AudioClip playerHurtClip;
-    public AudioClip shieldLoopClip; // <-- NUEVO
-    public AudioClip footstepClip;   // <-- NUEVO
-    public AudioClip drinkPotionClip; // <-- NUEVO
+    public AudioClip shieldLoopClip;
+    public AudioClip footstepClip;
+    public AudioClip drinkPotionClip;
 
     [Header("Inventario y Botín (SFX)")]
-    public AudioClip pickupItemClip; // <-- NUEVO
-    public AudioClip openChestClip;  // <-- NUEVO
-    public AudioClip bombExplosionClip; // <-- NUEVO
+    public AudioClip pickupItemClip;
+    public AudioClip openChestClip;
+    public AudioClip bombExplosionClip;
 
     [Header("Entorno y Puzles (SFX)")]
-    public AudioClip switchToggleClip; // <-- NUEVO (Para palancas y placas)
-    public AudioClip moveBoxClip;      // <-- NUEVO
-    public AudioClip rotateRailClip;   // <-- NUEVO
-    public AudioClip minecartMoveClip; // <-- NUEVO
-    public AudioClip logicDoorClip;    // <-- NUEVO
-    public AudioClip levelCompleteClip; // <-- NUEVO
+    public AudioClip switchToggleClip;
+    public AudioClip moveBoxClip;
+    public AudioClip rotateRailClip;
+    public AudioClip minecartMoveClip;
+    public AudioClip logicDoorClip;
+    public AudioClip levelCompleteClip;
 
     [Header("Hacking Terminal (SFX)")]
-    public AudioClip terminalStartClip;   // <-- NUEVO
-    public AudioClip terminalSuccessClip; // <-- NUEVO
-    public AudioClip terminalErrorClip;   // <-- NUEVO
+    public AudioClip terminalStartClip;
+    public AudioClip terminalSuccessClip;
+    public AudioClip terminalErrorClip;
 
     [Header("Enemigos (SFX)")]
     public AudioClip enemyHurtClip;
     public AudioClip arrowShootClip;
-    public AudioClip bossDeathClip; // <-- NUEVO
+    public AudioClip bossDeathClip;
 
     void Awake()
     {
@@ -55,11 +55,6 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    void Start()
-    {
-        PlayMusic(bgMusic);
     }
 
     // Reproduce música de fondo

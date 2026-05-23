@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class HealthPotion : MonoBehaviour
+public class PickupItem : MonoBehaviour
 {
     [Header("Configuración del Objeto")]
     [Tooltip("Escribe: Health, Invis, Strength o Bomb")]

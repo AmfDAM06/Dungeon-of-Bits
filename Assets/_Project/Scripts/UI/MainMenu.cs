@@ -1,20 +1,22 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; // Para activar/desactivar botones visualmente
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public Button continueButton; // Arrastra aquí tu botón de continuar en el Inspector
+    public Button continueButton;
+
+    [Header("Configuración de Escenas")]
+    [Tooltip("Escribe aquí el nombre EXACTO de la escena de tu mazmorra")]
+    public string dungeonSceneName = "LevelGenerationScene";
 
     private void Start()
     {
-        // --- NUEVO: Reproducir la música del Menú al iniciar ---
         if (SoundManager.instance != null)
         {
             SoundManager.instance.PlayMusic(SoundManager.instance.mainMenuMusic);
         }
 
-        // Si hay una partida guardada, activamos el botón de Continuar. Si no, lo apagamos.
         if (continueButton != null)
         {
             continueButton.interactable = SaveSystem.HasSaveFile();
@@ -23,20 +25,20 @@ public class MainMenu : MonoBehaviour
 
     public void StartNewGame()
     {
-        // --- NUEVO: Cambiar a la música de la mazmorra al jugar ---
         if (SoundManager.instance != null)
         {
             SoundManager.instance.PlayMusic(SoundManager.instance.bgMusic);
         }
 
-        SaveSystem.DeleteSave(); // Borramos cualquier partida vieja
-        UIManager.currentFloor = 1; // Reiniciamos el piso
-        SceneManager.LoadScene("LevelGenerationScene"); // Pon el nombre exacto de tu escena
+        SaveSystem.DeleteSave();
+        UIManager.currentFloor = 1;
+        PlayerInventory.ResetInventory(); // Vaciamos los bolsillos
+
+        SceneManager.LoadScene(dungeonSceneName);
     }
 
     public void ContinueGame()
     {
-        // --- NUEVO: Cambiar a la música de la mazmorra al jugar ---
         if (SoundManager.instance != null)
         {
             SoundManager.instance.PlayMusic(SoundManager.instance.bgMusic);
@@ -45,8 +47,15 @@ public class MainMenu : MonoBehaviour
         if (SaveSystem.HasSaveFile())
         {
             SaveData data = SaveSystem.Load();
-            UIManager.currentFloor = data.floor; // Recuperamos el piso donde nos quedamos
-            SceneManager.LoadScene("LevelGenerationScene"); // Pon el nombre exacto de tu escena
+            UIManager.currentFloor = data.floor;
+
+            // --- NUEVO: Recuperamos la mochila ---
+            PlayerInventory.globalHealthPotions = data.healthPotions;
+            PlayerInventory.globalInvisPotions = data.invisPotions;
+            PlayerInventory.globalStrengthPotions = data.strengthPotions;
+            PlayerInventory.globalBombs = data.bombs;
+
+            SceneManager.LoadScene(dungeonSceneName);
         }
     }
 
