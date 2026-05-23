@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro; // Usamos TMPro para los textos
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,13 +11,18 @@ public class UIManager : MonoBehaviour
     public GameObject gameplayPanel;
     public GameObject gameOverPanel;
 
+    [Header("Inventory UI")]
+    public TextMeshProUGUI healthPotionText;
+    public TextMeshProUGUI invisPotionText;
+    public TextMeshProUGUI strengthPotionText;
+    public TextMeshProUGUI bombText;
+
     [Header("Gameplay UI")]
     public Image[] heartImages;
     public Sprite fullHeartSprite;
     public Sprite emptyHeartSprite;
     public TextMeshProUGUI floorText;
 
-    // --- NUEVO: Casilla para arrastrar el texto del contador de puzles ---
     public TextMeshProUGUI puzzleText;
 
     public static int currentFloor = 1;
@@ -62,6 +67,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void UpdateInventoryUI(int health, int invis, int strength, int bombs)
+    {
+        if (healthPotionText != null) healthPotionText.text = "x" + health;
+        if (invisPotionText != null) invisPotionText.text = "x" + invis;
+        if (strengthPotionText != null) strengthPotionText.text = "x" + strength;
+        if (bombText != null) bombText.text = "x" + bombs;
+    }
+
     public void UpdateFloorUI()
     {
         if (floorText != null)
@@ -70,18 +83,17 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // --- NUEVA FUNCIÓN: Actualiza el texto de los puzles en pantalla ---
     public void UpdatePuzzleUI(int activated, int total)
     {
         if (puzzleText != null)
         {
             if (activated >= total)
             {
-                puzzleText.text = "<color=green>¡Puerta Abierta!</color>";
+                puzzleText.text = "<color=green>Door Open!</color>";
             }
             else
             {
-                puzzleText.text = $"Puzles: {activated} / {total}";
+                puzzleText.text = $"Puzzles: {activated} / {total}";
             }
         }
     }
@@ -102,6 +114,8 @@ public class UIManager : MonoBehaviour
 
     public void RestartGame()
     {
+        PlayerInventory.ResetInventory();
+
         currentFloor = 1;
         UpdateFloorUI();
         ShowGameplay();
@@ -110,6 +124,8 @@ public class UIManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        PlayerInventory.ResetInventory();
+
         currentFloor = 1;
         Time.timeScale = 1f;
         Destroy(gameObject);

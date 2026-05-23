@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
 
     private bool isInvulnerable = false;
     public bool isShielded = false;
+    public bool isInvisible = false; // <--- NUEVO
 
     [Header("Efectos de Jefe (Sin animaciones)")]
     public bool isBoss = false;

@@ -1,84 +1,81 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class LootChest : MonoBehaviour
 {
-    [Header("Animación del Cofre")]
-    // Aquí pondremos los 3 sprites: [0] Cerrado, [1] Medio Abierto, [2] Abierto
-    public Sprite[] chestFrames;
-    public float animationSpeed = 0.15f;
+    [Header("Botín del Cofre")]
+    public GameObject[] lootPrefabs;
+
+    [Header("Configuración Visual")]
+    public Sprite openSprite;
+    public Sprite closedSprite;
+    public string requiredTag = "Player";
+
+    public int lootAmount = 1;
+
+    private bool isOpen = false;
+    private bool isPlayerNear = false; // <-- NUEVO: Para saber si estás pegado al cofre
     private SpriteRenderer spriteRenderer;
-
-    [Header("Botín (Loot)")]
-    // Ponemos un Array por si quieres que a veces suelte una poción y a veces otra cosa
-    public GameObject[] possibleLoot;
-
-    private bool isPlayerNear = false;
-    private bool isOpened = false;
+    private Animator animator;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Empezamos con el cofre cerrado
-        if (chestFrames.Length > 0 && spriteRenderer != null)
-        {
-            spriteRenderer.sprite = chestFrames[0];
-        }
+        if (spriteRenderer != null && closedSprite != null) spriteRenderer.sprite = closedSprite;
+
+        animator = GetComponentInChildren<Animator>();
+        if (animator == null) animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        // Si el jugador está cerca, no se ha abierto y pulsa 'E'
-        if (isPlayerNear && !isOpened && Input.GetKeyDown(KeyCode.E))
+        // --- NUEVO: Solo se abre si estás cerca y pulsas la E ---
+        if (isPlayerNear && !isOpen && Input.GetKeyDown(KeyCode.E))
         {
-            // Bloqueamos el cofre para que no se abra dos veces
-            isOpened = true;
-            StartCoroutine(OpenChestRoutine());
+            OpenChest();
         }
     }
 
-    private IEnumerator OpenChestRoutine()
+    // Detectamos cuando el jugador se acerca
+    private void OnTriggerEnter2D(Collider2D collision) { if (collision.CompareTag(requiredTag)) isPlayerNear = true; }
+    private void OnCollisionEnter2D(Collision2D collision) { if (collision.gameObject.CompareTag(requiredTag)) isPlayerNear = true; }
+
+    // Detectamos cuando el jugador se aleja
+    private void OnTriggerExit2D(Collider2D collision) { if (collision.CompareTag(requiredTag)) isPlayerNear = false; }
+    private void OnCollisionExit2D(Collision2D collision) { if (collision.gameObject.CompareTag(requiredTag)) isPlayerNear = false; }
+
+    public void OpenChest()
     {
-        // 1. Reproducimos la animación frame a frame
-        if (chestFrames.Length > 0 && spriteRenderer != null)
+        if (isOpen) return;
+        isOpen = true;
+
+        if (SoundManager.instance != null && SoundManager.instance.hitClip != null)
         {
-            for (int i = 0; i < chestFrames.Length; i++)
-            {
-                spriteRenderer.sprite = chestFrames[i];
-                yield return new WaitForSeconds(animationSpeed);
-            }
+            SoundManager.instance.PlaySFX(SoundManager.instance.hitClip);
         }
 
-        // 2. Soltamos el botín una vez que el cofre está abierto del todo
+        if (animator != null) animator.SetTrigger("Open");
+        else if (spriteRenderer != null && openSprite != null) spriteRenderer.sprite = openSprite;
+
         SpawnLoot();
     }
 
     private void SpawnLoot()
     {
-        if (possibleLoot.Length > 0)
+        if (lootPrefabs != null && lootPrefabs.Length > 0)
         {
-            // Elegimos un objeto al azar de la lista de posibles botines
-            int randomIndex = Random.Range(0, possibleLoot.Length);
-            GameObject lootToSpawn = possibleLoot[randomIndex];
-
-            if (lootToSpawn != null)
+            for (int i = 0; i < lootAmount; i++)
             {
-                // Lo instanciamos ligeramente más abajo del cofre para que parezca que cae delante
-                Vector3 spawnPosition = transform.position + new Vector3(0f, -0.5f, 0f);
-                Instantiate(lootToSpawn, spawnPosition, Quaternion.identity);
+                int randomIndex = Random.Range(0, lootPrefabs.Length);
+                GameObject randomLoot = lootPrefabs[randomIndex];
+
+                // Hacemos que caiga justo enfrente del cofre (en la Y negativa)
+                Vector3 spawnPosition = transform.position + new Vector3(0f, -0.8f, 0f);
+
+                Instantiate(randomLoot, spawnPosition, Quaternion.identity);
             }
         }
-    }
-
-    // Detectar si el jugador está delante del cofre
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player")) isPlayerNear = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player")) isPlayerNear = false;
     }
 }

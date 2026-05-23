@@ -45,6 +45,14 @@ public class BossAI : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             return;
         }
+        // --- NUEVO: SI EL JUGADOR ES INVISIBLE, NOS QUEDAMOS QUIETOS ---
+        Health targetHealth = target.GetComponent<Health>();
+        if (targetHealth != null && targetHealth.isInvisible)
+        {
+            rb.linearVelocity = Vector2.zero;
+            if (animator != null) animator.SetFloat("Speed", 0f);
+            return; // Cortamos el código aquí para que no te persiga
+        }
 
         float distanceToTarget = Vector2.Distance(rb.position, target.position);
         Vector2 direction = ((Vector2)target.position - rb.position).normalized;

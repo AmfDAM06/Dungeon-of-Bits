@@ -5,6 +5,7 @@ public class DamageDealer : MonoBehaviour
 {
     public int damageAmount = 1;
     public string targetTag = "Enemy";
+    public bool isBuffed = false; // <--- NUEVO
 
     [Header("Configuración de Ataque")]
     public float attackCooldown = 1.5f;

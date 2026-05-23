@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7007887482532541694}
   - component: {fileID: 2759276472673369483}
   m_Layer: 0
-  m_Name: HealthPotion
+  m_Name: InvisPotion
   m_TagString: Potion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -8558721662302090408, guid: e6bd3696799e68248b1ba6f1fe3ef8d6, type: 3}
+  m_Sprite: {fileID: 7421218225407433232, guid: e6bd3696799e68248b1ba6f1fe3ef8d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -151,5 +151,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b069f3df6b2d804182ca6497cc060cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthPotion
-  itemType: Health
+  itemType: Invis
   pickupDelay: 0.3

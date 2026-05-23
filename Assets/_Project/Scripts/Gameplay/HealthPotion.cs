@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class HealthPotion : MonoBehaviour
 {
-    [Header("Potion Settings")]
-    public int healingAmount = 1;
-    public float pickupDelay = 0.8f; // Tiempo en segundos antes de poder cogerla
+    [Header("Configuración del Objeto")]
+    [Tooltip("Escribe: Health, Invis, Strength o Bomb")]
+    public string itemType = "Health";
 
+    public float pickupDelay = 0.8f;
     private bool canBePickedUp = false;
 
     private void Start()
     {
-        // Al nacer la poción, empezamos la cuenta atrás
         StartCoroutine(EnablePickupRoutine());
     }
 
@@ -21,25 +21,21 @@ public class HealthPotion : MonoBehaviour
         canBePickedUp = true;
     }
 
-    // Usamos Stay2D para que te la bebas incluso si te quedas quieto encima esperando
-    private void OnTriggerStay2D(Collider2D collision)
+    // Esta función centraliza la recogida
+    private void TryPickup(GameObject playerObj)
     {
-        // Si aún no se puede recoger, abortamos
         if (!canBePickedUp) return;
 
-        if (collision.CompareTag("Player"))
+        PlayerInventory inventory = playerObj.GetComponent<PlayerInventory>();
+        if (inventory != null)
         {
-            Health playerHealth = collision.GetComponent<Health>();
-
-            if (playerHealth != null)
-            {
-                bool wasHealed = playerHealth.Heal(healingAmount);
-
-                if (wasHealed)
-                {
-                    Destroy(gameObject);
-                }
-            }
+            inventory.AddItem(itemType, 1);
+            Destroy(gameObject);
         }
     }
+
+    // Cubrimos todas las físicas posibles de Unity por si acaso
+    private void OnTriggerStay2D(Collider2D collision) { if (collision.CompareTag("Player")) TryPickup(collision.gameObject); }
+    private void OnTriggerEnter2D(Collider2D collision) { if (collision.CompareTag("Player")) TryPickup(collision.gameObject); }
+    private void OnCollisionEnter2D(Collision2D collision) { if (collision.gameObject.CompareTag("Player")) TryPickup(collision.gameObject); }
 }

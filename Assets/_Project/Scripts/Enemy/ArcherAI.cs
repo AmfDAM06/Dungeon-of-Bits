@@ -64,6 +64,14 @@ public class ArcherAI : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             return;
         }
+        // --- NUEVO: SI EL JUGADOR ES INVISIBLE, NOS QUEDAMOS QUIETOS ---
+        Health playerHealth = player.GetComponent<Health>();
+        if (playerHealth != null && playerHealth.isInvisible)
+        {
+            rb.linearVelocity = Vector2.zero;
+            anim.SetBool("isWalking", false);
+            return; // Cortamos el código aquí para que no te dispare
+        }
 
         float distance = Vector2.Distance(transform.position, player.position);
 

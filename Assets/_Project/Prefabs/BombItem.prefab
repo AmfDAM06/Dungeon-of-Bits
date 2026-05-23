@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7007887482532541694}
   - component: {fileID: 2759276472673369483}
   m_Layer: 0
-  m_Name: HealthPotion
+  m_Name: BombItem
   m_TagString: Potion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,9 +81,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -8558721662302090408, guid: e6bd3696799e68248b1ba6f1fe3ef8d6, type: 3}
+  m_Sprite: {fileID: 4990061312139897882, guid: 5f7e4727656083d4b8046975ebaecf95, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.6875, y: 0.9375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -151,5 +151,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b069f3df6b2d804182ca6497cc060cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthPotion
-  itemType: Health
+  itemType: Bomb
   pickupDelay: 0.3

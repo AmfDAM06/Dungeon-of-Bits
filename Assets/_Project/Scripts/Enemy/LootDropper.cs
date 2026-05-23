@@ -2,26 +2,27 @@ using UnityEngine;
 
 public class LootDropper : MonoBehaviour
 {
-    [Header("Loot Settings")]
-    public GameObject itemToDrop; // Arrastra el prefab de la poción aquí
+    [Header("Botín Posible")]
+    // Cambiamos el GameObject único por un Array para meter varias pociones
+    public GameObject[] lootPrefabs;
 
-    [Range(0f, 1f)]
-    public float dropChance = 0.3f; // Probabilidad de soltar el objeto (0.3f = 30%)
+    [Range(0f, 100f)]
+    public float dropChance = 50f;
 
-    // Este método lo llamaremos justo antes de que el enemigo se destruya
     public void TryDropLoot()
     {
-        // Si no hemos asignado ningún objeto, no hacemos nada
-        if (itemToDrop == null) return;
-
-        // Tiramos un dado "virtual" del 0 al 1
-        float randomRoll = Random.value;
-
-        // Si el número aleatorio es menor o igual a nuestra probabilidad, instanciamos el objeto
-        if (randomRoll <= dropChance)
+        // Comprobamos que la lista tenga al menos un objeto
+        if (lootPrefabs != null && lootPrefabs.Length > 0)
         {
-            Instantiate(itemToDrop, transform.position, Quaternion.identity);
-            Debug.Log("Loot dropped at " + transform.position);
+            float randomValue = Random.Range(0f, 100f);
+            if (randomValue <= dropChance)
+            {
+                // Elegimos un número al azar entre 0 y el total de objetos en la lista
+                int randomIndex = Random.Range(0, lootPrefabs.Length);
+
+                // Soltamos el objeto ganador
+                Instantiate(lootPrefabs[randomIndex], transform.position, Quaternion.identity);
+            }
         }
     }
 }

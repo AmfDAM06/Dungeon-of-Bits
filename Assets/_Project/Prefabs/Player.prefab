@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6554306879917705350}
   - component: {fileID: 8206268143544947683}
   - component: {fileID: 6855192756898871348}
+  - component: {fileID: 3050371945889172254}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -226,6 +227,7 @@ MonoBehaviour:
   iFramesDuration: 1.5
   blinkInterval: 0.1
   isShielded: 0
+  isInvisible: 0
   isBoss: 0
 --- !u!114 &8206268143544947683
 MonoBehaviour:
@@ -270,6 +272,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3050371945889172254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051362847008129558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10ea8c15ad27654eb2ef619d262a128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
+  healthPotions: 0
+  invisPotions: 0
+  strengthPotions: 0
+  bombs: 1
+  bombPrefabToSpawn: {fileID: 1932048317493277007, guid: 9ca475b76bea83c4fab3b0cfb34c73f4, type: 3}
 --- !u!1 &4363869915726094488
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,9 +442,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
   damageAmount: 1
   targetTag: Enemy
+  isBuffed: 0
   attackCooldown: 1.5
   useHitStop: 1
   hitStopDuration: 0.2
+  knockbackForce: 10
 --- !u!1 &4742214796302471834
 GameObject:
   m_ObjectHideFlags: 0
