@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 242168352372525996}
   - component: {fileID: 7439698520552183090}
   - component: {fileID: 4641075024032421487}
+  - component: {fileID: -5435654340631458034}
   m_Layer: 0
   m_Name: DecorationStone_1
   m_TagString: Untagged
@@ -138,3 +139,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-5435654340631458034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47152227119576539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8208cfe1410c63c48a038c27f51d5400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BreakableProp

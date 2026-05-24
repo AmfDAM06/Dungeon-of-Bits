@@ -86,6 +86,12 @@ public class Bomb : MonoBehaviour
             {
                 pSwitch.ToggleByHit();
             }
+
+            BreakableProp prop = obj.GetComponent<BreakableProp>();
+            if (prop != null)
+            {
+                prop.Smash();
+            }
         }
 
         Destroy(gameObject);

@@ -7,10 +7,13 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
+    [Header("Configuración de Escenas")]
+    public string mainMenuSceneName = "MainMenuScene";
+
     [Header("UI Panels")]
     public GameObject gameplayPanel;
     public GameObject gameOverPanel;
-    public GameObject pausePanel; // <-- NUEVO: Ranura para tu panel de pausa
+    public GameObject pausePanel;
 
     [Header("Inventory UI")]
     public TextMeshProUGUI healthPotionText;
@@ -26,7 +29,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI puzzleText;
 
     public static int currentFloor = 1;
-    private bool isPaused = false; // <-- NUEVO: Para saber si estamos en pausa
+    private bool isPaused = false;
 
     void Awake()
     {
@@ -49,22 +52,19 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        // --- NUEVO: Lógica para pausar con Escape ---
-        // Solo pausamos si NO estamos muertos y la Terminal de Hackeo NO está abierta
         if (Input.GetKeyDown(KeyCode.Escape) && !gameOverPanel.activeSelf && !HackingTerminal.isTerminalOpen)
         {
             TogglePause();
         }
     }
 
-    // --- NUEVAS FUNCIONES DE PAUSA ---
     public void TogglePause()
     {
         isPaused = !isPaused;
         if (isPaused)
         {
             if (pausePanel != null) pausePanel.SetActive(true);
-            Time.timeScale = 0f; // Congela el juego
+            Time.timeScale = 0f;
         }
         else
         {
@@ -76,10 +76,8 @@ public class UIManager : MonoBehaviour
     {
         isPaused = false;
         if (pausePanel != null) pausePanel.SetActive(false);
-        Time.timeScale = 1f; // Descongela el juego
+        Time.timeScale = 1f;
     }
-
-    // ---------------------------------
 
     public void UpdateHealthUI(int currentHealth, int maxHealth)
     {
@@ -128,7 +126,7 @@ public class UIManager : MonoBehaviour
     {
         if (gameplayPanel != null) gameplayPanel.SetActive(true);
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
-        if (pausePanel != null) pausePanel.SetActive(false); // Nos aseguramos de ocultar la pausa al empezar
+        if (pausePanel != null) pausePanel.SetActive(false);
         Time.timeScale = 1f;
     }
 
@@ -136,7 +134,7 @@ public class UIManager : MonoBehaviour
     {
         if (gameplayPanel != null) gameplayPanel.SetActive(false);
         if (gameOverPanel != null) gameOverPanel.SetActive(true);
-        if (pausePanel != null) pausePanel.SetActive(false); // Oculta la pausa si mueres
+        if (pausePanel != null) pausePanel.SetActive(false);
         Time.timeScale = 0f;
     }
 
@@ -151,10 +149,34 @@ public class UIManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        PlayerInventory.ResetInventory();
-        currentFloor = 1;
+        // --- NUEVO: Guardar la partida antes de volver al menú ---
+        SaveCurrentGame();
+
         Time.timeScale = 1f;
         Destroy(gameObject);
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(mainMenuSceneName);
+    }
+
+    // --- NUEVO: Guardar al pulsar la X de la ventana o ALT+F4 ---
+    private void OnApplicationQuit()
+    {
+        SaveCurrentGame();
+    }
+
+    // --- NUEVO: Lógica unificada para guardar ---
+    private void SaveCurrentGame()
+    {
+        // Buscamos al jugador en la escena
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Health playerHealth = player.GetComponent<Health>();
+
+            // Solo guardamos si el jugador existe y NO está muerto (para mantener el Game Over permadeath)
+            if (playerHealth != null && playerHealth.GetCurrentHealth() > 0)
+            {
+                SaveSystem.Save(currentFloor, playerHealth.GetCurrentHealth(), playerHealth.maxHealth);
+            }
+        }
     }
 }

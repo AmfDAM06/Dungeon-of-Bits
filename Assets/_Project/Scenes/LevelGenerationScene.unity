@@ -204,7 +204,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 934063486}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: LoadMainMenu
+        m_MethodName: ReturnToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2333,7 +2333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -3814,7 +3814,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 934063486}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: LoadMainMenu
+        m_MethodName: ReturnToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3950,6 +3950,7 @@ MonoBehaviour:
   - {fileID: 2585913192987803175, guid: 82ba8b4385889ec48ac9f3c3506547bb, type: 3}
   - {fileID: 47152227119576539, guid: 35582a204481afb46bfbdaeaf647cf6a, type: 3}
   - {fileID: 6512982881512973462, guid: a752588f4bede9e48a41b1ac0bf3b3fb, type: 3}
+  - {fileID: 6921725671490672028, guid: 00677af98f457124cb1127f9e4a8a44f, type: 3}
   decorationChance: 5
 --- !u!1 &1470960060
 GameObject:

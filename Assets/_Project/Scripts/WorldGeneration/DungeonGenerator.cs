@@ -80,7 +80,16 @@ public class DungeonGenerator : MonoBehaviour
 
     private bool isBossFloor = false;
 
-    void Start() { GenerateDungeon(); }
+    void Start()
+    {
+        // --- NUEVO: Forzamos la música de la mazmorra si no está sonando ya ---
+        if (SoundManager.instance != null && SoundManager.instance.musicSource.clip != SoundManager.instance.bgMusic)
+        {
+            SoundManager.instance.PlayMusic(SoundManager.instance.bgMusic);
+        }
+
+        GenerateDungeon();
+    }
 
     void Update()
     {

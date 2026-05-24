@@ -6,8 +6,8 @@ public class MainMenu : MonoBehaviour
 {
     [Header("Paneles de UI")]
     public Button continueButton;
-    public GameObject mainButtonsPanel; // <-- NUEVO: El panel con New Game, Continue, Quit...
-    public GameObject instructionsPanel; // <-- NUEVO: Tu nuevo panel de instrucciones
+    public GameObject mainButtonsPanel;
+    public GameObject instructionsPanel;
 
     [Header("Configuración de Escenas")]
     [Tooltip("Escribe aquí el nombre EXACTO de la escena de tu mazmorra")]
@@ -15,7 +15,6 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        // Nos aseguramos de que el estado inicial sea el correcto
         if (instructionsPanel != null) instructionsPanel.SetActive(false);
         if (mainButtonsPanel != null) mainButtonsPanel.SetActive(true);
 
@@ -30,19 +29,31 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    // --- NUEVAS FUNCIONES PARA EL PANEL DE INSTRUCCIONES ---
+    // --- NUEVO: Detectar la tecla ESCAPE en todo momento ---
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Si el panel de instrucciones está activado/visible, lo cerramos
+            if (instructionsPanel != null && instructionsPanel.activeSelf)
+            {
+                CloseInstructions();
+            }
+        }
+    }
+    // -------------------------------------------------------
+
     public void OpenInstructions()
     {
-        if (mainButtonsPanel != null) mainButtonsPanel.SetActive(false); // Ocultamos los botones principales
-        if (instructionsPanel != null) instructionsPanel.SetActive(true);  // Mostramos las instrucciones
+        if (mainButtonsPanel != null) mainButtonsPanel.SetActive(false);
+        if (instructionsPanel != null) instructionsPanel.SetActive(true);
     }
 
     public void CloseInstructions()
     {
-        if (instructionsPanel != null) instructionsPanel.SetActive(false); // Ocultamos instrucciones
-        if (mainButtonsPanel != null) mainButtonsPanel.SetActive(true);   // Volvemos a mostrar los botones
+        if (instructionsPanel != null) instructionsPanel.SetActive(false);
+        if (mainButtonsPanel != null) mainButtonsPanel.SetActive(true);
     }
-    // -------------------------------------------------------
 
     public void StartNewGame()
     {

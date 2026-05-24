@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4745775075593434359}
   - component: {fileID: 5310466195540963858}
   - component: {fileID: 5333529060180493399}
+  - component: {fileID: 4365962024344433946}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Enemy
@@ -152,7 +153,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.22175956, y: -0.3560946}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -162,7 +163,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.4375, y: 1.4375}
+  m_Size: {x: 0.9939809, y: 0.7253108}
   m_EdgeRadius: 0
 --- !u!50 &4745775075593434359
 Rigidbody2D:
@@ -226,4 +227,23 @@ MonoBehaviour:
   iFramesDuration: 1.5
   blinkInterval: 0.1
   isShielded: 0
+  isInvisible: 0
   isBoss: 0
+--- !u!114 &4365962024344433946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2242675147414079698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa7b15ccf7c6b242b7e5c0ce864c403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LootDropper
+  lootPrefabs:
+  - {fileID: 3702282027336706518, guid: 91307abc9fa83f84286c6a352b68be40, type: 3}
+  - {fileID: 3702282027336706518, guid: 92580615c88be8f48ac5cc429e954193, type: 3}
+  - {fileID: 3702282027336706518, guid: 68c1756b590ca2c4081368e2bec39864, type: 3}
+  - {fileID: 3702282027336706518, guid: 4908ef18e9f01c245babcf80d7b0ff8d, type: 3}
+  dropChance: 50

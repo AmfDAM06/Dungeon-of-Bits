@@ -56,6 +56,13 @@ public class DamageDealer : MonoBehaviour
             return;
         }
 
+        BreakableProp prop = targetObj.GetComponent<BreakableProp>();
+        if (prop != null)
+        {
+            prop.Smash();
+            return;
+        }
+
         if (targetObj.CompareTag(targetTag))
         {
             if (Time.time >= lastAttackTime + attackCooldown)
